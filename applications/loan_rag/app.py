@@ -28,20 +28,34 @@ PAGES = {
 
 
 def run() -> None:
-    if st.button("← Platform home"):
-        go_home()
-        st.rerun()
+    col_btn, _ = st.columns([1, 5])
+    with col_btn:
+        if st.button("← Home", use_container_width=True):
+            go_home()
+            st.rerun()
 
     st.markdown(
         """
-        <section class="aiew-loan-hero">
-            <div class="aiew-app-icon" style="font-size:.55rem;">RAG</div>
-            <div>
-                <h1>Loan Eligibility Prediction</h1>
-                <p>
-                    Retrieval-Augmented Generation · Ground loan policy Q&amp;A in
-                    real documents using ChromaDB vector search and a local Ollama LLM.
-                </p>
+        <section class="aiew-tier-banner aiew-tb--t4">
+            <div class="aiew-tier-banner-inner">
+                <div class="aiew-tier-badge-lg">T4</div>
+                <div>
+                    <div class="aiew-tb-cap">Retrieval-Augmented Generation · Tier 4 of 6</div>
+                    <div class="aiew-tb-title">Loan Policy Q&amp;A</div>
+                    <div class="aiew-tb-desc">
+                        RAG pipeline — load a loan policy PDF, chunk and embed it into ChromaDB,
+                        then answer natural-language questions grounded in the actual document.
+                        No hallucination: every answer cites its source chunk.
+                    </div>
+                    <div class="aiew-tb-flow">📄 Load → 🔍 Chunk → 🧮 Embed → 💬 Chat → 📜 History → ⬇ Export</div>
+                    <div>
+                        <span class="aiew-tech-pill">LangChain</span>
+                        <span class="aiew-tech-pill">ChromaDB</span>
+                        <span class="aiew-tech-pill">Ollama</span>
+                        <span class="aiew-tech-pill">nomic-embed-text</span>
+                        <span class="aiew-tech-pill">llama3.1</span>
+                    </div>
+                </div>
             </div>
         </section>
         """,
@@ -49,15 +63,8 @@ def run() -> None:
     )
 
     with st.sidebar:
-        st.markdown(
-            '<div class="aiew-side-label">Loan RAG workflow</div>',
-            unsafe_allow_html=True,
-        )
-        page = st.radio(
-            "Navigation",
-            list(PAGES.keys()),
-            key=NAVIGATION_SESSION_KEY,
-        )
+        st.markdown('<div class="aiew-side-label">Loan RAG · T4 workflow</div>', unsafe_allow_html=True)
+        page = st.radio("Navigation", list(PAGES.keys()), key=NAVIGATION_SESSION_KEY)
         st.caption("Load → Chunk → Embed → Chat → Export")
 
     PAGES[page]()

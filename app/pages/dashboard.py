@@ -20,6 +20,7 @@ def render() -> None:
     )
     _render_projects()
 
+    _section_header("Engineering principles", "How it is built", "Every module follows the same production-minded standards.")
     _render_principles()
 
 
@@ -242,14 +243,10 @@ def _render_project_progression(project: dict) -> None:
 
 def _render_principles() -> None:
     principles = (
-        ("01", "Modular by design", "Clear boundaries between presentation, business logic, and data services."),
-        ("02", "Evaluation first", "Quality, validation, and measurable outcomes built into every workflow."),
-        ("03", "Deployment aware", "Artifacts and interfaces designed for the path from notebook to production."),
+        ("01", "Modular by design", "Clear boundaries between presentation, business logic, and data services. Services are pure Python — no Streamlit — and independently testable."),
+        ("02", "Evaluation first", "Quality, validation, and measurable outcomes built into every workflow. No model ships without a confusion matrix and ROC curve."),
+        ("03", "Deployment aware", "Artifacts and interfaces designed for the path from notebook to production. Every download bundle is inference-ready."),
     )
-
-    st.markdown('<div class="aiew-dark-band">', unsafe_allow_html=True)
-    _section_header("Engineering principles", "How it is built", "Every module follows the same production-minded standards.")
-
     columns = st.columns(3)
     for column, (number, title, caption) in zip(columns, principles, strict=True):
         with column:
@@ -263,5 +260,3 @@ def _render_principles() -> None:
                 """,
                 unsafe_allow_html=True,
             )
-
-    st.markdown('</div>', unsafe_allow_html=True)

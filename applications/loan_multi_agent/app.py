@@ -25,20 +25,34 @@ PAGES = {
 
 
 def run() -> None:
-    if st.button("← Platform home"):
-        go_home()
-        st.rerun()
+    col_btn, _ = st.columns([1, 5])
+    with col_btn:
+        if st.button("← Home", use_container_width=True):
+            go_home()
+            st.rerun()
 
     st.markdown(
         """
-        <section class="aiew-loan-hero">
-            <div class="aiew-app-icon" style="font-size:.55rem;">MAS</div>
-            <div>
-                <h1>Loan Eligibility Prediction</h1>
-                <p>
-                    Multi-Agent System · Underwriter, Fraud Detector, and Compliance Officer
-                    each review independently. A Supervisor synthesises the consensus decision.
-                </p>
+        <section class="aiew-tier-banner aiew-tb--t6">
+            <div class="aiew-tier-banner-inner">
+                <div class="aiew-tier-badge-lg">T6</div>
+                <div>
+                    <div class="aiew-tb-cap">Multi-Agent System · Tier 6 of 6</div>
+                    <div class="aiew-tb-title">Credit Committee Panel</div>
+                    <div class="aiew-tb-desc">
+                        Three specialist agents run in parallel — Underwriter 💼, Fraud Detector 🔎,
+                        Compliance Officer ⚖️. A Supervisor resolves disagreements and issues the
+                        final binding decision. Built with LangGraph StateGraph fan-out.
+                    </div>
+                    <div class="aiew-tb-flow">📋 Apply → 🏛️ Panel (×3 parallel) → 📄 Consensus → 📜 History → ⬇ Export</div>
+                    <div>
+                        <span class="aiew-tech-pill">LangGraph</span>
+                        <span class="aiew-tech-pill">StateGraph</span>
+                        <span class="aiew-tech-pill">langchain_ollama</span>
+                        <span class="aiew-tech-pill">llama3.1</span>
+                        <span class="aiew-tech-pill">parallel fan-out</span>
+                    </div>
+                </div>
             </div>
         </section>
         """,
@@ -46,10 +60,7 @@ def run() -> None:
     )
 
     with st.sidebar:
-        st.markdown(
-            '<div class="aiew-side-label">Loan Multi-Agent workflow</div>',
-            unsafe_allow_html=True,
-        )
+        st.markdown('<div class="aiew-side-label">Loan MAS · T6 workflow</div>', unsafe_allow_html=True)
         page = st.radio("Navigation", list(PAGES.keys()), key=NAVIGATION_SESSION_KEY)
         st.caption("Apply → Panel → Consensus → Export")
 

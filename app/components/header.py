@@ -11,39 +11,48 @@ def show_header() -> None:
         f"""
         <section class="aiew-hero">
             <div class="aiew-eyebrow">◈ One Platform &nbsp;·&nbsp; Learn &nbsp;·&nbsp; Build &nbsp;·&nbsp; Deploy &nbsp;·&nbsp; Showcase</div>
-            <h1 class="aiew-hero-title">
+
+            <div class="aiew-hero-title">
                 AI Engineering
-                <span style="background:linear-gradient(90deg,#818cf8,#22d3ee);
-                             -webkit-background-clip:text;-webkit-text-fill-color:transparent;">
-                    World
-                </span>
-            </h1>
+                <span style="background:linear-gradient(90deg,#818cf8 0%,#22d3ee 100%);
+                             -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+                             display:inline;">World</span>
+            </div>
+
             <details class="aiew-agenda">
-                <summary class="aiew-agenda-toggle">Agenda</summary>
+                <summary class="aiew-agenda-toggle">About this platform</summary>
                 <p class="aiew-hero-copy">
                     A hands-on portfolio of production-minded machine learning,
                     deep learning, and generative AI systems — from data and
-                    experimentation to evaluation and deployment.
+                    experimentation to evaluation and deployment. Six progressive
+                    capability tiers, one real-world problem.
                 </p>
             </details>
-            <div class="aiew-chip-row" style="margin-top:1rem;">
-                <span class="aiew-chip">🤖 Machine Learning</span>
-                <span class="aiew-chip">🧠 Deep Learning</span>
-                <span class="aiew-chip">✨ Generative AI</span>
-                <span class="aiew-chip">🕵 AI Agent</span>
-                <span class="aiew-chip">⚙️ Agentic AI</span>
-                <span class="aiew-chip">🏗 AI Infrastructure</span>
+
+            <div class="aiew-chip-row">
+                <span class="aiew-chip">🤖 ML · T1</span>
+                <span class="aiew-chip">🧠 Deep Learning · T2</span>
+                <span class="aiew-chip">🔍 XAI · T3</span>
+                <span class="aiew-chip">📄 RAG · T4</span>
+                <span class="aiew-chip">🕵 AI Agent · T5</span>
+                <span class="aiew-chip">⚙️ Multi-Agent · T6</span>
             </div>
-            <div class="aiew-hero-byline">
-                ✏ Crafted by
-                <a href="{LINKEDIN_URL}" target="_blank" rel="noopener" class="aiew-byline-link">
-                    {AUTHOR}
-                </a>
-                &nbsp;·&nbsp; {AUTHOR_TITLE}
-                &nbsp;·&nbsp;
-                <a href="{GITHUB_URL}" target="_blank" rel="noopener" class="aiew-byline-link">
-                    View on GitHub ↗
-                </a>
+
+            <div class="aiew-hero-author">
+                <div class="aiew-hero-avatar">MRA</div>
+                <div>
+                    <div class="aiew-hero-author-name">{AUTHOR}</div>
+                    <div class="aiew-hero-author-title">{AUTHOR_TITLE}</div>
+                    <div class="aiew-hero-author-links">
+                        <a href="{LINKEDIN_URL}" target="_blank" rel="noopener" class="aiew-byline-link">LinkedIn ↗</a>
+                        &nbsp;·&nbsp;
+                        <a href="{GITHUB_URL}" target="_blank" rel="noopener" class="aiew-byline-link">GitHub ↗</a>
+                    </div>
+                </div>
+                <div style="margin-left:auto;text-align:right;">
+                    <span class="aiew-live-dot"></span>
+                    <span style="font-size:.72rem;color:#34d399;font-weight:700;">6 tiers live</span>
+                </div>
             </div>
         </section>
         """,

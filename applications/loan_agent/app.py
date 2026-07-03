@@ -25,20 +25,33 @@ PAGES = {
 
 
 def run_app() -> None:
-    if st.button("← Platform home"):
-        go_home()
-        st.rerun()
+    col_btn, _ = st.columns([1, 5])
+    with col_btn:
+        if st.button("← Home", use_container_width=True):
+            go_home()
+            st.rerun()
 
     st.markdown(
         """
-        <section class="aiew-loan-hero">
-            <div class="aiew-app-icon" style="font-size:.55rem;">AGT</div>
-            <div>
-                <h1>Loan Eligibility Prediction</h1>
-                <p>
-                    AI Agent · A single LangGraph ReAct agent autonomously validates
-                    the application, scores risk, and produces a structured decision report.
-                </p>
+        <section class="aiew-tier-banner aiew-tb--t5">
+            <div class="aiew-tier-banner-inner">
+                <div class="aiew-tier-badge-lg">T5</div>
+                <div>
+                    <div class="aiew-tb-cap">AI Agent · Tier 5 of 6</div>
+                    <div class="aiew-tb-title">Autonomous Loan Evaluator</div>
+                    <div class="aiew-tb-desc">
+                        Agentic workflow — three deterministic tools (validate, risk metrics,
+                        policy lookup) run sequentially, then an LLM synthesises a structured
+                        APPROVED / DECLINED / MANUAL_REVIEW decision with full reasoning.
+                    </div>
+                    <div class="aiew-tb-flow">📋 Apply → 🔧 Validate → 📊 Risk → 📜 Policy → 🤖 Synthesise → 📄 Decision</div>
+                    <div>
+                        <span class="aiew-tech-pill">LangChain tools</span>
+                        <span class="aiew-tech-pill">langchain_ollama</span>
+                        <span class="aiew-tech-pill">llama3.1</span>
+                        <span class="aiew-tech-pill">pandas</span>
+                    </div>
+                </div>
             </div>
         </section>
         """,
@@ -46,15 +59,8 @@ def run_app() -> None:
     )
 
     with st.sidebar:
-        st.markdown(
-            '<div class="aiew-side-label">Loan Agent workflow</div>',
-            unsafe_allow_html=True,
-        )
-        page = st.radio(
-            "Navigation",
-            list(PAGES.keys()),
-            key=NAVIGATION_SESSION_KEY,
-        )
+        st.markdown('<div class="aiew-side-label">Loan Agent · T5 workflow</div>', unsafe_allow_html=True)
+        page = st.radio("Navigation", list(PAGES.keys()), key=NAVIGATION_SESSION_KEY)
         st.caption("Apply → Run → Decide → Export")
 
     PAGES[page]()
