@@ -172,11 +172,10 @@ def _render_global_shap(result: ExplainResult) -> None:
             rows.append({"Feature": feat, "SHAP value": float(sv), "Feature value (norm)": float(fn)})
 
     bees_df = pd.DataFrame(rows)
-    fig2 = px.strip(
+    fig2 = px.scatter(
         bees_df, x="SHAP value", y="Feature",
         color="Feature value (norm)",
         color_continuous_scale=[[0, "#e0f2fe"], [0.5, "#818cf8"], [1, "#7c3aed"]],
-        stripmode="overlay",
     )
     fig2.update_traces(marker=dict(size=4, opacity=0.6))
     fig2.update_layout(
