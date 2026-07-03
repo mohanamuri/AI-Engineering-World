@@ -82,9 +82,9 @@ PROJECTS = [
                 "capability": "RAG",
                 "tier": 4,
                 "icon": "RAG",
-                "status": "coming_soon",
+                "status": "live",
                 "difficulty": "Advanced",
-                "version": "0.1.0",
+                "version": "1.0.0",
                 "stack": ["LangChain", "ChromaDB", "Ollama", "nomic-embed-text"],
                 "description": (
                     "Retrieval-Augmented Generation: ground loan decisions in "
