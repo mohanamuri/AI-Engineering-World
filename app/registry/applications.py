@@ -114,9 +114,9 @@ PROJECTS = [
                 "capability": "Multi-Agent System",
                 "tier": 6,
                 "icon": "MAS",
-                "status": "coming_soon",
+                "status": "live",
                 "difficulty": "Expert",
-                "version": "0.1.0",
+                "version": "1.0.0",
                 "stack": ["LangGraph", "Ollama", "FastAPI"],
                 "description": (
                     "Specialist agents (underwriter, fraud detector, compliance) "
