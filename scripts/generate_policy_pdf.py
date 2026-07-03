@@ -273,7 +273,9 @@ def generate_pdf(output_path: str) -> None:
         lines_out.append(b"ET")
         return b"\n".join(lines_out)
 
-    page_tree_id = len(objects) + 1 + 1  # placeholder index
+    # After fonts, we add len(PAGES) stream objects + len(PAGES) page objects,
+    # so the page tree object ends up at: current_count + 2*len(PAGES) + 1
+    page_tree_id = len(objects) + 2 * len(PAGES) + 1
     page_ids_placeholder = []
 
     # Pre-compute all page stream objects

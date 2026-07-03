@@ -62,8 +62,14 @@ def load_pdf_bytes(file_bytes: bytes, filename: str) -> LoadResult:
     """
     from pypdf import PdfReader  # deferred: only imported when PDF is loaded
 
-    reader = PdfReader(BytesIO(file_bytes))
-    pages_text = [page.extract_text() or "" for page in reader.pages]
+    try:
+        reader = PdfReader(BytesIO(file_bytes))
+        pages_text = [page.extract_text() or "" for page in reader.pages]
+    except Exception as exc:
+        raise ValueError(
+            f"Could not read PDF '{filename}': {exc}. "
+            "Try re-generating the file or use a different PDF."
+        ) from exc
     raw_text = "\n\n".join(pages_text).strip()
 
     return LoadResult(

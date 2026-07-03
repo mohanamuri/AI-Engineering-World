@@ -61,11 +61,14 @@ def render() -> None:
             if uploaded is not None:
                 if st.button("Load uploaded file", use_container_width=True):
                     file_bytes = uploaded.read()
-                    if uploaded.name.lower().endswith(".pdf"):
-                        result = load_pdf_bytes(file_bytes, uploaded.name)
-                    else:
-                        result = load_txt_bytes(file_bytes, uploaded.name)
-                    _load_and_store(result)
+                    try:
+                        if uploaded.name.lower().endswith(".pdf"):
+                            result = load_pdf_bytes(file_bytes, uploaded.name)
+                        else:
+                            result = load_txt_bytes(file_bytes, uploaded.name)
+                        _load_and_store(result)
+                    except ValueError as exc:
+                        st.error(str(exc))
 
     # ---- Current document status ----------------------------------------
     load_result: LoadResult | None = st.session_state.get(LOAD_RESULT_SESSION_KEY)
