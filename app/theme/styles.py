@@ -388,6 +388,41 @@ def apply_theme() -> None:
             margin: 0;
         }
 
+        /* ── Sidebar: force ALL buttons to be visible on dark background ──── */
+        section[data-testid="stSidebar"] div[data-testid="stButton"] > button,
+        section[data-testid="stSidebar"] div[data-testid="stBaseButton-secondary"] > button,
+        section[data-testid="stSidebar"] button {
+            background: rgba(255,255,255,.09) !important;
+            color: #e2e8f0 !important;
+            border: 1px solid rgba(148,163,184,.28) !important;
+            border-radius: .6rem !important;
+            font-size: .84rem !important;
+            font-weight: 500 !important;
+            transition: background .15s ease, border-color .15s ease !important;
+        }
+
+        section[data-testid="stSidebar"] div[data-testid="stButton"] > button:hover,
+        section[data-testid="stSidebar"] button:hover {
+            background: rgba(255,255,255,.16) !important;
+            border-color: rgba(148,163,184,.55) !important;
+            color: #f8fafc !important;
+        }
+
+        section[data-testid="stSidebar"] button:disabled {
+            background: transparent !important;
+            border-color: rgba(148,163,184,.1) !important;
+            color: #475569 !important;
+        }
+
+        /* ── Sidebar nav buttons (active state override) ──────────────────── */
+        section[data-testid="stSidebar"] .aiew-nav-btn--active div[data-testid="stButton"] > button,
+        section[data-testid="stSidebar"] .aiew-nav-btn--active button {
+            background: rgba(79,70,229,.35) !important;
+            border-color: rgba(99,102,241,.7) !important;
+            color: #e0e7ff !important;
+            font-weight: 700 !important;
+        }
+
         div.stButton > button, div.stDownloadButton > button {
             border-radius: .65rem;
             font-weight: 650;
@@ -522,39 +557,6 @@ def apply_theme() -> None:
             border-color: rgba(79,70,229,.35);
             box-shadow: 0 6px 28px rgba(79,70,229,.10);
             transform: translateY(-2px);
-        }
-
-        /* ── Sidebar nav buttons ──────────────────────────────────────────── */
-        section[data-testid="stSidebar"] .aiew-nav-btn > div > button {
-            justify-content: flex-start !important;
-            border: 1px solid rgba(148,163,184,.25) !important;
-            background: rgba(255,255,255,.08) !important;
-            color: #e2e8f0 !important;
-            font-size: .84rem !important;
-            font-weight: 500 !important;
-            padding: .42rem .6rem !important;
-            border-radius: .6rem !important;
-            transition: background .15s ease, border-color .15s ease;
-            white-space: pre-line;
-        }
-
-        section[data-testid="stSidebar"] .aiew-nav-btn > div > button:hover {
-            background: rgba(255,255,255,.14) !important;
-            border-color: rgba(148,163,184,.5) !important;
-            color: #f8fafc !important;
-        }
-
-        section[data-testid="stSidebar"] .aiew-nav-btn--active > div > button {
-            background: rgba(79,70,229,.35) !important;
-            border-color: rgba(99,102,241,.7) !important;
-            color: #e0e7ff !important;
-            font-weight: 700 !important;
-        }
-
-        section[data-testid="stSidebar"] .aiew-nav-btn > div > button:disabled {
-            color: #475569 !important;
-            border-color: rgba(148,163,184,.1) !important;
-            background: transparent !important;
         }
 
         /* ── Footer ──────────────────────────────────────────────────────── */
