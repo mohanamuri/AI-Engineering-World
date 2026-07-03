@@ -68,6 +68,7 @@ def apply_theme() -> None:
         section[data-testid="stSidebar"] span,
         section[data-testid="stSidebar"] label,
         section[data-testid="stSidebar"] a,
+        section[data-testid="stSidebar"] button,
         section[data-testid="stSidebar"] h1,
         section[data-testid="stSidebar"] h2,
         section[data-testid="stSidebar"] h3,
@@ -393,6 +394,34 @@ def apply_theme() -> None:
             min-height: 2.5rem;
         }
 
+        /* ── Tier card hover hint ─────────────────────────────────────────── */
+        .aiew-tier-card {
+            cursor: default;
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+
+        .aiew-tier-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(79,70,229,.12);
+        }
+
+        .aiew-tier-hint {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity .2s ease, max-height .2s ease;
+            font-size: .65rem;
+            font-weight: 600;
+            color: #4f46e5;
+            text-align: center;
+            margin-top: .3rem;
+        }
+
+        .aiew-tier-card:hover .aiew-tier-hint {
+            opacity: 1;
+            max-height: 1.5rem;
+        }
+
         /* ── Author card (sidebar) ────────────────────────────────────────── */
         .aiew-author-card {
             display: flex;
@@ -496,30 +525,36 @@ def apply_theme() -> None:
         }
 
         /* ── Sidebar nav buttons ──────────────────────────────────────────── */
-        .aiew-nav-btn > div > button {
+        section[data-testid="stSidebar"] .aiew-nav-btn > div > button {
             justify-content: flex-start !important;
-            border: 1px solid rgba(148,163,184,.2) !important;
-            background: rgba(255,255,255,.06) !important;
+            border: 1px solid rgba(148,163,184,.25) !important;
+            background: rgba(255,255,255,.08) !important;
             color: #e2e8f0 !important;
             font-size: .84rem !important;
             font-weight: 500 !important;
             padding: .42rem .6rem !important;
             border-radius: .6rem !important;
-            transition: background .15s ease, color .15s ease, border-color .15s ease;
+            transition: background .15s ease, border-color .15s ease;
             white-space: pre-line;
         }
 
-        .aiew-nav-btn > div > button:hover {
-            background: rgba(255,255,255,.12) !important;
-            border-color: rgba(148,163,184,.4) !important;
+        section[data-testid="stSidebar"] .aiew-nav-btn > div > button:hover {
+            background: rgba(255,255,255,.14) !important;
+            border-color: rgba(148,163,184,.5) !important;
             color: #f8fafc !important;
         }
 
-        .aiew-nav-btn--active > div > button {
-            background: rgba(79,70,229,.30) !important;
-            border-color: rgba(99,102,241,.6) !important;
+        section[data-testid="stSidebar"] .aiew-nav-btn--active > div > button {
+            background: rgba(79,70,229,.35) !important;
+            border-color: rgba(99,102,241,.7) !important;
             color: #e0e7ff !important;
-            font-weight: 650 !important;
+            font-weight: 700 !important;
+        }
+
+        section[data-testid="stSidebar"] .aiew-nav-btn > div > button:disabled {
+            color: #475569 !important;
+            border-color: rgba(148,163,184,.1) !important;
+            background: transparent !important;
         }
 
         /* ── Footer ──────────────────────────────────────────────────────── */
