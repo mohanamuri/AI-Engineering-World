@@ -177,9 +177,43 @@ def apply_theme() -> None:
             max-width: 790px;
             margin: 0;
             color: var(--aiew-ink);
-            font-size: clamp(2.2rem, 4vw, 3.7rem);
-            line-height: 1.04;
-            letter-spacing: -.055em;
+            font-size: clamp(1.6rem, 3vw, 2.6rem);
+            line-height: 1.1;
+            letter-spacing: -.04em;
+        }
+
+        .aiew-hero-title {
+            max-width: 790px;
+            margin: .4rem 0 0;
+            color: var(--aiew-ink);
+            font-size: clamp(1.6rem, 3vw, 2.6rem);
+            line-height: 1.1;
+            letter-spacing: -.04em;
+        }
+
+        .aiew-agenda {
+            margin-top: .75rem;
+        }
+
+        .aiew-agenda-toggle {
+            cursor: pointer;
+            color: var(--aiew-primary);
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            list-style: none;
+            user-select: none;
+        }
+
+        .aiew-agenda-toggle::-webkit-details-marker { display: none; }
+
+        .aiew-agenda-toggle::before {
+            content: "▸ ";
+        }
+
+        .aiew-agenda[open] .aiew-agenda-toggle::before {
+            content: "▾ ";
         }
 
         .aiew-gradient-text {
@@ -359,6 +393,97 @@ def apply_theme() -> None:
             min-height: 2.5rem;
         }
 
+        /* ── Author card (sidebar) ────────────────────────────────────────── */
+        .aiew-author-card {
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+            padding: .7rem .5rem;
+        }
+
+        .aiew-author-avatar {
+            flex: 0 0 auto;
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4f46e5, #0891b2);
+            color: white;
+            font-size: .6rem;
+            font-weight: 800;
+            letter-spacing: .03em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .aiew-author-name {
+            color: #f1f5f9;
+            font-size: .82rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .aiew-author-title {
+            color: #94a3b8;
+            font-size: .7rem;
+            margin-top: .1rem;
+        }
+
+        .aiew-author-links {
+            margin-top: .25rem;
+            font-size: .68rem;
+        }
+
+        .aiew-author-link {
+            color: #818cf8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .aiew-author-link:hover {
+            color: #a5b4fc;
+            text-decoration: underline;
+        }
+
+        .aiew-author-sep {
+            color: #475569;
+            margin: 0 .2rem;
+        }
+
+        /* ── Hero byline ──────────────────────────────────────────────────── */
+        .aiew-hero-byline {
+            margin-top: 1rem;
+            font-size: .78rem;
+            color: #64748b;
+        }
+
+        .aiew-byline-link {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .aiew-byline-link:hover {
+            text-decoration: underline;
+        }
+
+        .aiew-stack-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            margin-top: .55rem;
+        }
+
+        .aiew-stack-chip {
+            font-size: .64rem;
+            font-weight: 600;
+            padding: .18rem .5rem;
+            border-radius: 999px;
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+
         /* ── Card hover effect ────────────────────────────────────────────── */
         [data-testid="stVerticalBlockBorderWrapper"] {
             transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
@@ -373,24 +498,26 @@ def apply_theme() -> None:
         /* ── Sidebar nav buttons ──────────────────────────────────────────── */
         .aiew-nav-btn > div > button {
             justify-content: flex-start !important;
-            border: none !important;
-            background: transparent !important;
-            color: #cbd5e1 !important;
+            border: 1px solid rgba(148,163,184,.2) !important;
+            background: rgba(255,255,255,.06) !important;
+            color: #e2e8f0 !important;
             font-size: .84rem !important;
             font-weight: 500 !important;
             padding: .42rem .6rem !important;
             border-radius: .6rem !important;
-            transition: background .15s ease, color .15s ease;
+            transition: background .15s ease, color .15s ease, border-color .15s ease;
             white-space: pre-line;
         }
 
         .aiew-nav-btn > div > button:hover {
-            background: rgba(255,255,255,.07) !important;
+            background: rgba(255,255,255,.12) !important;
+            border-color: rgba(148,163,184,.4) !important;
             color: #f8fafc !important;
         }
 
         .aiew-nav-btn--active > div > button {
-            background: rgba(79,70,229,.22) !important;
+            background: rgba(79,70,229,.30) !important;
+            border-color: rgba(99,102,241,.6) !important;
             color: #e0e7ff !important;
             font-weight: 650 !important;
         }

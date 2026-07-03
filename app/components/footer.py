@@ -2,7 +2,7 @@
 
 import streamlit as st
 
-from config.platform import APP_NAME, AUTHOR, DESCRIPTION, VERSION
+from config.platform import APP_NAME, AUTHOR, DESCRIPTION, GITHUB_URL, LINKEDIN_URL, VERSION
 
 
 def render_footer() -> None:
@@ -20,11 +20,9 @@ def render_footer() -> None:
                 <span class="aiew-footer-sep">·</span>
                 <span class="aiew-footer-meta">Built by <strong>{AUTHOR}</strong></span>
                 <span class="aiew-footer-sep">·</span>
-                <a class="aiew-footer-link"
-                   href="https://github.com/mohanamuri/AI-Engineering-World"
-                   target="_blank" rel="noopener">
-                    GitHub ↗
-                </a>
+                <a class="aiew-footer-link" href="{LINKEDIN_URL}" target="_blank" rel="noopener">LinkedIn ↗</a>
+                <span class="aiew-footer-sep">·</span>
+                <a class="aiew-footer-link" href="{GITHUB_URL}" target="_blank" rel="noopener">GitHub ↗</a>
             </div>
         </div>
         """,

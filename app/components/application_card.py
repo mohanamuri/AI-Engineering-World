@@ -16,11 +16,20 @@ def application_card(
     icon: str = "AI",
     difficulty: str = "Intermediate",
     version: str = "1.0.0",
+    stack: list[str] | None = None,
     key: str,
 ) -> None:
-    """Render a descriptive application card and launch action."""
+    """Render a descriptive application card with stack chips and launch action."""
     is_live = status.casefold() == "live"
     status_label = "Available" if is_live else status
+
+    stack_html = ""
+    if stack:
+        chips = "".join(
+            f'<span class="aiew-stack-chip">{escape(s)}</span>'
+            for s in stack
+        )
+        stack_html = f'<div class="aiew-stack-row">{chips}</div>'
 
     with st.container(border=True):
         st.markdown(
@@ -41,6 +50,7 @@ def application_card(
                     {escape(difficulty)} · v{escape(version)}
                 </span>
             </div>
+            {stack_html}
             """,
             unsafe_allow_html=True,
         )
@@ -48,7 +58,7 @@ def application_card(
         if st.button(
             "Open workspace →",
             key=f"launch_{key}",
-            width="stretch",
+            use_container_width=True,
             type="primary",
             disabled=not is_live,
         ):
