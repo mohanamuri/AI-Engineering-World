@@ -48,6 +48,29 @@ def apply_theme() -> None:
             background: transparent;
         }
 
+        /* Make Deploy button and toolbar icons visible */
+        header[data-testid="stHeader"] button,
+        header[data-testid="stHeader"] a,
+        [data-testid="stToolbarActions"] button,
+        [data-testid="stToolbarActions"] a {
+            color: #334155 !important;
+            background: rgba(255,255,255,.9) !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: .5rem !important;
+        }
+
+        [data-testid="stToolbarActions"] button:hover,
+        [data-testid="stToolbarActions"] a:hover {
+            background: #ffffff !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        [data-testid="stToolbarActions"] button svg,
+        [data-testid="stToolbarActions"] a svg {
+            fill: #334155 !important;
+            color: #334155 !important;
+        }
+
         /* ── Sidebar ────────────────────────────────────────────────────── */
         [data-testid="stSidebarNav"],
         [data-testid="stSidebarNavItems"],
@@ -264,12 +287,12 @@ def apply_theme() -> None:
             display: flex;
             align-items: center;
             gap: .75rem;
-            margin-top: 1.4rem;
             padding: .75rem 1rem;
             background: rgba(255,255,255,.06);
             border: 1px solid rgba(255,255,255,.1);
             border-radius: .85rem;
-            max-width: 480px;
+            min-width: 240px;
+            max-width: 320px;
         }
 
         .aiew-hero-avatar {
@@ -305,14 +328,14 @@ def apply_theme() -> None:
         }
 
         .aiew-byline-link {
-            color: #38bdf8;
+            color: #ffffff;
             text-decoration: none;
             font-weight: 700;
             font-size: .72rem;
         }
 
         .aiew-byline-link:hover {
-            color: #7dd3fc;
+            color: #e2e8f0;
             text-decoration: underline;
         }
 
