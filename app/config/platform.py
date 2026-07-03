@@ -2,7 +2,7 @@ APP_NAME = "AI Engineering World"
 
 AUTHOR = "Mohan Raju Amuri"
 
-AUTHOR_TITLE = "AI Engineer"
+AUTHOR_TITLE = "AI Engineering Lead"
 
 LINKEDIN_URL = "https://www.linkedin.com/in/mohanamuri555/"
 
