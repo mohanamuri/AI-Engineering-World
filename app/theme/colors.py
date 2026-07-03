@@ -1,0 +1,19 @@
+"""
+AI Engineering World
+Color Palette
+"""
+
+PRIMARY = "#2563EB"
+SECONDARY = "#06B6D4"
+
+BACKGROUND = "#0F172A"
+CARD = "#1E293B"
+
+TEXT = "#F8FAFC"
+TEXT_LIGHT = "#CBD5E1"
+
+SUCCESS = "#22C55E"
+WARNING = "#F59E0B"
+DANGER = "#EF4444"
+
+BORDER = "#334155"

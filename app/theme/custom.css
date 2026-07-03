@@ -1,0 +1,103 @@
+/* ===========================================================
+   AI Engineering World Theme
+=========================================================== */
+
+:root{
+    --primary:#2563EB;
+    --secondary:#06B6D4;
+
+    --background:#F5F7FB;
+
+    --card:#FFFFFF;
+
+    --text:#111827;
+
+    --muted:#6B7280;
+
+    --border:#E5E7EB;
+
+    --success:#22C55E;
+}
+
+/* Hide Streamlit UI */
+
+#MainMenu{
+    visibility:hidden;
+}
+
+footer{
+    visibility:hidden;
+}
+
+header{
+    visibility:hidden;
+}
+
+/* Sidebar */
+
+section[data-testid="stSidebar"]{
+
+    background:#111827;
+
+}
+
+section[data-testid="stSidebar"] *{
+
+    color:white;
+
+}
+
+/* Main */
+
+.block-container{
+
+    padding-top:1rem;
+    padding-left:2rem;
+    padding-right:2rem;
+
+}
+
+/* Cards */
+
+.ai-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:24px;
+
+    border:1px solid #E5E7EB;
+
+    box-shadow:
+    0px 10px 30px rgba(0,0,0,.06);
+
+}
+
+/* Hero */
+
+.hero-title{
+
+    font-size:48px;
+
+    font-weight:700;
+
+}
+
+.hero-subtitle{
+
+    font-size:20px;
+
+    color:#6B7280;
+
+}
+
+/* KPI */
+
+.kpi{
+
+    text-align:center;
+
+    padding:10px;
+
+}
