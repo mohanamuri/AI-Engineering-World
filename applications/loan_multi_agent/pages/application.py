@@ -8,6 +8,7 @@ from applications.loan_multi_agent.constants import (
     APPLICATION_SESSION_KEY,
     NAVIGATION_SESSION_KEY,
 )
+from components.tier_guide import render_tier_guide
 
 _SAMPLES = {
     "Strong applicant": {
@@ -54,6 +55,7 @@ _EMPLOYMENT_TYPES = ["Salaried", "Self-employed", "Retired"]
 
 def render() -> None:
     st.header("📋 Loan Application")
+    render_tier_guide("loan_multi_agent")
     st.caption(
         "The application will be reviewed independently by three specialist agents: "
         "Underwriter, Fraud Detector, and Compliance Officer."

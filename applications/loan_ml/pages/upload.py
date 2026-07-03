@@ -1,5 +1,6 @@
 import streamlit as st
 
+from components.tier_guide import render_tier_guide
 from applications.loan_ml.services.data_loader import (
     DATAFRAME_SESSION_KEY,
     DATASET_FINGERPRINT_SESSION_KEY,
@@ -17,6 +18,7 @@ PREVIEW_ROWS = 10
 
 def render():
     st.header("📤 Upload Dataset")
+    render_tier_guide("loan_ml")
 
     st.info(
         "Upload a UTF-8 CSV dataset to begin the machine learning workflow. "

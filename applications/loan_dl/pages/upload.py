@@ -7,6 +7,7 @@ can be loaded simultaneously without overwriting each other's data.
 
 import streamlit as st
 
+from components.tier_guide import render_tier_guide
 from applications.loan_dl.constants import (
     DATAFRAME_SESSION_KEY,
     DATASET_FINGERPRINT_SESSION_KEY,
@@ -26,6 +27,7 @@ PREVIEW_ROWS = 10
 
 def render() -> None:
     st.header("📤 Upload Dataset")
+    render_tier_guide("loan_dl")
     st.info(
         "Upload a UTF-8 CSV dataset to begin the deep learning workflow. "
         "The validated dataset remains available as you move between pages."

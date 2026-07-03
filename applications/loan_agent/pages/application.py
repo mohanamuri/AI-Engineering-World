@@ -8,6 +8,7 @@ from applications.loan_agent.constants import (
     APPLICATION_SESSION_KEY,
     NAVIGATION_SESSION_KEY,
 )
+from components.tier_guide import render_tier_guide
 
 # Sample applications for quick demo
 _SAMPLES = {
@@ -61,6 +62,7 @@ _EMPLOYMENT_TYPES = ["Salaried", "Self-employed", "Retired"]
 
 def render() -> None:
     st.header("📋 Loan Application")
+    render_tier_guide("loan_agent")
     st.caption(
         "Fill in the applicant details or load a sample application. "
         "The agent will evaluate the form autonomously."

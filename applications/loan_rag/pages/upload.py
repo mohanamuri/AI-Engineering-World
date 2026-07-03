@@ -21,10 +21,12 @@ from applications.loan_rag.services.document_loader import (
     load_txt_bytes,
 )
 from applications.loan_rag.services.rag_chain import RAGConfig
+from components.tier_guide import render_tier_guide
 
 
 def render() -> None:
     st.header("📄 Load Policy Document")
+    render_tier_guide("loan_rag")
     st.caption(
         "Load the default FinCorp Bank loan policy or upload your own PDF / TXT. "
         "The document will be chunked and stored in a vector database."
