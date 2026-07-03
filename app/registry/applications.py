@@ -98,9 +98,9 @@ PROJECTS = [
                 "capability": "AI Agent",
                 "tier": 5,
                 "icon": "AGT",
-                "status": "coming_soon",
+                "status": "live",
                 "difficulty": "Advanced",
-                "version": "0.1.0",
+                "version": "1.0.0",
                 "stack": ["LangGraph", "Ollama", "pandas"],
                 "description": (
                     "A single autonomous agent that runs the full eligibility "
