@@ -5,6 +5,7 @@ from html import escape
 import streamlit as st
 
 from core.application_loader import load_applications, load_projects
+from core.launcher import launch
 from services.platform_stats import dashboard_stats
 
 
@@ -128,7 +129,7 @@ def _render_capability_ladder(project: dict) -> None:
         text_color = "#3730a3" if is_live else "#94a3b8"
         badge = "✅ Live" if is_live else "⏳ Soon"
         badge_color = "#059669" if is_live else "#94a3b8"
-        hint = "← Open from sidebar" if is_live else ""
+        cursor = "pointer" if is_live else "default"
 
         stack_chips = "".join(
             f'<span style="font-size:.6rem;padding:.15rem .4rem;border-radius:999px;'
@@ -138,11 +139,14 @@ def _render_capability_ladder(project: dict) -> None:
         )
 
         with col:
+            # Wrap label + card in a div so CSS can target the button overlay
+            live_class = "aiew-tier-live" if is_live else "aiew-tier-soon"
             st.markdown(
                 f"""
-                <div class="aiew-tier-card" style="border:1px solid {border_color};
-                            border-radius:.85rem;background:{bg_color};
-                            padding:.7rem .75rem;text-align:center;">
+                <div class="aiew-tier-card {live_class}"
+                     style="border:1px solid {border_color};border-radius:.85rem;
+                            background:{bg_color};padding:.7rem .75rem;
+                            text-align:center;cursor:{cursor};position:relative;">
                     <div style="font-size:.62rem;font-weight:700;color:{badge_color};
                                 letter-spacing:.06em;text-transform:uppercase;margin-bottom:.25rem;">
                         T{app['tier']}
@@ -157,11 +161,22 @@ def _render_capability_ladder(project: dict) -> None:
                     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.15rem;">
                         {stack_chips}
                     </div>
-                    <div class="aiew-tier-hint">{hint}</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
+
+            # Invisible overlay button for live tiers — captures the click,
+            # CSS makes it transparent and positioned over the card above
+            if is_live:
+                if st.button(
+                    "open",
+                    key=f"open_{app['id']}",
+                    use_container_width=True,
+                    help=f"Open {app['capability']} workspace",
+                ):
+                    launch(app["id"])
+                    st.rerun()
 
 
 # ---------------------------------------------------------------------------

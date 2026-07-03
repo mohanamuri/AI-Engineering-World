@@ -16,7 +16,7 @@ from theme.styles import apply_theme
 
 from components.footer import render_footer
 from components.header import show_header
-from components.sidebar import render_sidebar
+from components.sidebar import render_sidebar, render_sidebar_footer
 
 from core.session import initialize
 
@@ -35,6 +35,8 @@ def main():
         show_header()
 
     route()
+
+    render_sidebar_footer()
 
     render_footer()
 

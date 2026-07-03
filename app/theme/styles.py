@@ -429,33 +429,46 @@ def apply_theme() -> None:
             min-height: 2.5rem;
         }
 
-        /* ── Tier card hover hint ─────────────────────────────────────────── */
-        .aiew-tier-card {
-            cursor: default;
-            transition: transform .18s ease, box-shadow .18s ease;
+        /* ── Tier card clickable overlay ──────────────────────────────────── */
+
+        /* Stack the card + its button so the button sits right under the card */
+        .aiew-tier-card + div[data-testid="stButton"] {
+            margin-top: -0.1rem;
         }
 
-        .aiew-tier-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(79,70,229,.12);
+        /* Make the overlay button invisible — only the card is visually shown */
+        .aiew-tier-live + div[data-testid="stButton"] > button,
+        .aiew-tier-live ~ div[data-testid="stButton"] > button {
+            opacity: 0 !important;
+            height: 0.1px !important;
+            min-height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+            overflow: hidden !important;
+            position: absolute !important;
+            width: 100% !important;
+            top: -100% !important;
+            cursor: pointer !important;
         }
 
-        .aiew-tier-hint {
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: opacity .2s ease, max-height .2s ease;
-            font-size: .65rem;
-            font-weight: 600;
-            color: #4f46e5;
-            text-align: center;
-            margin-top: .3rem;
+        /* Make the CARD itself show pointer cursor and capture the click area */
+        .aiew-tier-live {
+            cursor: pointer !important;
         }
 
-        .aiew-tier-card:hover .aiew-tier-hint {
-            opacity: 1;
-            max-height: 1.5rem;
+        .aiew-tier-live:hover {
+            border-color: #4f46e5 !important;
+            box-shadow: 0 6px 20px rgba(79,70,229,.18) !important;
+            transform: translateY(-3px) !important;
         }
+
+        .aiew-tier-soon {
+            cursor: default !important;
+        }
+
+        /* Remove the old hover hint CSS since we no longer use it */
+        .aiew-tier-hint { display: none; }
 
         /* ── Author card (sidebar) ────────────────────────────────────────── */
         .aiew-author-card {

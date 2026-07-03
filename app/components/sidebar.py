@@ -58,7 +58,10 @@ def render_sidebar() -> None:
         st.divider()
         st.caption("More projects coming soon.")
 
-        # --- Author card (always visible) ---
+
+def render_sidebar_footer() -> None:
+    """Render the author card at the bottom of the sidebar (call after route())."""
+    with st.sidebar:
         st.divider()
         st.markdown(
             f"""
