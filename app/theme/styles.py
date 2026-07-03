@@ -305,14 +305,14 @@ def apply_theme() -> None:
         }
 
         .aiew-byline-link {
-            color: #818cf8;
+            color: #38bdf8;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: .72rem;
         }
 
         .aiew-byline-link:hover {
-            color: #a5b4fc;
+            color: #7dd3fc;
             text-decoration: underline;
         }
 
