@@ -20,9 +20,6 @@ def render() -> None:
     )
     _render_projects()
 
-    _section_header("How the tiers connect", "Progression", "Same problem · same data · each tier adds a new capability on top of the previous.")
-    _render_tier_progression()
-
     _section_header("Engineering principles", "How it is built", "Every module follows the same production-minded standards.")
     _render_principles()
 
@@ -78,11 +75,14 @@ def _render_kpis() -> None:
 # ---------------------------------------------------------------------------
 
 def _render_projects() -> None:
-    for project in load_projects():
+    for i, project in enumerate(load_projects()):
         with st.container(border=True):
             _render_project_header(project)
-            st.divider()
-            _render_capability_ladder(project)
+            with st.expander("View capabilities & progression", expanded=(i == 0)):
+                st.divider()
+                _render_capability_ladder(project)
+                st.divider()
+                _render_project_progression(project)
 
 
 def _render_project_header(project: dict) -> None:
@@ -142,7 +142,6 @@ def _render_capability_ladder(project: dict) -> None:
         )
 
         with col:
-            # Wrap label + card in a div so CSS can target the button overlay
             live_class = "aiew-tier-live" if is_live else "aiew-tier-soon"
             st.markdown(
                 f"""
@@ -169,8 +168,6 @@ def _render_capability_ladder(project: dict) -> None:
                 unsafe_allow_html=True,
             )
 
-            # Invisible overlay button for live tiers — captures the click,
-            # CSS makes it transparent and positioned over the card above
             if is_live:
                 if st.button(
                     "open",
@@ -182,128 +179,74 @@ def _render_capability_ladder(project: dict) -> None:
                     st.rerun()
 
 
-# ---------------------------------------------------------------------------
-# Tier progression
-# ---------------------------------------------------------------------------
+def _render_project_progression(project: dict) -> None:
+    """Collapsible tier progression story — one expander per project."""
+    apps = project["apps"]
 
-def _render_tier_progression() -> None:
-    tiers = (
-        (
-            "T1 · Machine Learning",
-            "🤖",
-            "#4f46e5",
-            "#eef2ff",
-            "What happened?",
-            "We uploaded a loan dataset, cleaned it, and trained 4 classical models (Logistic Regression, Decision Tree, Random Forest, XGBoost) to predict approval.",
-            "Why move to T2?",
-            "Classical models treat every pattern as a weighted rule. A neural network can learn complex, non-linear combinations of features automatically — potentially uncovering patterns rules miss.",
-            "live",
-        ),
-        (
-            "T2 · Deep Learning",
-            "🧠",
-            "#0891b2",
-            "#ecfeff",
-            "What happened?",
-            "We replaced the classical model with a Multi-Layer Perceptron (MLP). The network trained over multiple epochs and we watched the loss curve drop as it learned.",
-            "Why move to T3?",
-            "The neural network is now a black box — it predicts well but can't tell us *why*. In finance, regulators and customers demand a reason for every decision.",
-            "live",
-        ),
-        (
-            "T3 · Explainability",
-            "🔍",
-            "#7c3aed",
-            "#f5f3ff",
-            "What happened?",
-            "We used SHAP and LIME to open the black box. SHAP shows which features pushed each prediction up or down. LIME fits a simple local explanation around any single decision.",
-            "Why move to T4?",
-            "Explanations answer 'why this prediction?' but a loan officer still reads static rules. What if they could ask the system questions in plain English using actual policy documents?",
-            "live",
-        ),
-        (
-            "T4 · RAG",
-            "📚",
-            "#059669",
-            "#ecfdf5",
-            "What happened?",
-            "We store loan policy documents in a vector database. A language model retrieves the relevant policy chunks and grounds its answer — no hallucination, just facts from the document.",
-            "Why move to T5?",
-            "RAG answers questions but still needs a human to ask them. An autonomous agent can read an application, run checks, consult the policy, and produce a reasoned decision on its own.",
-            "coming_soon",
-        ),
-        (
-            "T5 · AI Agent",
-            "🕵",
-            "#d97706",
-            "#fffbeb",
-            "What happened?",
-            "A single LLM-powered agent uses tools (data validator, risk scorer, policy lookup) to autonomously process a loan application end-to-end and write a structured decision report.",
-            "Why move to T6?",
-            "One agent handles everything sequentially. Splitting responsibilities across specialist agents — each an expert in one area — is faster, more auditable, and easier to improve.",
-            "coming_soon",
-        ),
-        (
-            "T6 · Multi-Agent",
-            "🏗",
-            "#dc2626",
-            "#fef2f2",
-            "What happened?",
-            "Three specialist agents — Underwriter, Fraud Detector, and Compliance Officer — collaborate through a shared message bus. Each contributes its verdict; a Supervisor synthesises the final decision.",
-            "Why is this the top tier?",
-            "This mirrors how real loan decisions work in banks — multiple teams, each an expert, reaching a consensus. It is the closest AI approximation of a production credit workflow.",
-            "coming_soon",
-        ),
-    )
+    # Only render if at least one app has progression text
+    if not any("what" in app for app in apps):
+        return
 
-    for tier in tiers:
-        title, icon, accent, bg, q1, a1, q2, a2, status = tier
-        is_live = status == "live"
-        badge = "✅ Live" if is_live else "⏳ Coming soon"
-        badge_color = "#059669" if is_live else "#94a3b8"
+    with st.expander("📖 How this project progresses — tier by tier", expanded=False):
+        for i, app in enumerate(apps):
+            what = app.get("what", "")
+            why_next = app.get("why_next", "")
+            is_live = app["status"] == "live"
+            is_last = i == len(apps) - 1
+            badge_color = "#059669" if is_live else "#94a3b8"
+            badge_bg = "#ecfdf5" if is_live else "#f8fafc"
+            badge_border = "#a7f3d0" if is_live else "#e2e8f0"
+            badge = "✅ Live" if is_live else "⏳ Coming soon"
 
-        with st.container(border=True):
-            col_icon, col_content = st.columns([1, 11])
-
-            with col_icon:
-                st.markdown(
-                    f'<div style="font-size:1.8rem;text-align:center;padding-top:.3rem;">{icon}</div>',
-                    unsafe_allow_html=True,
-                )
-
-            with col_content:
-                st.markdown(
-                    f"""
-                    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.35rem;">
-                        <span style="font-size:.95rem;font-weight:750;color:#0f172a;">{escape(title)}</span>
-                        <span style="font-size:.65rem;font-weight:700;color:{badge_color};
-                                     background:{'#ecfdf5' if is_live else '#f8fafc'};
-                                     border:1px solid {'#a7f3d0' if is_live else '#e2e8f0'};
-                                     padding:.1rem .45rem;border-radius:999px;">{badge}</span>
-                    </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem 1.5rem;">
-                        <div>
-                            <div style="font-size:.68rem;font-weight:800;color:{accent};
-                                        letter-spacing:.08em;text-transform:uppercase;margin-bottom:.2rem;">
-                                {escape(q1)}
-                            </div>
-                            <div style="font-size:.82rem;color:#475569;line-height:1.55;">
-                                {escape(a1)}
-                            </div>
+            st.markdown(
+                f"""
+                <div style="display:grid;grid-template-columns:auto 1fr;gap:.6rem 1rem;
+                            padding:.75rem 0;{'border-bottom:1px solid #f1f5f9;' if not is_last else ''}">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:.25rem;">
+                        <div style="width:2rem;height:2rem;border-radius:.5rem;
+                                    background:{'#eef2ff' if is_live else '#f8fafc'};
+                                    border:1px solid {'#c7d2fe' if is_live else '#e2e8f0'};
+                                    display:flex;align-items:center;justify-content:center;
+                                    font-size:.62rem;font-weight:800;
+                                    color:{'#4f46e5' if is_live else '#94a3b8'};">
+                            T{app['tier']}
                         </div>
-                        <div>
-                            <div style="font-size:.68rem;font-weight:800;color:{accent};
-                                        letter-spacing:.08em;text-transform:uppercase;margin-bottom:.2rem;">
-                                {escape(q2)}
+                        {'<div style="width:1px;flex:1;background:#e2e8f0;min-height:.75rem;"></div>' if not is_last else ''}
+                    </div>
+                    <div style="padding-bottom:.25rem;">
+                        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;">
+                            <span style="font-size:.85rem;font-weight:750;color:#0f172a;">
+                                T{app['tier']} · {escape(app['capability'])}
+                            </span>
+                            <span style="font-size:.62rem;font-weight:700;color:{badge_color};
+                                         background:{badge_bg};border:1px solid {badge_border};
+                                         padding:.1rem .4rem;border-radius:999px;">{badge}</span>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem 1.2rem;">
+                            <div>
+                                <div style="font-size:.65rem;font-weight:800;color:#4f46e5;
+                                            letter-spacing:.08em;text-transform:uppercase;margin-bottom:.15rem;">
+                                    What happened
+                                </div>
+                                <div style="font-size:.8rem;color:#475569;line-height:1.55;">
+                                    {escape(what)}
+                                </div>
                             </div>
-                            <div style="font-size:.82rem;color:#475569;line-height:1.55;">
-                                {escape(a2)}
+                            <div>
+                                <div style="font-size:.65rem;font-weight:800;color:#0891b2;
+                                            letter-spacing:.08em;text-transform:uppercase;margin-bottom:.15rem;">
+                                    {'Why move to T' + str(app['tier'] + 1) if not is_last else 'Why this is the final tier'}
+                                </div>
+                                <div style="font-size:.8rem;color:#475569;line-height:1.55;">
+                                    {escape(why_next)}
+                                </div>
                             </div>
                         </div>
                     </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
 
 # ---------------------------------------------------------------------------
