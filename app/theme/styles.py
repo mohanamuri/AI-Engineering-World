@@ -185,6 +185,13 @@ def apply_theme() -> None:
             pointer-events: none;
         }
 
+        .aiew-gradient-word {
+            background: linear-gradient(90deg, #818cf8 0%, #22d3ee 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .aiew-eyebrow {
             display: inline-flex;
             align-items: center;
