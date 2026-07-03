@@ -17,7 +17,7 @@ jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
 MarkupSafe==3.0.3
 narwhals==2.23.0
-numpy==2.5.0
+numpy>=2.2,<2.4
 packaging==26.2
 pandas==3.0.3
 pillow==12.3.0
@@ -45,7 +45,7 @@ websockets==16.0
 scikit-learn>=1.5
 joblib>=1.4
 xgboost>=2.0
-shap>=0.46.0
+shap==0.52.0
 lime>=0.2.0
 ollama>=0.3.0
 langchain>=0.3.0
