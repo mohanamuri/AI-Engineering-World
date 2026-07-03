@@ -34,8 +34,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
-from langchain.prompts import ChatPromptTemplate
-from langchain.schema import Document
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.documents import Document
 from langchain_ollama import ChatOllama
 
 from applications.loan_rag.services.vector_store import similarity_search
