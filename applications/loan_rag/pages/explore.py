@@ -69,18 +69,26 @@ def render() -> None:
                 st.caption(f"… {len(text) - 400:,} more characters")
 
     st.divider()
-    if st.button("→ Go to Configure RAG", type="primary"):
-        st.session_state[NAVIGATION_SESSION_KEY] = "⚙️ Configure RAG"
-        st.rerun()
+    st.button(
+        "→ Go to Configure RAG",
+        type="primary",
+        on_click=lambda: st.session_state.update(
+            {NAVIGATION_SESSION_KEY: "⚙️ Configure RAG"}
+        ),
+    )
 
 
 def _render_empty_state() -> None:
     with st.container(border=True):
         st.warning("No document loaded yet.")
         st.write("Load a policy document first to see its chunks here.")
-        if st.button("← Go to Load Policy", type="primary"):
-            st.session_state[NAVIGATION_SESSION_KEY] = "📄 Load Policy"
-            st.rerun()
+        st.button(
+            "← Go to Load Policy",
+            type="primary",
+            on_click=lambda: st.session_state.update(
+                {NAVIGATION_SESSION_KEY: "📄 Load Policy"}
+            ),
+        )
 
 
 def _highlight(text: str, keyword: str) -> str:

@@ -80,13 +80,14 @@ def render() -> None:
 
         st.success("Document loaded. Click **Explore Chunks** to see how it was split.")
 
-        if st.button(
+        st.button(
             "→ Go to Explore Chunks",
             type="primary",
             use_container_width=False,
-        ):
-            st.session_state[NAVIGATION_SESSION_KEY] = "🔍 Explore Chunks"
-            st.rerun()
+            on_click=lambda: st.session_state.update(
+                {NAVIGATION_SESSION_KEY: "🔍 Explore Chunks"}
+            ),
+        )
 
 
 def _load_and_store(load_result: LoadResult) -> None:

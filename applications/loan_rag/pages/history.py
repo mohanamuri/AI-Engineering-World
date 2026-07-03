@@ -19,9 +19,13 @@ def render() -> None:
     if not history:
         with st.container(border=True):
             st.info("No chat history yet.")
-            if st.button("← Go to Chat", type="primary"):
-                st.session_state[NAVIGATION_SESSION_KEY] = "💬 Chat"
-                st.rerun()
+            st.button(
+                "← Go to Chat",
+                type="primary",
+                on_click=lambda: st.session_state.update(
+                    {NAVIGATION_SESSION_KEY: "💬 Chat"}
+                ),
+            )
         return
 
     # ---- Stats -----------------------------------------------------------
@@ -52,10 +56,18 @@ def render() -> None:
     st.divider()
     col_chat, col_dl = st.columns(2)
     with col_chat:
-        if st.button("← Back to Chat", use_container_width=True):
-            st.session_state[NAVIGATION_SESSION_KEY] = "💬 Chat"
-            st.rerun()
+        st.button(
+            "← Back to Chat",
+            use_container_width=True,
+            on_click=lambda: st.session_state.update(
+                {NAVIGATION_SESSION_KEY: "💬 Chat"}
+            ),
+        )
     with col_dl:
-        if st.button("→ Download History", use_container_width=True):
-            st.session_state[NAVIGATION_SESSION_KEY] = "⬇ Download"
-            st.rerun()
+        st.button(
+            "→ Download History",
+            use_container_width=True,
+            on_click=lambda: st.session_state.update(
+                {NAVIGATION_SESSION_KEY: "⬇ Download"}
+            ),
+        )

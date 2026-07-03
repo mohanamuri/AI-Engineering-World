@@ -87,9 +87,13 @@ def render() -> None:
                 st.session_state[CHAT_HISTORY_SESSION_KEY] = []
                 st.rerun()
         with col_hist:
-            if st.button("→ View History", use_container_width=True):
-                st.session_state[NAVIGATION_SESSION_KEY] = "📜 History"
-                st.rerun()
+            st.button(
+                "→ View History",
+                use_container_width=True,
+                on_click=lambda: st.session_state.update(
+                    {NAVIGATION_SESSION_KEY: "📜 History"}
+                ),
+            )
 
 
 def _run_query(
@@ -125,6 +129,10 @@ def _render_empty_state() -> None:
     with st.container(border=True):
         st.warning("Vector store not built yet.")
         st.write("Configure RAG and build the vector store before chatting.")
-        if st.button("← Go to Configure RAG", type="primary"):
-            st.session_state[NAVIGATION_SESSION_KEY] = "⚙️ Configure RAG"
-            st.rerun()
+        st.button(
+            "← Go to Configure RAG",
+            type="primary",
+            on_click=lambda: st.session_state.update(
+                {NAVIGATION_SESSION_KEY: "⚙️ Configure RAG"}
+            ),
+        )

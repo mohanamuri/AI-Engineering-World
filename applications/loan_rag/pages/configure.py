@@ -112,9 +112,13 @@ def render() -> None:
 
     if vs_result:
         st.divider()
-        if st.button("→ Go to Chat", type="primary"):
-            st.session_state[NAVIGATION_SESSION_KEY] = "💬 Chat"
-            st.rerun()
+        st.button(
+            "→ Go to Chat",
+            type="primary",
+            on_click=lambda: st.session_state.update(
+                {NAVIGATION_SESSION_KEY: "💬 Chat"}
+            ),
+        )
 
 
 def _build_and_store(load_result, config: RAGConfig) -> None:
@@ -145,6 +149,10 @@ def _build_and_store(load_result, config: RAGConfig) -> None:
 def _render_empty_state() -> None:
     with st.container(border=True):
         st.warning("No document loaded.")
-        if st.button("← Go to Load Policy", type="primary"):
-            st.session_state[NAVIGATION_SESSION_KEY] = "📄 Load Policy"
-            st.rerun()
+        st.button(
+            "← Go to Load Policy",
+            type="primary",
+            on_click=lambda: st.session_state.update(
+                {NAVIGATION_SESSION_KEY: "📄 Load Policy"}
+            ),
+        )
