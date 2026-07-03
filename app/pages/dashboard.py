@@ -78,11 +78,10 @@ def _render_projects() -> None:
     for i, project in enumerate(load_projects()):
         with st.container(border=True):
             _render_project_header(project)
-            with st.expander("View capabilities & progression", expanded=(i == 0)):
-                st.divider()
-                _render_capability_ladder(project)
-                st.divider()
-                _render_project_progression(project)
+            st.divider()
+            _render_capability_ladder(project)
+            st.divider()
+            _render_project_progression(project)
 
 
 def _render_project_header(project: dict) -> None:
@@ -182,8 +181,6 @@ def _render_capability_ladder(project: dict) -> None:
 def _render_project_progression(project: dict) -> None:
     """Collapsible tier progression story — one expander per project."""
     apps = project["apps"]
-
-    # Only render if at least one app has progression text
     if not any("what" in app for app in apps):
         return
 
@@ -193,60 +190,39 @@ def _render_project_progression(project: dict) -> None:
             why_next = app.get("why_next", "")
             is_live = app["status"] == "live"
             is_last = i == len(apps) - 1
-            badge_color = "#059669" if is_live else "#94a3b8"
-            badge_bg = "#ecfdf5" if is_live else "#f8fafc"
-            badge_border = "#a7f3d0" if is_live else "#e2e8f0"
             badge = "✅ Live" if is_live else "⏳ Coming soon"
+            badge_color = "#059669" if is_live else "#94a3b8"
 
-            st.markdown(
-                f"""
-                <div style="display:grid;grid-template-columns:auto 1fr;gap:.6rem 1rem;
-                            padding:.75rem 0;{'border-bottom:1px solid #f1f5f9;' if not is_last else ''}">
-                    <div style="display:flex;flex-direction:column;align-items:center;gap:.25rem;">
-                        <div style="width:2rem;height:2rem;border-radius:.5rem;
-                                    background:{'#eef2ff' if is_live else '#f8fafc'};
-                                    border:1px solid {'#c7d2fe' if is_live else '#e2e8f0'};
-                                    display:flex;align-items:center;justify-content:center;
-                                    font-size:.62rem;font-weight:800;
-                                    color:{'#4f46e5' if is_live else '#94a3b8'};">
-                            T{app['tier']}
-                        </div>
-                        {'<div style="width:1px;flex:1;background:#e2e8f0;min-height:.75rem;"></div>' if not is_last else ''}
-                    </div>
-                    <div style="padding-bottom:.25rem;">
-                        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;">
-                            <span style="font-size:.85rem;font-weight:750;color:#0f172a;">
-                                T{app['tier']} · {escape(app['capability'])}
-                            </span>
-                            <span style="font-size:.62rem;font-weight:700;color:{badge_color};
-                                         background:{badge_bg};border:1px solid {badge_border};
-                                         padding:.1rem .4rem;border-radius:999px;">{badge}</span>
-                        </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem 1.2rem;">
-                            <div>
-                                <div style="font-size:.65rem;font-weight:800;color:#4f46e5;
-                                            letter-spacing:.08em;text-transform:uppercase;margin-bottom:.15rem;">
-                                    What happened
-                                </div>
-                                <div style="font-size:.8rem;color:#475569;line-height:1.55;">
-                                    {escape(what)}
-                                </div>
-                            </div>
-                            <div>
-                                <div style="font-size:.65rem;font-weight:800;color:#0891b2;
-                                            letter-spacing:.08em;text-transform:uppercase;margin-bottom:.15rem;">
-                                    {'Why move to T' + str(app['tier'] + 1) if not is_last else 'Why this is the final tier'}
-                                </div>
-                                <div style="font-size:.8rem;color:#475569;line-height:1.55;">
-                                    {escape(why_next)}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+            col_badge, col_content = st.columns([1, 11])
+
+            with col_badge:
+                st.markdown(
+                    f"""<div style="width:2rem;height:2rem;border-radius:.5rem;margin-top:.2rem;
+                        background:{'#eef2ff' if is_live else '#f8fafc'};
+                        border:1px solid {'#c7d2fe' if is_live else '#e2e8f0'};
+                        display:flex;align-items:center;justify-content:center;
+                        font-size:.62rem;font-weight:800;
+                        color:{'#4f46e5' if is_live else '#94a3b8'};">T{app['tier']}</div>""",
+                    unsafe_allow_html=True,
+                )
+
+            with col_content:
+                st.markdown(
+                    f"**T{app['tier']} · {app['capability']}** "
+                    f"<span style='font-size:.65rem;font-weight:700;color:{badge_color};'>{badge}</span>",
+                    unsafe_allow_html=True,
+                )
+                c1, c2 = st.columns(2)
+                with c1:
+                    st.caption("WHAT HAPPENED")
+                    st.markdown(f"<span style='font-size:.82rem;color:#475569;'>{escape(what)}</span>", unsafe_allow_html=True)
+                with c2:
+                    label = f"WHY MOVE TO T{app['tier'] + 1}" if not is_last else "WHY THIS IS THE FINAL TIER"
+                    st.caption(label)
+                    st.markdown(f"<span style='font-size:.82rem;color:#475569;'>{escape(why_next)}</span>", unsafe_allow_html=True)
+
+            if not is_last:
+                st.divider()
 
 
 # ---------------------------------------------------------------------------
