@@ -62,9 +62,9 @@ PROJECTS = [
                 "capability": "Explainability",
                 "tier": 3,
                 "icon": "XAI",
-                "status": "coming_soon",
+                "status": "live",
                 "difficulty": "Advanced",
-                "version": "0.1.0",
+                "version": "1.0.0",
                 "stack": ["SHAP", "LIME", "scikit-learn", "plotly"],
                 "description": (
                     "Explain black-box model decisions using SHAP values and "
