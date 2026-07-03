@@ -11,7 +11,13 @@ def show_header() -> None:
         f"""
         <section class="aiew-hero">
             <div class="aiew-eyebrow">◈ One Platform &nbsp;·&nbsp; Learn &nbsp;·&nbsp; Build &nbsp;·&nbsp; Deploy &nbsp;·&nbsp; Showcase</div>
-            <h1 class="aiew-hero-title">AI Engineering World</h1>
+            <h1 class="aiew-hero-title">
+                AI Engineering
+                <span style="background:linear-gradient(90deg,#818cf8,#22d3ee);
+                             -webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+                    World
+                </span>
+            </h1>
             <details class="aiew-agenda">
                 <summary class="aiew-agenda-toggle">Agenda</summary>
                 <p class="aiew-hero-copy">
@@ -20,7 +26,7 @@ def show_header() -> None:
                     experimentation to evaluation and deployment.
                 </p>
             </details>
-            <div class="aiew-chip-row" style="margin-top:.9rem;">
+            <div class="aiew-chip-row" style="margin-top:1rem;">
                 <span class="aiew-chip">🤖 Machine Learning</span>
                 <span class="aiew-chip">🧠 Deep Learning</span>
                 <span class="aiew-chip">✨ Generative AI</span>

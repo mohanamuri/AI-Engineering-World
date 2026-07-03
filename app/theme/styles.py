@@ -153,43 +153,57 @@ def apply_theme() -> None:
         .aiew-hero {
             position: relative;
             overflow: hidden;
-            padding: 2.4rem 2.5rem;
-            border: 1px solid #dbe3f0;
-            border-radius: 1.35rem;
+            padding: 3rem 2.75rem 2.75rem;
+            border-radius: 1.5rem;
             background:
-                radial-gradient(circle at 88% 18%, rgba(34,211,238,.18), transparent 16rem),
-                linear-gradient(135deg, #ffffff 0%, #f7f8ff 60%, #eefbff 100%);
-            box-shadow: 0 18px 45px rgba(15,23,42,.07);
+                radial-gradient(ellipse at 90% -20%, rgba(99,102,241,.45) 0%, transparent 55%),
+                radial-gradient(ellipse at -5% 110%, rgba(8,145,178,.35) 0%, transparent 50%),
+                linear-gradient(145deg, #0f172a 0%, #1e1b4b 55%, #0c1a3e 100%);
+            box-shadow: 0 24px 64px rgba(15,23,42,.35);
+        }
+
+        .aiew-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
         }
 
         .aiew-eyebrow {
             display: inline-flex;
             align-items: center;
             gap: .45rem;
-            color: #4338ca;
+            color: #a5b4fc;
             font-size: .72rem;
             font-weight: 800;
-            letter-spacing: .12em;
+            letter-spacing: .14em;
             text-transform: uppercase;
-            margin-bottom: .75rem;
+            margin-bottom: .85rem;
+            background: rgba(99,102,241,.18);
+            padding: .3rem .75rem;
+            border-radius: 999px;
+            border: 1px solid rgba(165,180,252,.25);
         }
 
         .aiew-hero h1 {
-            max-width: 790px;
+            max-width: 820px;
             margin: 0;
-            color: var(--aiew-ink);
-            font-size: clamp(1.6rem, 3vw, 2.6rem);
-            line-height: 1.1;
-            letter-spacing: -.04em;
+            color: #f8fafc;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.05;
+            letter-spacing: -.045em;
         }
 
         .aiew-hero-title {
-            max-width: 790px;
-            margin: .4rem 0 0;
-            color: var(--aiew-ink);
-            font-size: clamp(1.6rem, 3vw, 2.6rem);
-            line-height: 1.1;
-            letter-spacing: -.04em;
+            max-width: 820px;
+            margin: .3rem 0 0;
+            color: #f8fafc;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.05;
+            letter-spacing: -.045em;
         }
 
         .aiew-agenda {
@@ -198,7 +212,7 @@ def apply_theme() -> None:
 
         .aiew-agenda-toggle {
             cursor: pointer;
-            color: var(--aiew-primary);
+            color: #a5b4fc;
             font-size: .8rem;
             font-weight: 700;
             letter-spacing: .04em;
@@ -226,7 +240,7 @@ def apply_theme() -> None:
         .aiew-hero-copy {
             max-width: 720px;
             margin: 1rem 0 1.15rem;
-            color: #475569;
+            color: #cbd5e1;
             font-size: 1.02rem;
             line-height: 1.7;
         }
@@ -238,13 +252,13 @@ def apply_theme() -> None:
         }
 
         .aiew-chip {
-            color: #334155;
+            color: #e2e8f0;
             font-size: .76rem;
             font-weight: 650;
             padding: .42rem .7rem;
-            border: 1px solid #dbe3f0;
+            border: 1px solid rgba(165,180,252,.3);
             border-radius: 999px;
-            background: rgba(255,255,255,.76);
+            background: rgba(99,102,241,.18);
         }
 
         .aiew-section-head {
@@ -278,12 +292,18 @@ def apply_theme() -> None:
 
         .aiew-kpi {
             min-height: 7.5rem;
-            padding: 1rem 1.05rem;
+            padding: 1rem 1.05rem 1rem 1.3rem;
             border: 1px solid var(--aiew-border);
             border-radius: .95rem;
-            background: rgba(255,255,255,.9);
-            box-shadow: 0 8px 25px rgba(15,23,42,.04);
+            background: rgba(255,255,255,.95);
+            box-shadow: 0 8px 25px rgba(15,23,42,.05);
+            border-left: 4px solid var(--aiew-primary);
         }
+
+        .aiew-kpi-t1 { border-left-color: #4f46e5 !important; }
+        .aiew-kpi-t2 { border-left-color: #7c3aed !important; }
+        .aiew-kpi-t3 { border-left-color: #0891b2 !important; }
+        .aiew-kpi-t4 { border-left-color: #d97706 !important; }
 
         .aiew-kpi-label {
             color: var(--aiew-muted);
@@ -529,18 +549,19 @@ def apply_theme() -> None:
 
         /* ── Hero byline ──────────────────────────────────────────────────── */
         .aiew-hero-byline {
-            margin-top: 1rem;
+            margin-top: 1.2rem;
             font-size: .78rem;
-            color: #64748b;
+            color: #94a3b8;
         }
 
         .aiew-byline-link {
-            color: #4f46e5;
+            color: #a5b4fc;
             text-decoration: none;
             font-weight: 600;
         }
 
         .aiew-byline-link:hover {
+            color: #c7d2fe;
             text-decoration: underline;
         }
 
@@ -572,49 +593,118 @@ def apply_theme() -> None:
             transform: translateY(-2px);
         }
 
+        /* ── Tier-specific card colors ───────────────────────────────────── */
+        .aiew-tier-t1-live { border-color: #4f46e5 !important; background: #eef2ff !important; }
+        .aiew-tier-t2-live { border-color: #7c3aed !important; background: #f5f3ff !important; }
+        .aiew-tier-t3-live { border-color: #0891b2 !important; background: #ecfeff !important; }
+        .aiew-tier-t4-live { border-color: #d97706 !important; background: #fffbeb !important; }
+        .aiew-tier-t5-live { border-color: #e11d48 !important; background: #fff1f2 !important; }
+        .aiew-tier-t6-live { border-color: #059669 !important; background: #ecfdf5 !important; }
+
+        .aiew-tier-t1-live:hover { border-color: #4338ca !important; box-shadow: 0 6px 20px rgba(79,70,229,.22) !important; }
+        .aiew-tier-t2-live:hover { border-color: #6d28d9 !important; box-shadow: 0 6px 20px rgba(124,58,237,.22) !important; }
+        .aiew-tier-t3-live:hover { border-color: #0e7490 !important; box-shadow: 0 6px 20px rgba(8,145,178,.22) !important; }
+        .aiew-tier-t4-live:hover { border-color: #b45309 !important; box-shadow: 0 6px 20px rgba(217,119,6,.22) !important; }
+        .aiew-tier-t5-live:hover { border-color: #be123c !important; box-shadow: 0 6px 20px rgba(225,29,72,.22) !important; }
+        .aiew-tier-t6-live:hover { border-color: #047857 !important; box-shadow: 0 6px 20px rgba(5,150,105,.22) !important; }
+
+        /* ── Dark section band (principles) ─────────────────────────────── */
+        .aiew-dark-band {
+            margin: 2rem -2.25rem -1rem;
+            padding: 2.5rem 2.25rem;
+            background:
+                radial-gradient(ellipse at 100% 0%, rgba(79,70,229,.2) 0%, transparent 50%),
+                linear-gradient(135deg, #0b1220 0%, #111827 100%);
+        }
+
+        .aiew-dark-band .aiew-section-kicker {
+            color: #818cf8 !important;
+        }
+
+        .aiew-dark-band .aiew-section-title {
+            color: #f1f5f9 !important;
+        }
+
+        .aiew-dark-band .aiew-section-copy {
+            color: #64748b !important;
+        }
+
+        .aiew-principle-card {
+            padding: 1.4rem 1.3rem;
+            border: 1px solid rgba(148,163,184,.15);
+            border-radius: 1rem;
+            background: rgba(255,255,255,.05);
+            height: 100%;
+        }
+
+        .aiew-principle-number {
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            color: #818cf8;
+            margin-bottom: .5rem;
+        }
+
+        .aiew-principle-title {
+            font-size: .95rem;
+            font-weight: 750;
+            color: #f1f5f9;
+            margin-bottom: .4rem;
+            letter-spacing: -.02em;
+        }
+
+        .aiew-principle-copy {
+            font-size: .8rem;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
         /* ── Footer ──────────────────────────────────────────────────────── */
         .aiew-footer {
+            position: relative;
+            margin: 2.5rem -2.25rem -3rem;
+            padding: 1.5rem 2.25rem;
+            background: linear-gradient(135deg, #0b1220 0%, #0f172a 100%);
+            border-top: 1px solid rgba(148,163,184,.1);
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: .5rem;
-            margin-top: 3rem;
-            padding: 1rem 0 .5rem;
-            border-top: 1px solid var(--aiew-border);
         }
 
         .aiew-footer-brand {
-            color: var(--aiew-ink);
+            color: #f1f5f9;
             font-size: .78rem;
             font-weight: 700;
             letter-spacing: -.01em;
         }
 
         .aiew-footer-desc {
-            color: var(--aiew-muted);
+            color: #64748b;
             font-size: .76rem;
         }
 
         .aiew-footer-sep {
-            color: var(--aiew-border);
+            color: #334155;
             font-size: .76rem;
             margin: 0 .25rem;
         }
 
         .aiew-footer-meta {
-            color: var(--aiew-muted);
+            color: #64748b;
             font-size: .75rem;
         }
 
         .aiew-footer-link {
-            color: var(--aiew-primary);
+            color: #818cf8;
             font-size: .75rem;
             font-weight: 600;
             text-decoration: none;
         }
 
         .aiew-footer-link:hover {
+            color: #a5b4fc;
             text-decoration: underline;
         }
 
@@ -624,7 +714,8 @@ def apply_theme() -> None:
                 padding-right: 1rem;
             }
             .aiew-hero {
-                padding: 1.6rem;
+                padding: 2rem 1.5rem;
+                border-radius: 1rem;
             }
             .aiew-section-copy {
                 display: none;
@@ -633,6 +724,12 @@ def apply_theme() -> None:
                 flex-direction: column;
                 align-items: flex-start;
                 gap: .3rem;
+                margin: 2.5rem -1rem -3rem;
+                padding: 1.25rem 1rem;
+            }
+            .aiew-dark-band {
+                margin: 2rem -1rem -1rem;
+                padding: 2rem 1rem;
             }
         }
         </style>

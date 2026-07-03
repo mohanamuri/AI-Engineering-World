@@ -20,7 +20,6 @@ def render() -> None:
     )
     _render_projects()
 
-    _section_header("Engineering principles", "How it is built", "Every module follows the same production-minded standards.")
     _render_principles()
 
 
@@ -50,17 +49,17 @@ def _section_header(title: str, kicker: str, caption: str) -> None:
 def _render_kpis() -> None:
     stats = dashboard_stats()
     metrics = (
-        ("Projects", stats["projects"], "Domain problem areas"),
-        ("Capabilities", stats["capabilities"], "Techniques per project"),
-        ("Live apps", stats["live"], "Ready to explore"),
-        ("Platform status", stats["status"], "Local environment healthy"),
+        ("Projects", stats["projects"], "Domain problem areas", "aiew-kpi-t1"),
+        ("Capabilities", stats["capabilities"], "Techniques per project", "aiew-kpi-t2"),
+        ("Live apps", stats["live"], "Ready to explore", "aiew-kpi-t3"),
+        ("Platform status", stats["status"], "Local environment healthy", "aiew-kpi-t4"),
     )
     columns = st.columns(4)
-    for column, (label, value, caption) in zip(columns, metrics, strict=True):
+    for column, (label, value, caption, extra_class) in zip(columns, metrics, strict=True):
         with column:
             st.markdown(
                 f"""
-                <div class="aiew-kpi">
+                <div class="aiew-kpi {extra_class}">
                     <div class="aiew-kpi-label">{escape(label)}</div>
                     <div class="aiew-kpi-value">{escape(str(value))}</div>
                     <div class="aiew-kpi-caption">{escape(caption)}</div>
@@ -120,18 +119,31 @@ def _render_project_header(project: dict) -> None:
         )
 
 
+_TIER_COLORS = {
+    1: {"border": "#4f46e5", "bg": "#eef2ff", "text": "#3730a3", "badge": "#4f46e5"},
+    2: {"border": "#7c3aed", "bg": "#f5f3ff", "text": "#5b21b6", "badge": "#7c3aed"},
+    3: {"border": "#0891b2", "bg": "#ecfeff", "text": "#0e7490", "badge": "#0891b2"},
+    4: {"border": "#d97706", "bg": "#fffbeb", "text": "#92400e", "badge": "#d97706"},
+    5: {"border": "#e11d48", "bg": "#fff1f2", "text": "#9f1239", "badge": "#e11d48"},
+    6: {"border": "#059669", "bg": "#ecfdf5", "text": "#065f46", "badge": "#059669"},
+}
+
+
 def _render_capability_ladder(project: dict) -> None:
     apps = project["apps"]
     cols = st.columns(len(apps))
 
     for col, app in zip(cols, apps):
         is_live = app["status"] == "live"
-        border_color = "#4f46e5" if is_live else "#e2e8f0"
-        bg_color = "#eef2ff" if is_live else "#f8fafc"
-        text_color = "#3730a3" if is_live else "#94a3b8"
+        tier_num = app["tier"]
+        tc = _TIER_COLORS.get(tier_num, _TIER_COLORS[1])
+        border_color = tc["border"] if is_live else "#e2e8f0"
+        bg_color = tc["bg"] if is_live else "#f8fafc"
+        text_color = tc["text"] if is_live else "#94a3b8"
+        badge_color = tc["badge"] if is_live else "#94a3b8"
         badge = "✅ Live" if is_live else "⏳ Soon"
-        badge_color = "#059669" if is_live else "#94a3b8"
         cursor = "pointer" if is_live else "default"
+        live_class = f"aiew-tier-card aiew-tier-t{tier_num}-live" if is_live else "aiew-tier-card aiew-tier-soon"
 
         stack_chips = "".join(
             f'<span style="font-size:.6rem;padding:.15rem .4rem;border-radius:999px;'
@@ -141,10 +153,9 @@ def _render_capability_ladder(project: dict) -> None:
         )
 
         with col:
-            live_class = "aiew-tier-live" if is_live else "aiew-tier-soon"
             st.markdown(
                 f"""
-                <div class="aiew-tier-card {live_class}"
+                <div class="{live_class}"
                      style="border:1px solid {border_color};border-radius:.85rem;
                             background:{bg_color};padding:.7rem .75rem;
                             text-align:center;cursor:{cursor};position:relative;">
@@ -235,10 +246,22 @@ def _render_principles() -> None:
         ("02", "Evaluation first", "Quality, validation, and measurable outcomes built into every workflow."),
         ("03", "Deployment aware", "Artifacts and interfaces designed for the path from notebook to production."),
     )
+
+    st.markdown('<div class="aiew-dark-band">', unsafe_allow_html=True)
+    _section_header("Engineering principles", "How it is built", "Every module follows the same production-minded standards.")
+
     columns = st.columns(3)
     for column, (number, title, caption) in zip(columns, principles, strict=True):
         with column:
-            with st.container(border=True):
-                st.caption(number)
-                st.markdown(f"**{title}**")
-                st.caption(caption)
+            st.markdown(
+                f"""
+                <div class="aiew-principle-card">
+                    <div class="aiew-principle-number">{number}</div>
+                    <div class="aiew-principle-title">{title}</div>
+                    <div class="aiew-principle-copy">{caption}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    st.markdown('</div>', unsafe_allow_html=True)
