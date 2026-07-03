@@ -359,6 +359,88 @@ def apply_theme() -> None:
             min-height: 2.5rem;
         }
 
+        /* ── Card hover effect ────────────────────────────────────────────── */
+        [data-testid="stVerticalBlockBorderWrapper"] {
+            transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+        }
+
+        [data-testid="stVerticalBlockBorderWrapper"]:hover {
+            border-color: rgba(79,70,229,.35);
+            box-shadow: 0 6px 28px rgba(79,70,229,.10);
+            transform: translateY(-2px);
+        }
+
+        /* ── Sidebar nav buttons ──────────────────────────────────────────── */
+        .aiew-nav-btn > div > button {
+            justify-content: flex-start !important;
+            border: none !important;
+            background: transparent !important;
+            color: #cbd5e1 !important;
+            font-size: .84rem !important;
+            font-weight: 500 !important;
+            padding: .42rem .6rem !important;
+            border-radius: .6rem !important;
+            transition: background .15s ease, color .15s ease;
+            white-space: pre-line;
+        }
+
+        .aiew-nav-btn > div > button:hover {
+            background: rgba(255,255,255,.07) !important;
+            color: #f8fafc !important;
+        }
+
+        .aiew-nav-btn--active > div > button {
+            background: rgba(79,70,229,.22) !important;
+            color: #e0e7ff !important;
+            font-weight: 650 !important;
+        }
+
+        /* ── Footer ──────────────────────────────────────────────────────── */
+        .aiew-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin-top: 3rem;
+            padding: 1rem 0 .5rem;
+            border-top: 1px solid var(--aiew-border);
+        }
+
+        .aiew-footer-brand {
+            color: var(--aiew-ink);
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: -.01em;
+        }
+
+        .aiew-footer-desc {
+            color: var(--aiew-muted);
+            font-size: .76rem;
+        }
+
+        .aiew-footer-sep {
+            color: var(--aiew-border);
+            font-size: .76rem;
+            margin: 0 .25rem;
+        }
+
+        .aiew-footer-meta {
+            color: var(--aiew-muted);
+            font-size: .75rem;
+        }
+
+        .aiew-footer-link {
+            color: var(--aiew-primary);
+            font-size: .75rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .aiew-footer-link:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 900px) {
             .block-container {
                 padding-left: 1rem;
@@ -369,6 +451,11 @@ def apply_theme() -> None:
             }
             .aiew-section-copy {
                 display: none;
+            }
+            .aiew-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: .3rem;
             }
         }
         </style>

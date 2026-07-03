@@ -14,6 +14,7 @@ import streamlit as st
 
 from theme.styles import apply_theme
 
+from components.footer import render_footer
 from components.header import show_header
 from components.sidebar import render_sidebar
 
@@ -34,6 +35,8 @@ def main():
         show_header()
 
     route()
+
+    render_footer()
 
 
 if __name__ == "__main__":
