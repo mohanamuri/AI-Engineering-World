@@ -295,21 +295,21 @@ def generate_pdf(output_path: str) -> None:
     # Page objects
     for sid in stream_ids:
         page_obj = (
-            f"<< /Type /Page /Parent {page_tree_id} R "
+            f"<< /Type /Page /Parent {page_tree_id} 0 R "
             f"/MediaBox [0 0 595 842] "
-            f"/Contents {sid} R "
-            f"/Resources << /Font << /F1 {font_obj_id} R /F2 {bold_font_obj_id} R >> >> >>"
+            f"/Contents {sid} 0 R "
+            f"/Resources << /Font << /F1 {font_obj_id} 0 R /F2 {bold_font_obj_id} 0 R >> >> >>"
         ).encode()
         pid = add_object(page_obj)
         page_ids_placeholder.append(pid)
 
     # Page tree object
-    kids = " ".join(f"{pid} R" for pid in page_ids_placeholder)
+    kids = " ".join(f"{pid} 0 R" for pid in page_ids_placeholder)
     page_tree_obj = f"<< /Type /Pages /Kids [{kids}] /Count {len(PAGES)} >>".encode()
     actual_page_tree_id = add_object(page_tree_obj)
 
     # Catalog
-    catalog_obj = f"<< /Type /Catalog /Pages {actual_page_tree_id} R >>".encode()
+    catalog_obj = f"<< /Type /Catalog /Pages {actual_page_tree_id} 0 R >>".encode()
     catalog_id = add_object(catalog_obj)
 
     # Write PDF
@@ -330,7 +330,7 @@ def generate_pdf(output_path: str) -> None:
         buf.extend(f"{off:010d} 00000 n \n".encode())
 
     buf.extend(b"trailer\n")
-    buf.extend(f"<< /Size {len(objects) + 1} /Root {catalog_id} R >>\n".encode())
+    buf.extend(f"<< /Size {len(objects) + 1} /Root {catalog_id} 0 R >>\n".encode())
     buf.extend(b"startxref\n")
     buf.extend(f"{xref_offset}\n".encode())
     buf.extend(b"%%EOF\n")
