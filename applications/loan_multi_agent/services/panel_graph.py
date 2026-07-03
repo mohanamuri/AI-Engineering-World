@@ -41,7 +41,7 @@ from typing import TypedDict
 
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage
-from langgraph.graph import END, StateGraph
+from langgraph.graph import END, START, StateGraph
 
 from applications.loan_multi_agent.services.specialist_agents import (
     SpecialistReport,
@@ -174,10 +174,16 @@ def _build_graph() -> StateGraph:
     graph.add_node("compliance", _compliance_node)
     graph.add_node("supervisor", _supervisor_node)
 
-    graph.set_entry_point("underwriter")
-    graph.add_edge("underwriter", "fraud_detector")
-    graph.add_edge("fraud_detector", "compliance")
+    # Fan-out: all 3 specialists start simultaneously from START
+    graph.add_edge(START, "underwriter")
+    graph.add_edge(START, "fraud_detector")
+    graph.add_edge(START, "compliance")
+
+    # Fan-in: supervisor waits for all 3 before running
+    graph.add_edge("underwriter", "supervisor")
+    graph.add_edge("fraud_detector", "supervisor")
     graph.add_edge("compliance", "supervisor")
+
     graph.add_edge("supervisor", END)
 
     return graph.compile()
