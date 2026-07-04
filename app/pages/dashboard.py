@@ -159,7 +159,8 @@ def _render_capability_ladder(project: dict) -> None:
                 <div class="{live_class}"
                      style="border:1px solid {border_color};border-radius:.85rem;
                             background:{bg_color};padding:.7rem .75rem;
-                            text-align:center;cursor:{cursor};position:relative;">
+                            text-align:center;cursor:{cursor};position:relative;
+                            min-height:9rem;display:flex;flex-direction:column;justify-content:center;">
                     <div style="font-size:.62rem;font-weight:700;color:{badge_color};
                                 letter-spacing:.06em;text-transform:uppercase;margin-bottom:.25rem;">
                         T{app['tier']}
