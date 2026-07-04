@@ -110,9 +110,9 @@ _GUIDES: dict[str, dict] = {
         "flow_steps": [
             ("Load PDF", "pypdf extracts text page by page. The full document text is stored in session state."),
             ("Chunk", "RecursiveCharacterTextSplitter splits text into overlapping chunks (configurable size/overlap). Overlap prevents missing context at boundaries."),
-            ("Embed", "nomic-embed-text (via Ollama) converts each chunk into a vector. ChromaDB EphemeralClient stores them in memory — no disk writes."),
+            ("Embed", "all-MiniLM-L6-v2 (HuggingFace) converts each chunk into a vector. ChromaDB EphemeralClient stores them in memory — no disk writes."),
             ("Query", "User question → embedded → cosine similarity search → top-k chunks retrieved → sent to LLM as context."),
-            ("Generate", "llama3.1 answers using ONLY the retrieved chunks. System prompt forbids hallucination — if it's not in the context, the LLM says so."),
+            ("Generate", "llama-3.1-8b-instant (via Groq) answers using ONLY the retrieved chunks. System prompt forbids hallucination — if it's not in the context, the LLM says so."),
         ],
         "workflow_steps": [
             "📄 **Load Policy** — click 'Load loan_policy.pdf' for the default FinCorp policy, or upload your own PDF/TXT.",
@@ -128,7 +128,7 @@ _GUIDES: dict[str, dict] = {
             ("Chat history", "All Q&A pairs with timestamps, exportable as JSON or CSV."),
             ("Reproducibility", "The Download page shows the exact Python code to recreate the session."),
         ],
-        "stack": ["LangChain", "ChromaDB", "Ollama (nomic-embed-text + llama3.1)", "pypdf"],
+        "stack": ["LangChain", "ChromaDB", "Groq (llama-3.1-8b-instant)", "HuggingFace embeddings", "pypdf"],
     },
 
     # -----------------------------------------------------------------------
@@ -139,7 +139,7 @@ _GUIDES: dict[str, dict] = {
             ("validate_application", "Deterministic tool: checks age, income, employment, credit score against policy minimums. Returns PASSED or list of failures."),
             ("compute_risk_metrics", "Deterministic tool: calculates DTI ratio, estimates EMI, maps credit score to band, flags auto-decline conditions."),
             ("lookup_policy_rule", "Deterministic tool: retrieves embedded policy rules (auto-decline conditions, interest rate bands, eligibility thresholds)."),
-            ("LLM synthesis", "llama3.1 receives all three tool outputs and writes a structured APPROVED / DECLINED / MANUAL_REVIEW decision with reasoning."),
+            ("LLM synthesis", "llama-3.1-8b-instant (via Groq) receives all three tool outputs and writes a structured APPROVED / DECLINED / MANUAL_REVIEW decision with reasoning."),
         ],
         "workflow_steps": [
             "📋 **Application** — fill the form or load a sample (Strong / Borderline / High-Risk applicant).",
@@ -154,7 +154,7 @@ _GUIDES: dict[str, dict] = {
             ("Agent reasoning", "LLM's written justification citing specific numbers from the tool outputs."),
             ("Conditions", "If approved: any conditions (e.g. 'collateral required', 'co-applicant needed')."),
         ],
-        "stack": ["LangChain tools", "langchain_ollama (llama3.1)", "pandas"],
+        "stack": ["LangChain tools", "Groq (llama-3.1-8b-instant)", "pandas"],
     },
 
     # -----------------------------------------------------------------------
@@ -181,7 +181,7 @@ _GUIDES: dict[str, dict] = {
             ("Supervisor reasoning", "Why one specialist's DECLINE overrides another's APPROVE. Most interesting on split votes."),
             ("Vote history", "History table shows UW/FD/CO votes at a glance — easy to spot patterns across applicants."),
         ],
-        "stack": ["LangGraph StateGraph", "langchain_ollama (llama3.1)", "parallel fan-out"],
+        "stack": ["LangGraph StateGraph", "Groq (llama-3.1-8b-instant)", "parallel fan-out"],
     },
 }
 
