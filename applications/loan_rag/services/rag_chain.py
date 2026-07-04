@@ -34,11 +34,21 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
+import os
+
+import streamlit as st
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.documents import Document
-from langchain_ollama import ChatOllama
+from langchain_groq import ChatGroq
 
 from applications.loan_rag.services.vector_store import similarity_search
+
+
+def _get_groq_api_key() -> str:
+    try:
+        return st.secrets["GROQ_API_KEY"]
+    except Exception:
+        return os.environ.get("GROQ_API_KEY", "")
 
 
 # ---------------------------------------------------------------------------
@@ -48,8 +58,8 @@ from applications.loan_rag.services.vector_store import similarity_search
 @dataclass
 class RAGConfig:
     """Tunable parameters for the RAG pipeline."""
-    llm_model: str = "llama3.1"
-    embedding_model: str = "nomic-embed-text"
+    llm_model: str = "llama-3.1-8b-instant"
+    embedding_model: str = "all-MiniLM-L6-v2"
     chunk_size: int = 512
     chunk_overlap: int = 64
     top_k: int = 4
@@ -127,7 +137,7 @@ def run_rag_query(
     context = "\n\n---\n\n".join(context_parts)
 
     # Step 3 — Generate
-    llm = ChatOllama(model=config.llm_model, temperature=config.temperature)
+    llm = ChatGroq(model=config.llm_model, temperature=config.temperature, api_key=_get_groq_api_key())
     chain = _PROMPT | llm
     response = chain.invoke({"context": context, "question": query})
     answer = response.content if hasattr(response, "content") else str(response)

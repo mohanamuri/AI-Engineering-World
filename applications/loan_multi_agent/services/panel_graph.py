@@ -39,7 +39,10 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from typing import TypedDict
 
-from langchain_ollama import ChatOllama
+import os
+
+import streamlit as st
+from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.graph import END, START, StateGraph
 
@@ -49,6 +52,13 @@ from applications.loan_multi_agent.services.specialist_agents import (
     run_fraud_detector,
     run_underwriter,
 )
+
+
+def _get_groq_api_key() -> str:
+    try:
+        return st.secrets["GROQ_API_KEY"]
+    except Exception:
+        return os.environ.get("GROQ_API_KEY", "")
 
 
 # ---------------------------------------------------------------------------
@@ -72,7 +82,7 @@ class PanelState(TypedDict):
 
 @dataclass
 class AgentConfig:
-    llm_model: str = "llama3.1"
+    llm_model: str = "llama-3.1-8b-instant"
     temperature: float = 0.0
 
 
@@ -118,25 +128,25 @@ CONDITIONS: [any approval conditions, or "None"]
 # ---------------------------------------------------------------------------
 
 def _underwriter_node(state: PanelState) -> PanelState:
-    llm = ChatOllama(model=state["llm_model"], temperature=state["temperature"])
+    llm = ChatGroq(model=state["llm_model"], temperature=state["temperature"], api_key=_get_groq_api_key())
     report = run_underwriter(state["application"], llm)
     return {**state, "underwriter_report": report}
 
 
 def _fraud_node(state: PanelState) -> PanelState:
-    llm = ChatOllama(model=state["llm_model"], temperature=state["temperature"])
+    llm = ChatGroq(model=state["llm_model"], temperature=state["temperature"], api_key=_get_groq_api_key())
     report = run_fraud_detector(state["application"], llm)
     return {**state, "fraud_report": report}
 
 
 def _compliance_node(state: PanelState) -> PanelState:
-    llm = ChatOllama(model=state["llm_model"], temperature=state["temperature"])
+    llm = ChatGroq(model=state["llm_model"], temperature=state["temperature"], api_key=_get_groq_api_key())
     report = run_compliance_officer(state["application"], llm)
     return {**state, "compliance_report": report}
 
 
 def _supervisor_node(state: PanelState) -> PanelState:
-    llm = ChatOllama(model=state["llm_model"], temperature=state["temperature"])
+    llm = ChatGroq(model=state["llm_model"], temperature=state["temperature"], api_key=_get_groq_api_key())
 
     uw = state["underwriter_report"]
     fd = state["fraud_report"]

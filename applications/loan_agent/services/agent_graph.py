@@ -34,14 +34,24 @@ import json
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
+import os
+
+import streamlit as st
 from langchain_core.messages import HumanMessage, SystemMessage
-from langchain_ollama import ChatOllama
+from langchain_groq import ChatGroq
 
 from applications.loan_agent.services.agent_tools import (
     compute_risk_metrics,
     lookup_policy_rule,
     validate_application,
 )
+
+
+def _get_groq_api_key() -> str:
+    try:
+        return st.secrets["GROQ_API_KEY"]
+    except Exception:
+        return os.environ.get("GROQ_API_KEY", "")
 
 
 # ---------------------------------------------------------------------------
@@ -71,7 +81,7 @@ class AgentRunResult:
 @dataclass
 class AgentConfig:
     """Tunable agent parameters."""
-    llm_model: str = "llama3.1"
+    llm_model: str = "llama-3.1-8b-instant"
     temperature: float = 0.0
 
 
@@ -161,7 +171,7 @@ def run_agent(application: dict, config: AgentConfig) -> AgentRunResult:
         )),
     ]
 
-    llm = ChatOllama(model=config.llm_model, temperature=config.temperature)
+    llm = ChatGroq(model=config.llm_model, temperature=config.temperature, api_key=_get_groq_api_key())
     response = llm.invoke(messages)
     final_answer = response.content.strip()
     decision = _extract_decision(final_answer)

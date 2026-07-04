@@ -1,7 +1,7 @@
 """
 Vector store service for the loan RAG pipeline.
 
-Wraps ChromaDB in-memory with Ollama embeddings (nomic-embed-text).
+Wraps ChromaDB in-memory with HuggingFace embeddings (all-MiniLM-L6-v2).
 
 Why ChromaDB?
 --------------
@@ -16,17 +16,17 @@ database would accumulate stale collections across reruns and across
 users (on a shared deployment). EphemeralClient is recreated fresh each
 time the user clicks "Build vector store" — no leftover state.
 
-Why nomic-embed-text?
-----------------------
-It is a small, fast, open-weights embedding model optimised for semantic
-search. It outperforms OpenAI ada-002 on BEIR benchmarks at a fraction of
-the cost (free, local, no API key). It runs via Ollama using the same
-interface as any other Ollama model.
+Why all-MiniLM-L6-v2?
+-----------------------
+It is a small (80 MB), fast HuggingFace sentence-transformer model that
+runs locally with no API key. It outperforms OpenAI ada-002 on many BEIR
+benchmarks at zero cost. Works identically on local machines and on
+Streamlit Community Cloud.
 
 Interview note — cosine vs L2 distance
 ----------------------------------------
 ChromaDB uses L2 (Euclidean) distance by default. For normalised
-embeddings (like those from nomic-embed-text) cosine and L2 produce
+embeddings (like those from all-MiniLM-L6-v2) cosine and L2 produce
 the same ranking. If you were using raw unnormalised embeddings, cosine
 similarity would be preferable.
 """
@@ -38,7 +38,7 @@ from dataclasses import dataclass, field
 import chromadb
 from langchain_core.documents import Document
 from langchain_community.vectorstores import Chroma
-from langchain_ollama import OllamaEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
 # ---------------------------------------------------------------------------
@@ -60,21 +60,18 @@ class VectorStoreResult:
 
 def build_vector_store(
     chunks: list[Document],
-    embedding_model: str = "nomic-embed-text",
+    embedding_model: str = "all-MiniLM-L6-v2",
 ) -> VectorStoreResult:
     """Embed all chunks and store them in a fresh in-memory ChromaDB.
 
     Args:
         chunks:          List of LangChain Documents from document_loader.chunk_text().
-        embedding_model: Ollama model name for embeddings.
+        embedding_model: HuggingFace sentence-transformer model name.
 
     Returns:
         VectorStoreResult with the built Chroma instance and metadata.
-
-    Raises:
-        RuntimeError: If Ollama is not reachable or the model is not pulled.
     """
-    embeddings = OllamaEmbeddings(model=embedding_model)
+    embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
 
     # EphemeralClient = pure in-memory, no disk writes, no server.
     client = chromadb.EphemeralClient()

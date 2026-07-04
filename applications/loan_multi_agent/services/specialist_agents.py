@@ -40,7 +40,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 from langchain_core.messages import HumanMessage, SystemMessage
-from langchain_ollama import ChatOllama
+from langchain_core.language_models import BaseChatModel
 
 from applications.loan_agent.services.agent_tools import (
     compute_risk_metrics,
@@ -91,7 +91,7 @@ CONCERNS: [list any concerns, or "None"]
 """
 
 
-def run_underwriter(application: dict, llm: ChatOllama) -> SpecialistReport:
+def run_underwriter(application: dict, llm: BaseChatModel) -> SpecialistReport:
     app_json = json.dumps(application)
     steps = []
 
@@ -141,7 +141,7 @@ ANOMALY FINDINGS: [list specific findings, or "No anomalies detected"]
 """
 
 
-def run_fraud_detector(application: dict, llm: ChatOllama) -> SpecialistReport:
+def run_fraud_detector(application: dict, llm: BaseChatModel) -> SpecialistReport:
     app_json = json.dumps(application)
     steps = []
 
@@ -198,7 +198,7 @@ POLICY FINDINGS: [list each policy check result]
 """
 
 
-def run_compliance_officer(application: dict, llm: ChatOllama) -> SpecialistReport:
+def run_compliance_officer(application: dict, llm: BaseChatModel) -> SpecialistReport:
     app_json = json.dumps(application)
     steps = []
 
