@@ -43,7 +43,7 @@ def render() -> None:
 
     config: AgentConfig = st.session_state.get(AGENT_CONFIG_SESSION_KEY, AgentConfig())
     with st.expander("⚙️ Agent settings", expanded=False):
-        llm = st.text_input("LLM model (Ollama)", value=config.llm_model)
+        llm = st.text_input("LLM model (Groq)", value=config.llm_model)
         temp = st.slider("Temperature", 0.0, 1.0, value=config.temperature, step=0.05)
         config = AgentConfig(llm_model=llm, temperature=temp)
         st.session_state[AGENT_CONFIG_SESSION_KEY] = config
@@ -76,7 +76,7 @@ def _run_and_store(application: dict, config: AgentConfig) -> None:
         try:
             result = run_panel(application, config)
         except Exception as exc:
-            st.error(f"Panel run failed: {exc}\n\nMake sure Ollama is running and `{config.llm_model}` is pulled.")
+            st.error(f"Panel run failed: {exc}\n\nCheck that your GROQ_API_KEY is set and the model name is correct.")
             return
 
     st.session_state[PANEL_RESULT_SESSION_KEY] = result

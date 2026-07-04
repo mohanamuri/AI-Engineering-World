@@ -113,7 +113,7 @@ def _run_query(
         except Exception as exc:
             st.error(
                 f"Query failed: {exc}\n\n"
-                f"Make sure Ollama is running and `{config.llm_model}` is pulled."
+                f"Make sure your GROQ_API_KEY is set and the model name is correct."
             )
             return
 

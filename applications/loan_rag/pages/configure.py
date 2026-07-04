@@ -54,14 +54,14 @@ def render() -> None:
         with st.container(border=True):
             st.markdown("**Model parameters**")
             embedding_model = st.text_input(
-                "Embedding model (Ollama)",
+                "Embedding model (HuggingFace)",
                 value=current_config.embedding_model,
-                help="Used to embed chunks and queries. Must be pulled in Ollama.",
+                help="HuggingFace sentence-transformer model used to embed chunks and queries.",
             )
             llm_model = st.text_input(
-                "LLM model (Ollama)",
+                "LLM model (Groq)",
                 value=current_config.llm_model,
-                help="Used to generate answers. Must be pulled in Ollama.",
+                help="Groq-hosted model used to generate answers. E.g. llama-3.1-8b-instant.",
             )
             top_k = st.slider(
                 "Top-k retrieval",
@@ -132,8 +132,7 @@ def _build_and_store(load_result, config: RAGConfig) -> None:
         except Exception as exc:
             st.error(
                 f"Failed to build vector store: {exc}\n\n"
-                "Make sure Ollama is running (`ollama serve`) and the embedding "
-                f"model is pulled (`ollama pull {config.embedding_model}`)."
+                "Check that your GROQ_API_KEY is set and the embedding model name is correct."
             )
             return
 

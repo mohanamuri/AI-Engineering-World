@@ -83,7 +83,7 @@ def render() -> None:
         st.subheader("How to reproduce with LangGraph")
         st.code(
             """from langgraph.prebuilt import create_react_agent
-from langchain_ollama import ChatOllama
+from langchain_groq import ChatGroq
 from langchain_core.tools import tool
 import json
 
@@ -94,7 +94,7 @@ def validate_application(application_json: str) -> str:
     ...  # see agent_tools.py
 
 # 2. Build the agent
-llm = ChatOllama(model="llama3.1", temperature=0.0)
+llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0.0)
 agent = create_react_agent(llm, [validate_application, ...], prompt=SYSTEM_PROMPT)
 
 # 3. Run

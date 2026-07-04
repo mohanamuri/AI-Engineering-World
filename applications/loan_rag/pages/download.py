@@ -128,7 +128,8 @@ def render() -> None:
         st.divider()
         st.subheader("How to reproduce this session")
         st.code(
-            f"""from langchain_ollama import OllamaEmbeddings, ChatOllama
+            f"""from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_groq import ChatGroq
 from langchain_community.vectorstores import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import chromadb
@@ -147,7 +148,7 @@ splitter = RecursiveCharacterTextSplitter(
 chunks = splitter.create_documents([text])
 
 # 3. Embed and store
-embeddings = OllamaEmbeddings(model="{config.embedding_model}")
+embeddings = HuggingFaceEmbeddings(model_name="{config.embedding_model}")
 client = chromadb.EphemeralClient()
 vectorstore = Chroma.from_documents(chunks, embeddings, client=client)
 
