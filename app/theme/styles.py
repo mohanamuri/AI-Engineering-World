@@ -186,6 +186,31 @@ def apply_theme() -> None:
             font-weight: 700 !important;
         }
 
+        /* Left-align sidebar nav button text so tick emoji stays fixed */
+        section[data-testid="stSidebar"] .aiew-nav-btn button,
+        section[data-testid="stSidebar"] .aiew-nav-btn--active button {
+            text-align: left !important;
+            justify-content: flex-start !important;
+        }
+
+        /* Dark background for sidebar expanders */
+        section[data-testid="stSidebar"] details,
+        section[data-testid="stSidebar"] details[open],
+        section[data-testid="stSidebar"] [data-testid="stExpander"],
+        section[data-testid="stSidebar"] [data-testid="stExpander"] > details {
+            background: transparent !important;
+            border-color: rgba(148,163,184,.16) !important;
+        }
+        section[data-testid="stSidebar"] [data-testid="stExpander"] summary,
+        section[data-testid="stSidebar"] details > summary {
+            background: rgba(255,255,255,.05) !important;
+            color: #f8fafc !important;
+        }
+        section[data-testid="stSidebar"] [data-testid="stExpander"] > details > div,
+        section[data-testid="stSidebar"] details[open] > div {
+            background: transparent !important;
+        }
+
         /* ── Hero banner (dashboard home) ───────────────────────────────── */
         .aiew-hero {
             position: relative;
