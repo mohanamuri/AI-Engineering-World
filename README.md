@@ -1,2 +1,1 @@
-#run command
-#streamlit run app/main.py
+AI World - by Mohan Raju Amuri
