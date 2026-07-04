@@ -54,8 +54,8 @@ def render() -> None:
 
     # ---- Run button -----------------------------------------------------
     if st.button("▶ Evaluate with Agent", type="primary", use_container_width=True):
-        _run_and_store(application, new_config)
-        st.rerun()
+        if _run_and_store(application, new_config):
+            st.rerun()
 
     # ---- Step trace -----------------------------------------------------
     result: AgentRunResult | None = st.session_state.get(RUN_RESULT_SESSION_KEY)
@@ -72,7 +72,7 @@ def render() -> None:
         )
 
 
-def _run_and_store(application: dict, config: AgentConfig) -> None:
+def _run_and_store(application: dict, config: AgentConfig) -> bool:
     with st.spinner(
         f"Agent thinking with **{config.llm_model}** … "
         "this may take 30–60 seconds."
@@ -84,12 +84,13 @@ def _run_and_store(application: dict, config: AgentConfig) -> None:
                 f"Agent run failed: {exc}\n\n"
                 "Check that your GROQ_API_KEY is set and the model name is correct."
             )
-            return
+            return False
 
     st.session_state[RUN_RESULT_SESSION_KEY] = result
 
     history: list = st.session_state.setdefault(HISTORY_SESSION_KEY, [])
     history.append(result)
+    return True
 
 
 def _render_trace(result: AgentRunResult) -> None:

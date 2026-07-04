@@ -58,8 +58,8 @@ def render() -> None:
         m4.metric("Tenure", f"{application.get('loan_tenure_months', 0)} mo")
 
     if st.button("▶ Convene Credit Committee", type="primary", use_container_width=True):
-        _run_and_store(application, config)
-        st.rerun()
+        if _run_and_store(application, config):
+            st.rerun()
 
     # ---- Panel results --------------------------------------------------
     result: PanelRunResult | None = st.session_state.get(PANEL_RESULT_SESSION_KEY)
@@ -68,7 +68,7 @@ def render() -> None:
         _render_panel(result)
 
 
-def _run_and_store(application: dict, config: AgentConfig) -> None:
+def _run_and_store(application: dict, config: AgentConfig) -> bool:
     with st.spinner(
         f"Convening panel with **{config.llm_model}** … "
         "3 specialists + 1 supervisor — may take 60–90 seconds."
@@ -77,10 +77,11 @@ def _run_and_store(application: dict, config: AgentConfig) -> None:
             result = run_panel(application, config)
         except Exception as exc:
             st.error(f"Panel run failed: {exc}\n\nCheck that your GROQ_API_KEY is set and the model name is correct.")
-            return
+            return False
 
     st.session_state[PANEL_RESULT_SESSION_KEY] = result
     st.session_state.setdefault(HISTORY_SESSION_KEY, []).append(result)
+    return True
 
 
 def _render_panel(result: PanelRunResult) -> None:
