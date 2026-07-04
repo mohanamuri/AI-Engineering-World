@@ -85,7 +85,7 @@ PROJECTS = [
                 "status": "live",
                 "difficulty": "Advanced",
                 "version": "1.0.0",
-                "stack": ["LangChain", "ChromaDB", "Ollama", "nomic-embed-text"],
+                "stack": ["LangChain", "ChromaDB", "Groq", "HuggingFace"],
                 "description": (
                     "Retrieval-Augmented Generation: ground loan decisions in "
                     "policy documents using a vector store and LLM reasoning."
@@ -101,7 +101,7 @@ PROJECTS = [
                 "status": "live",
                 "difficulty": "Advanced",
                 "version": "1.0.0",
-                "stack": ["LangGraph", "Ollama", "pandas"],
+                "stack": ["LangGraph", "Groq", "pandas"],
                 "description": (
                     "A single autonomous agent that runs the full eligibility "
                     "workflow: data validation, risk scoring, and decision rationale."
@@ -117,7 +117,7 @@ PROJECTS = [
                 "status": "live",
                 "difficulty": "Expert",
                 "version": "1.0.0",
-                "stack": ["LangGraph", "Ollama", "FastAPI"],
+                "stack": ["LangGraph", "Groq", "FastAPI"],
                 "description": (
                     "Specialist agents (underwriter, fraud detector, compliance) "
                     "collaborate through a shared message bus to reach a consensus decision."

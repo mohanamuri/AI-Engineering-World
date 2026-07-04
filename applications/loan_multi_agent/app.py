@@ -48,8 +48,8 @@ def run() -> None:
                     <div>
                         <span class="aiew-tech-pill">LangGraph</span>
                         <span class="aiew-tech-pill">StateGraph</span>
-                        <span class="aiew-tech-pill">langchain_ollama</span>
-                        <span class="aiew-tech-pill">llama3.1</span>
+                        <span class="aiew-tech-pill">Groq</span>
+                        <span class="aiew-tech-pill">llama-3.1-8b</span>
                         <span class="aiew-tech-pill">parallel fan-out</span>
                     </div>
                 </div>

@@ -51,9 +51,9 @@ def run() -> None:
                     <div>
                         <span class="aiew-tech-pill">LangChain</span>
                         <span class="aiew-tech-pill">ChromaDB</span>
-                        <span class="aiew-tech-pill">Ollama</span>
-                        <span class="aiew-tech-pill">nomic-embed-text</span>
-                        <span class="aiew-tech-pill">llama3.1</span>
+                        <span class="aiew-tech-pill">Groq</span>
+                        <span class="aiew-tech-pill">HuggingFace</span>
+                        <span class="aiew-tech-pill">llama-3.1-8b</span>
                     </div>
                 </div>
             </div>
