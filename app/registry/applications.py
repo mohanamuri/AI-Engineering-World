@@ -31,6 +31,7 @@ PROJECTS = [
         "apps": [
             {
                 "id": "loan_ml",
+
                 "capability": "Machine Learning",
                 "tier": 1,
                 "icon": "ML",
@@ -124,6 +125,120 @@ PROJECTS = [
                 ),
                 "what": "Three specialist agents — Underwriter, Fraud Detector, Compliance Officer — each analyse the application independently. A Supervisor synthesises a final consensus decision.",
                 "why_next": "This is the final tier. It mirrors how real loan decisions work in banks — multiple expert teams, each contributing, reaching a governed consensus.",
+            },
+        ],
+    },
+
+    {
+        "id": "hr_analytics",
+        "name": "HR Analytics — Employee Attrition",
+        "short_name": "HR Analytics",
+        "icon": "👥",
+        "category": "Human Resources · Talent Retention",
+        "description": (
+            "One HR problem solved progressively — predict, explain, and prevent "
+            "employee attrition. Each tier unlocks a new capability on the same "
+            "domain, from classical ML to a multi-agent expert panel."
+        ),
+        "apps": [
+            {
+                "id": "hr_ml",
+                "capability": "Machine Learning",
+                "tier": 1,
+                "icon": "ML",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["scikit-learn", "pandas", "plotly", "joblib"],
+                "description": (
+                    "Full ML pipeline: upload HR data, explore attrition signals, "
+                    "preprocess features, train 4 classifiers (LR / DT / RF / XGBoost), "
+                    "evaluate with F1 and ROC AUC, and export artifacts."
+                ),
+                "what": "Uploaded an HR attrition dataset, engineered features, trained four classifiers with balanced class weights to handle the attrition imbalance, and evaluated with F1 and ROC AUC.",
+                "why_next": "Classical models predict attrition but cannot explain why an employee is at risk. Neural networks can discover more complex patterns automatically.",
+            },
+            {
+                "id": "hr_dl",
+                "capability": "Deep Learning",
+                "tier": 2,
+                "icon": "DL",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["scikit-learn", "MLPClassifier", "pandas", "plotly"],
+                "description": (
+                    "Neural network approach using MLP with balanced sample weights. "
+                    "Watch the loss curve converge and compare against the classical baseline."
+                ),
+                "what": "Replaced classical models with a Multi-Layer Perceptron. Applied balanced sample weights to handle class imbalance. Tracked training loss per epoch.",
+                "why_next": "The neural network predicts well but is a black box. HR managers need to know *why* an employee is flagged — which factors are actually driving the risk.",
+            },
+            {
+                "id": "hr_xai",
+                "capability": "Explainability",
+                "tier": 3,
+                "icon": "XAI",
+                "status": "live",
+                "difficulty": "Advanced",
+                "version": "1.0.0",
+                "stack": ["SHAP", "LIME", "scikit-learn", "plotly"],
+                "description": (
+                    "Explain every attrition prediction globally and locally using "
+                    "SHAP and LIME. See exactly which factors drive each employee's risk."
+                ),
+                "what": "Used SHAP to identify which HR factors most drive attrition globally. Used LIME to explain individual flight-risk predictions for specific employees.",
+                "why_next": "Explanations are static — an HR manager can't ask follow-up questions about retention policy. What if they could query policy documents in plain English?",
+            },
+            {
+                "id": "hr_rag",
+                "capability": "RAG",
+                "tier": 4,
+                "icon": "RAG",
+                "status": "live",
+                "difficulty": "Advanced",
+                "version": "1.0.0",
+                "stack": ["LangChain", "ChromaDB", "Groq", "HuggingFace"],
+                "description": (
+                    "Upload any HR policy document and ask natural-language questions. "
+                    "Every answer is grounded in the document — no hallucination."
+                ),
+                "what": "Embedded HR policy documents into ChromaDB. An LLM retrieves relevant policy chunks and answers HR questions — grounded in facts, not hallucination.",
+                "why_next": "RAG answers questions but still waits for a human to ask. An autonomous agent can take an employee profile, run all checks, and produce a risk report on its own.",
+            },
+            {
+                "id": "hr_agent",
+                "capability": "AI Agent",
+                "tier": 5,
+                "icon": "AGT",
+                "status": "live",
+                "difficulty": "Advanced",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "Groq", "LangChain Tools"],
+                "description": (
+                    "A single autonomous agent validates employee data, computes an "
+                    "attrition risk score, looks up retention policy, and writes "
+                    "a structured risk report with actionable interventions."
+                ),
+                "what": "A single LLM-powered agent ran three tools (validator, risk scorer, policy lookup) and synthesised a structured attrition risk report with recommended interventions.",
+                "why_next": "One agent handles everything sequentially. Real HR risk assessments involve multiple specialists — splitting into expert agents makes the system more robust and auditable.",
+            },
+            {
+                "id": "hr_multi_agent",
+                "capability": "Multi-Agent System",
+                "tier": 6,
+                "icon": "MAS",
+                "status": "live",
+                "difficulty": "Expert",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "Groq", "Multi-Agent"],
+                "description": (
+                    "Three specialist agents — HR Manager, Performance Evaluator, and "
+                    "Risk Assessor — each independently analyse the employee. "
+                    "The HR Director synthesises a consensus attrition risk decision."
+                ),
+                "what": "Three independent LLM specialists each analysed the employee from their domain perspective. The HR Director resolved any disagreements and synthesised a final consensus decision.",
+                "why_next": "This is the final tier. It mirrors how real HR decisions work — multiple expert teams contributing, an HR Director governing the final call.",
             },
         ],
     },
