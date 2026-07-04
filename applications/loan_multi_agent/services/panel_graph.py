@@ -127,25 +127,25 @@ CONDITIONS: [any approval conditions, or "None"]
 # LangGraph nodes
 # ---------------------------------------------------------------------------
 
-def _underwriter_node(state: PanelState) -> PanelState:
+def _underwriter_node(state: PanelState) -> dict:
     llm = ChatGroq(model=state["llm_model"], temperature=state["temperature"], api_key=_get_groq_api_key())
     report = run_underwriter(state["application"], llm)
-    return {**state, "underwriter_report": report}
+    return {"underwriter_report": report}
 
 
-def _fraud_node(state: PanelState) -> PanelState:
+def _fraud_node(state: PanelState) -> dict:
     llm = ChatGroq(model=state["llm_model"], temperature=state["temperature"], api_key=_get_groq_api_key())
     report = run_fraud_detector(state["application"], llm)
-    return {**state, "fraud_report": report}
+    return {"fraud_report": report}
 
 
-def _compliance_node(state: PanelState) -> PanelState:
+def _compliance_node(state: PanelState) -> dict:
     llm = ChatGroq(model=state["llm_model"], temperature=state["temperature"], api_key=_get_groq_api_key())
     report = run_compliance_officer(state["application"], llm)
-    return {**state, "compliance_report": report}
+    return {"compliance_report": report}
 
 
-def _supervisor_node(state: PanelState) -> PanelState:
+def _supervisor_node(state: PanelState) -> dict:
     llm = ChatGroq(model=state["llm_model"], temperature=state["temperature"], api_key=_get_groq_api_key())
 
     uw = state["underwriter_report"]
@@ -170,7 +170,7 @@ def _supervisor_node(state: PanelState) -> PanelState:
     final_answer = response.content.strip()
     decision = _extract_decision(final_answer)
 
-    return {**state, "final_answer": final_answer, "decision": decision}
+    return {"final_answer": final_answer, "decision": decision}
 
 
 # ---------------------------------------------------------------------------
