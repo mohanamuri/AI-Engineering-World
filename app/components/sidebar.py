@@ -53,6 +53,7 @@ def render_sidebar() -> None:
                         active=current_app() == app["id"],
                         on_click=lambda aid=app["id"]: launch(aid),
                         disabled=not is_live,
+                        key=app["id"],
                     )
 
         st.divider()
@@ -87,7 +88,7 @@ def _project_is_active(project: dict) -> bool:
     return any(app["id"] == current_app() for app in project["apps"])
 
 
-def _nav_button(label: str, active: bool, on_click, disabled: bool = False) -> None:
+def _nav_button(label: str, active: bool, on_click, disabled: bool = False, key: str = None) -> None:
     active_class = "aiew-nav-btn aiew-nav-btn--active" if active else "aiew-nav-btn"
     st.markdown(f'<div class="{active_class}">', unsafe_allow_html=True)
     st.button(
@@ -95,6 +96,6 @@ def _nav_button(label: str, active: bool, on_click, disabled: bool = False) -> N
         on_click=on_click,
         use_container_width=True,
         disabled=disabled,
-        key=f"nav_{label}",
+        key=key or f"nav_{label}",
     )
     st.markdown("</div>", unsafe_allow_html=True)
