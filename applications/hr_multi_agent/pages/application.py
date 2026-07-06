@@ -61,5 +61,5 @@ def render() -> None:
         st.session_state["hr_ma_pending_employee"] = employee
         st.session_state["hr_ma_pending_config"] = config
         st.session_state["hr_ma_auto_run"] = True
-        st.session_state["hr_multi_agent_navigation"] = "👥 Panel"
+        st.session_state["hr_ma_nav_pending"] = "👥 Panel"
         st.rerun()

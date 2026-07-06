@@ -78,5 +78,5 @@ def render() -> None:
         st.session_state["hr_agent_pending_employee"] = employee
         st.session_state["hr_agent_pending_config"] = config
         st.session_state[AGENT_RUN_HISTORY_SESSION_KEY + "_navigate"] = True
-        st.session_state["hr_agent_navigation"] = "🚀 Run Agent"
+        st.session_state["hr_agent_nav_pending"] = "🚀 Run Agent"
         st.rerun()

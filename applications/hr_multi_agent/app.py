@@ -51,6 +51,8 @@ def run() -> None:
 
     with st.sidebar:
         st.markdown('<div class="aiew-side-label">HR Analytics · T6 workflow</div>', unsafe_allow_html=True)
+        if "hr_ma_nav_pending" in st.session_state:
+            st.session_state[NAVIGATION_SESSION_KEY] = st.session_state.pop("hr_ma_nav_pending")
         page = st.radio("Navigation", list(PAGES.keys()), key=NAVIGATION_SESSION_KEY)
         st.caption("Profile → 3 Specialists → Director → Export")
 
