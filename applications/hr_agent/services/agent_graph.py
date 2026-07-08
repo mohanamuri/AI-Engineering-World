@@ -18,7 +18,6 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 import os
 
-import streamlit as st
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_groq import ChatGroq
 
@@ -31,6 +30,7 @@ from applications.hr_agent.services.agent_tools import (
 
 def _get_groq_api_key() -> str:
     try:
+        import streamlit as st
         return st.secrets["GROQ_API_KEY"]
     except Exception:
         return os.environ.get("GROQ_API_KEY", "")
