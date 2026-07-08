@@ -41,7 +41,6 @@ from typing import TypedDict
 
 import os
 
-import streamlit as st
 from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.graph import END, START, StateGraph
@@ -56,6 +55,7 @@ from applications.loan_multi_agent.services.specialist_agents import (
 
 def _get_groq_api_key() -> str:
     try:
+        import streamlit as st
         return st.secrets["GROQ_API_KEY"]
     except Exception:
         return os.environ.get("GROQ_API_KEY", "")
