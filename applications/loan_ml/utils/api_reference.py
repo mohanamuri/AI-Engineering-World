@@ -26,12 +26,12 @@ curl -X POST {_BASE}/api/loan-ml/upload \\
 """,
         "request": None,
         "response": """\
-{{
+{
   "session_id": "3f2a1b4c-...",
   "rows": 1000,
   "columns": 12,
   "filename": "loan_data.csv"
-}}\
+}\
 """,
     },
 
@@ -48,7 +48,7 @@ curl {_BASE}/api/loan-ml/$SESSION_ID/explore\
 """,
         "request": None,
         "response": """\
-{{
+{
   "rows": 1000,
   "columns": 12,
   "missing_values": 23,
@@ -57,10 +57,10 @@ curl {_BASE}/api/loan-ml/$SESSION_ID/explore\
   "categorical_columns": ["EmploymentStatus", "Education"],
   "detected_target": "LoanApproved",
   "missing_summary": [
-    {{"Column": "Income", "Missing Values": 15, "Missing (%)": 1.5}},
+    {"Column": "Income", "Missing Values": 15, "Missing (%)": 1.5},
     ...
   ]
-}}\
+}\
 """,
     },
 
@@ -87,7 +87,7 @@ curl -X POST {_BASE}/api/loan-ml/$SESSION_ID/preprocess \\
   }}'\
 """,
         "request": """\
-{{
+{
   "target_column": "LoanApproved",        // required
   "numeric_impute_strategy": "median",    // mean | median | most_frequent | constant
   "categorical_impute_strategy": "most_frequent",
@@ -96,16 +96,16 @@ curl -X POST {_BASE}/api/loan-ml/$SESSION_ID/preprocess \\
   "test_size": 0.2,
   "random_state": 42,
   "drop_columns": []
-}}\
+}\
 """,
         "response": """\
-{{
+{
   "train_rows": 800,
   "test_rows": 200,
   "feature_count": 11,
   "feature_names": ["Age", "Income", "CreditScore", "EmploymentStatus", ...],
   "class_labels": ["0", "1"]
-}}\
+}\
 """,
     },
 
@@ -131,23 +131,23 @@ curl -X POST {_BASE}/api/loan-ml/$SESSION_ID/train \\
   }}'\
 """,
         "request": """\
-{{
+{
   "model_name": "Random Forest",   // Logistic Regression | Decision Tree | Random Forest | XGBoost
-  "hyperparams": {{}}               // omit to use defaults (see GET /api/loan-ml/models)
-}}\
+  "hyperparams": {}                // omit to use defaults (see GET /api/loan-ml/models)
+}\
 """,
         "response": """\
-{{
+{
   "model_name": "Random Forest",
   "train_accuracy": 0.9475,
   "test_accuracy": 0.9150,
   "training_time_seconds": 1.23,
-  "hyperparams": {{
+  "hyperparams": {
     "n_estimators": 100,
     "max_depth": 10,
     "min_samples_split": 5
-  }}
-}}\
+  }
+}\
 """,
     },
 
@@ -180,19 +180,19 @@ curl -X POST {_BASE}/api/loan-ml/$SESSION_ID/predict \\
 """,
         "request": """\
 // Predict request — provide raw (unscaled) values for every feature column
-{{
-  "features": {{
+{
+  "features": {
     "Age": 35,
     "Income": 60000,
     "CreditScore": 720,
     "LoanAmount": 150000,
     "EmploymentStatus": "Employed"
-  }}
-}}\
+  }
+}\
 """,
         "response": """\
 // Evaluate response
-{{
+{
   "accuracy": 0.9150,
   "precision": 0.9132,
   "recall": 0.9150,
@@ -200,14 +200,14 @@ curl -X POST {_BASE}/api/loan-ml/$SESSION_ID/predict \\
   "roc_auc": 0.9612,
   "confusion_matrix": [[172, 12], [5, 11]],
   "class_labels": ["0", "1"],
-  "classification_report": {{ ... }}
-}}
+  "classification_report": { ... }
+}
 
 // Predict response
-{{
+{
   "prediction": "1",
-  "probabilities": {{"0": 0.0821, "1": 0.9179}}
-}}\
+  "probabilities": {"0": 0.0821, "1": 0.9179}
+}\
 """,
     },
 
@@ -243,7 +243,7 @@ bundle = joblib.load("loan_ml_bundle.pkl")
 #   model_name     — e.g. "Random Forest"
 
 import pandas as pd
-raw = pd.DataFrame([{{"Age": 35, "Income": 60000, ...}}])
+raw = pd.DataFrame([{"Age": 35, "Income": 60000, ...}])
 transformed = bundle["pipeline"].transform(raw)
 prediction  = bundle["model"].predict(transformed)\
 """,
