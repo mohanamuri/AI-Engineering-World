@@ -21,6 +21,7 @@ from applications.loan_ml.services.trainer import (
     get_hyperparameter_defaults,
     train,
 )
+from applications.loan_ml.utils.api_reference import render_api_reference
 
 _PREPROCESS_PAGE_LABEL = "🧹 Preprocess"
 
@@ -52,6 +53,8 @@ def render() -> None:
     if train_result is not None:
         st.divider()
         _render_results(train_result)
+
+    render_api_reference("train")
 
 
 # ---------------------------------------------------------------------------

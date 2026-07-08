@@ -27,6 +27,7 @@ from applications.loan_ml.services.exploration import (
     target_distribution,
 )
 from applications.loan_ml.utils.helpers import format_bytes
+from applications.loan_ml.utils.api_reference import render_api_reference
 
 
 PREVIEW_ROW_OPTIONS = (10, 25, 50, 100)
@@ -63,6 +64,7 @@ def render() -> None:
     _render_correlation_matrix(dataframe)
     st.divider()
     _render_preview_and_download(dataframe)
+    render_api_reference("explore")
 
 
 def _render_empty_state() -> None:

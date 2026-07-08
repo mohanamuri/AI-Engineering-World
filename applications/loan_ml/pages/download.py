@@ -50,6 +50,7 @@ from applications.loan_ml.constants import (
 from applications.loan_ml.services.metrics import EvaluationResult
 from applications.loan_ml.services.preprocessor import PreprocessResult
 from applications.loan_ml.services.trainer import TrainResult
+from applications.loan_ml.utils.api_reference import render_api_reference
 
 _TRAIN_PAGE_LABEL = "🤖 Train Model"
 
@@ -78,6 +79,7 @@ def render() -> None:
     _render_downloads(train_result, preprocess_result, eval_result)
     st.divider()
     _render_usage_snippet(train_result)
+    render_api_reference("download")
 
 
 # ---------------------------------------------------------------------------
