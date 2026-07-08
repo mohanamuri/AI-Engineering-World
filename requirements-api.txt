@@ -1,6 +1,6 @@
 # API-only dependencies — used for deploying the FastAPI server to Render/Railway.
-# Much lighter than requirements.txt (no Streamlit, LangChain, ChromaDB, etc.)
 
+# ── Core ML (Tier 1-3) ────────────────────────────────────────────────────────
 fastapi>=0.115.0
 uvicorn>=0.29.0
 python-multipart>=0.0.9
@@ -11,3 +11,13 @@ xgboost>=2.0
 joblib>=1.4
 shap==0.52.0
 lime>=0.2.0
+
+# ── LLM / RAG / Agent (Tier 4-6) ─────────────────────────────────────────────
+langchain-groq>=0.2.0
+langchain-core>=0.3.0
+langchain-community>=0.3.0
+langchain-text-splitters>=0.3.0
+langgraph>=0.2.0
+chromadb>=0.5.0
+sentence-transformers>=3.0.0
+pypdf>=4.0.0

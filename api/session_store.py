@@ -27,6 +27,15 @@ class Session:
     train_result: Any = None
     eval_result: Any = None
     explain_result: Any = None   # XAI apps (ExplainResult)
+    # RAG apps
+    load_result: Any = None      # LoadResult from document_loader
+    vectorstore: Any = None      # Chroma in-memory instance
+    rag_config: Any = None       # RAGConfig
+    rag_history: list = field(default_factory=list)
+    # Agent apps
+    agent_history: list = field(default_factory=list)
+    # Multi-agent apps
+    panel_history: list = field(default_factory=list)
 
 
 _store: dict[str, Session] = {}
