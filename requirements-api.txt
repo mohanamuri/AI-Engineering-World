@@ -12,12 +12,11 @@ joblib>=1.4
 shap==0.52.0
 lime>=0.2.0
 
-# ── LLM / RAG / Agent (Tier 4-6) ─────────────────────────────────────────────
+# ── LLM / Agent / Multi-Agent (Tier 5-6) ─────────────────────────────────────
+# Note: RAG (Tier 4) excluded — sentence-transformers/torch exceeds Render free tier 512MB RAM
 langchain-groq>=0.2.0
 langchain-core>=0.3.0
 langchain-community>=0.3.0
 langchain-text-splitters>=0.3.0
 langgraph>=0.2.0
-chromadb>=0.5.0
-sentence-transformers>=3.0.0
 pypdf>=4.0.0
