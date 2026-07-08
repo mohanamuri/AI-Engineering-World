@@ -29,6 +29,12 @@ def render_sidebar() -> None:
             on_click=go_home,
             disabled=False,
         )
+        _nav_button(
+            label="📖  Documentation",
+            active=current_app() == "documentation",
+            on_click=lambda: launch("documentation"),
+            disabled=False,
+        )
 
         st.divider()
 
