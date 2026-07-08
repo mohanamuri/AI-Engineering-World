@@ -1,0 +1,11 @@
+# API-only dependencies — used for deploying the FastAPI server to Render/Railway.
+# Much lighter than requirements.txt (no Streamlit, LangChain, ChromaDB, etc.)
+
+fastapi>=0.115.0
+uvicorn>=0.29.0
+python-multipart>=0.0.9
+pandas>=2.0
+numpy>=1.26,<2.4
+scikit-learn>=1.5
+xgboost>=2.0
+joblib>=1.4
