@@ -17,6 +17,7 @@ from applications.loan_rag.constants import (
 )
 from applications.loan_rag.services.rag_chain import RAGConfig
 from applications.loan_rag.services.vector_store import VectorStoreResult
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -159,6 +160,7 @@ print(context)
 """,
             language="python",
         )
+    render_api_reference("loan_rag", "download")
 
 
 # ---------------------------------------------------------------------------

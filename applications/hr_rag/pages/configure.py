@@ -10,6 +10,7 @@ from applications.hr_rag.constants import (
 from applications.hr_rag.services.document_loader import chunk_text
 from applications.hr_rag.services.rag_chain import RAGConfig
 from applications.hr_rag.services.vector_store import VectorStoreResult, build_vector_store
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -65,3 +66,4 @@ def render() -> None:
     if vs_result:
         st.button("→ Go to Chat", type="primary",
                   on_click=lambda: st.session_state.update({NAVIGATION_SESSION_KEY: "💬 Chat"}))
+    render_api_reference("hr_rag", "configure")

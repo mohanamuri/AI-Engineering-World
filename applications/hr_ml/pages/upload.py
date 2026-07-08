@@ -11,6 +11,7 @@ from applications.hr_ml.services.data_loader import (
     load_csv,
 )
 from applications.hr_ml.utils.helpers import format_bytes
+from applications.shared.api_reference import render_api_reference
 
 
 PREVIEW_ROWS = 10
@@ -47,6 +48,7 @@ def render():
         _render_dataset_summary(dataframe, metadata)
     else:
         st.caption("No validated dataset is currently loaded.")
+    render_api_reference("hr_ml", "upload")
 
 
 def _process_upload(filename: str, content: bytes) -> None:

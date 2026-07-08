@@ -24,6 +24,7 @@ from applications.loan_ml.services.preprocessor import (
     PreprocessingError,
     preprocess,
 )
+from applications.shared.api_reference import render_api_reference
 
 CHART_COLOR = "#0891b2"
 
@@ -54,6 +55,7 @@ def render() -> None:
     if result is not None:
         st.divider()
         _render_results(result)
+    render_api_reference("loan_dl", "preprocess")
 
 
 # ---------------------------------------------------------------------------

@@ -17,6 +17,7 @@ from applications.loan_multi_agent.services.panel_graph import (
     run_panel,
 )
 from applications.loan_multi_agent.services.specialist_agents import SpecialistReport
+from applications.shared.api_reference import render_api_reference
 
 _REC_META = {
     "RECOMMEND_APPROVE":  {"color": "#059669", "label": "Approve",  "icon": "✅"},
@@ -66,6 +67,7 @@ def render() -> None:
     if result is not None:
         st.divider()
         _render_panel(result)
+    render_api_reference("loan_multi_agent", "panel")
 
 
 def _run_and_store(application: dict, config: AgentConfig) -> bool:

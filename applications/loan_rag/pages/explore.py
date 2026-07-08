@@ -9,6 +9,7 @@ from applications.loan_rag.constants import (
     LOAD_RESULT_SESSION_KEY,
     NAVIGATION_SESSION_KEY,
 )
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -76,6 +77,7 @@ def render() -> None:
             {NAVIGATION_SESSION_KEY: "⚙️ Configure RAG"}
         ),
     )
+    render_api_reference("loan_rag", "explore")
 
 
 def _render_empty_state() -> None:

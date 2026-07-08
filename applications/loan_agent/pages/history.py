@@ -10,6 +10,7 @@ from applications.loan_agent.constants import (
     RUN_RESULT_SESSION_KEY,
 )
 from applications.loan_agent.services.agent_graph import AgentRunResult
+from applications.shared.api_reference import render_api_reference
 
 _DECISION_COLORS = {
     "APPROVED":      "#059669",
@@ -96,3 +97,4 @@ def render() -> None:
             {NAVIGATION_SESSION_KEY: "⬇ Download"}
         ),
     )
+    render_api_reference("loan_agent", "history")

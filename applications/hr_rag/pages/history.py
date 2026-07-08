@@ -5,6 +5,7 @@ import json
 from datetime import datetime, timezone
 
 from applications.hr_rag.constants import CHAT_HISTORY_SESSION_KEY
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -23,3 +24,4 @@ def render() -> None:
             st.markdown(f"**Answer:** {item['answer']}")
             st.caption(item.get("timestamp", ""))
             st.markdown(f"*{len(item['source_chunks'])} policy chunks retrieved*")
+    render_api_reference("hr_rag", "history")

@@ -26,6 +26,7 @@ class Session:
     preprocess_result: Any = None
     train_result: Any = None
     eval_result: Any = None
+    explain_result: Any = None   # XAI apps (ExplainResult)
 
 
 _store: dict[str, Session] = {}

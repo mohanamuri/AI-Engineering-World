@@ -2,6 +2,7 @@ import streamlit as st
 import plotly.express as px
 from applications.hr_xai.services.data_loader import DATAFRAME_SESSION_KEY
 from applications.hr_ml.services.exploration import explore
+from applications.shared.api_reference import render_api_reference
 
 
 def render():
@@ -34,3 +35,4 @@ def render():
 
     with st.expander("Summary statistics"):
         st.dataframe(result.describe, use_container_width=True)
+    render_api_reference("hr_xai", "explore")

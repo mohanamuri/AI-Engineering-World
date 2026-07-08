@@ -8,6 +8,7 @@ from applications.loan_rag.constants import (
     CHAT_HISTORY_SESSION_KEY,
     NAVIGATION_SESSION_KEY,
 )
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -71,3 +72,4 @@ def render() -> None:
                 {NAVIGATION_SESSION_KEY: "⬇ Download"}
             ),
         )
+    render_api_reference("loan_rag", "history")

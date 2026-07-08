@@ -5,6 +5,7 @@ import streamlit as st
 
 from applications.hr_agent.constants import AGENT_RUN_HISTORY_SESSION_KEY, AGENT_CONFIG_SESSION_KEY
 from applications.hr_agent.services.agent_graph import AgentConfig, AgentRunResult, run_agent
+from applications.shared.api_reference import render_api_reference
 
 
 _RISK_COLORS = {"HIGH": "#ef4444", "MEDIUM": "#f97316", "LOW": "#22c55e", "UNKNOWN": "#94a3b8"}
@@ -40,6 +41,7 @@ def render() -> None:
 
     latest: AgentRunResult = history[-1]
     _render_result(latest)
+    render_api_reference("hr_agent", "run")
 
 
 def _do_run(employee, config, history):

@@ -22,6 +22,7 @@ from applications.loan_dl.constants import (
 from applications.loan_dl.services.trainer import DLTrainResult
 from applications.loan_ml.services.metrics import EvaluationResult, evaluate
 from applications.loan_ml.services.preprocessor import PreprocessResult
+from applications.shared.api_reference import render_api_reference
 
 CHART_COLOR = "#0891b2"
 HEATMAP_COLORS = [[0.0, "#ECFEFF"], [0.5, "#67E8F9"], [1.0, "#0E7490"]]
@@ -59,6 +60,7 @@ def render() -> None:
     _render_feature_importance_note(train_result)
     st.divider()
     _render_classification_report(eval_result)
+    render_api_reference("loan_dl", "evaluate")
 
 
 # ---------------------------------------------------------------------------

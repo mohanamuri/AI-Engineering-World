@@ -23,6 +23,7 @@ from applications.loan_xai.constants import (
 )
 from applications.loan_xai.services.explainer import ExplainResult, explain_instance_lime
 from applications.loan_ml.services.trainer import TrainResult
+from applications.shared.api_reference import render_api_reference
 
 _EXPLAIN_PAGE = "🔍 Explain"
 
@@ -47,6 +48,7 @@ def render() -> None:
     _render_downloads(explain_result, train_result)
     st.divider()
     _render_usage_note(explain_result)
+    render_api_reference("loan_xai", "download")
 
 
 def _render_summary(result: ExplainResult) -> None:

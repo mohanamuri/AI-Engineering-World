@@ -5,6 +5,7 @@ from applications.hr_xai.constants import (
 )
 from applications.hr_xai.services.data_loader import DATAFRAME_SESSION_KEY
 from applications.hr_ml.services.preprocessor import PreprocessConfig, PreprocessingError, preprocess
+from applications.shared.api_reference import render_api_reference
 
 
 def render():
@@ -47,3 +48,4 @@ def render():
     c1.metric("Train rows", f"{len(result.X_train):,}")
     c2.metric("Test rows", f"{len(result.X_test):,}")
     c3.metric("Features", f"{len(result.feature_names):,}")
+    render_api_reference("hr_xai", "preprocess")

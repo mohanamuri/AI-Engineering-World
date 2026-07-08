@@ -13,6 +13,7 @@ from applications.hr_dl.constants import (
     PREPROCESS_RESULT_SESSION_KEY, TRAIN_RESULT_SESSION_KEY,
 )
 from applications.hr_ml.services.metrics import EvaluationResult, evaluate
+from applications.shared.api_reference import render_api_reference
 
 _TRAIN_PAGE_LABEL = "🧠 Train Neural Network"
 CHART_COLOR = "#7c3aed"
@@ -91,3 +92,4 @@ def render() -> None:
                          .background_gradient(subset=["Precision", "Recall", "F1"], cmap="Purples")
         st.dataframe(styled, hide_index=True, use_container_width=True)
         st.caption("Focus on **Yes (Attrition)** — catching flight risks is the goal.")
+    render_api_reference("hr_dl", "evaluate")

@@ -9,6 +9,7 @@ from applications.loan_agent.constants import (
     NAVIGATION_SESSION_KEY,
 )
 from components.tier_guide import render_tier_guide
+from applications.shared.api_reference import render_api_reference
 
 # Sample applications for quick demo
 _SAMPLES = {
@@ -159,3 +160,4 @@ def render() -> None:
                 {NAVIGATION_SESSION_KEY: "🤖 Run Agent"}
             ),
         )
+    render_api_reference("loan_agent", "application")

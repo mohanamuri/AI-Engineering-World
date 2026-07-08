@@ -9,6 +9,7 @@ from applications.loan_agent.constants import (
     RUN_RESULT_SESSION_KEY,
 )
 from applications.loan_agent.services.agent_graph import AgentRunResult
+from applications.shared.api_reference import render_api_reference
 
 
 _DECISION_META = {
@@ -99,3 +100,4 @@ def render() -> None:
                 {NAVIGATION_SESSION_KEY: "📜 History"}
             ),
         )
+    render_api_reference("loan_agent", "decision")

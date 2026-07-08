@@ -22,6 +22,7 @@ from applications.loan_rag.services.document_loader import (
 )
 from applications.loan_rag.services.rag_chain import RAGConfig
 from components.tier_guide import render_tier_guide
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -93,6 +94,7 @@ def render() -> None:
                 {NAVIGATION_SESSION_KEY: "🔍 Explore Chunks"}
             ),
         )
+    render_api_reference("loan_rag", "upload")
 
 
 def _load_and_store(load_result: LoadResult) -> None:

@@ -10,6 +10,11 @@ ReDoc:       http://localhost:8000/redoc
 
 from fastapi import FastAPI
 from applications.loan_ml.api import router as loan_ml_router
+from applications.hr_ml.api import router as hr_ml_router
+from applications.loan_dl.api import router as loan_dl_router
+from applications.hr_dl.api import router as hr_dl_router
+from applications.loan_xai.api import router as loan_xai_router
+from applications.hr_xai.api import router as hr_xai_router
 
 app = FastAPI(
     title="AI Engineering World API",
@@ -24,6 +29,11 @@ app = FastAPI(
 )
 
 app.include_router(loan_ml_router)
+app.include_router(hr_ml_router)
+app.include_router(loan_dl_router)
+app.include_router(hr_dl_router)
+app.include_router(loan_xai_router)
+app.include_router(hr_xai_router)
 
 
 @app.get("/", tags=["Health"])

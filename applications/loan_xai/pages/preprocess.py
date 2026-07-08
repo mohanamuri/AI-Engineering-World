@@ -22,6 +22,7 @@ from applications.loan_ml.services.preprocessor import (
     PreprocessingError,
     preprocess,
 )
+from applications.shared.api_reference import render_api_reference
 
 CHART_COLOR = "#7c3aed"
 
@@ -75,6 +76,7 @@ def render() -> None:
             st.plotly_chart(fig, use_container_width=True)
 
         st.info("Pipeline ready. Proceed to **Train Model** to fit a classifier.", icon="✅")
+    render_api_reference("loan_xai", "preprocess")
 
 
 def _render_config(dataframe: pd.DataFrame) -> PreprocessConfig:

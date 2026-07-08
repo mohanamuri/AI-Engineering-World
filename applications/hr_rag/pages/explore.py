@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 
 from applications.hr_rag.constants import CHUNKS_SESSION_KEY, LOAD_RESULT_SESSION_KEY
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -38,3 +39,4 @@ def render() -> None:
     with st.container(border=True):
         st.markdown(f"**Chunk {chunk_idx + 1} / {len(chunks)}** ({len(chunks[chunk_idx].page_content)} chars)")
         st.text(chunks[chunk_idx].page_content)
+    render_api_reference("hr_rag", "explore")

@@ -12,6 +12,7 @@ from applications.hr_ml.services.preprocessor import (
     PreprocessingError,
     preprocess,
 )
+from applications.shared.api_reference import render_api_reference
 
 
 def render():
@@ -103,3 +104,4 @@ def render():
 
     with st.expander("Sample transformed train rows"):
         st.dataframe(result.X_train.head(5), use_container_width=True, hide_index=True)
+    render_api_reference("hr_ml", "preprocess")

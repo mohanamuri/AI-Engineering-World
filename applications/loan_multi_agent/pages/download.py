@@ -14,6 +14,7 @@ from applications.loan_multi_agent.constants import (
     PANEL_RESULT_SESSION_KEY,
 )
 from applications.loan_multi_agent.services.panel_graph import PanelRunResult
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -62,6 +63,7 @@ def render() -> None:
                 )
             else:
                 st.info("No history yet.")
+    render_api_reference("loan_multi_agent", "download")
 
 
 def _result_to_json(result: PanelRunResult) -> bytes:

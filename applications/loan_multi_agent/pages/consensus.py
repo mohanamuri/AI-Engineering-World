@@ -9,6 +9,7 @@ from applications.loan_multi_agent.constants import (
     PANEL_RESULT_SESSION_KEY,
 )
 from applications.loan_multi_agent.services.panel_graph import PanelRunResult
+from applications.shared.api_reference import render_api_reference
 
 _DECISION_META = {
     "APPROVED":      {"color": "#059669", "bg": "#dcfce7", "border": "#86efac", "icon": "✅"},
@@ -112,3 +113,4 @@ def render() -> None:
         st.button("→ View History", use_container_width=True,
             on_click=lambda: st.session_state.update(
                 {NAVIGATION_SESSION_KEY: "📜 History"}))
+    render_api_reference("loan_multi_agent", "consensus")

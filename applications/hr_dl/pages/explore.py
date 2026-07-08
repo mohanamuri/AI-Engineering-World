@@ -4,6 +4,7 @@ from applications.hr_ml.services.data_loader import DATAFRAME_SESSION_KEY as HR_
 from applications.hr_dl.services.data_loader import DATAFRAME_SESSION_KEY
 from applications.hr_ml.services.exploration import explore
 import plotly.express as px
+from applications.shared.api_reference import render_api_reference
 
 
 def render():
@@ -39,3 +40,4 @@ def render():
 
     with st.expander("Numeric summary"):
         st.dataframe(result.describe, use_container_width=True)
+    render_api_reference("hr_dl", "explore")

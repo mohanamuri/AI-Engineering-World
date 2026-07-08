@@ -2,6 +2,7 @@
 
 import streamlit as st
 from applications.hr_multi_agent.constants import PANEL_RUN_HISTORY_SESSION_KEY
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -23,3 +24,4 @@ def render() -> None:
                 st.markdown(f"**{report.role}**")
                 st.markdown(f"*Verdict: {report.recommendation}*")
                 st.text(report.analysis[:600] + ("…" if len(report.analysis) > 600 else ""))
+    render_api_reference("hr_multi_agent", "consensus")

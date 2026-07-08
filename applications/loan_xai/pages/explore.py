@@ -27,6 +27,7 @@ from applications.loan_ml.services.exploration import (
     target_distribution,
 )
 from applications.loan_ml.utils.helpers import format_bytes
+from applications.shared.api_reference import render_api_reference
 
 CHART_COLOR = "#7c3aed"
 PREVIEW_ROW_OPTIONS = (10, 25, 50, 100)
@@ -138,3 +139,4 @@ def render() -> None:
                            file_name=str(meta.get("filename", "data.csv")), mime="text/csv")
     with st.container(border=True):
         st.dataframe(dataframe.head(n), hide_index=True, width="stretch")
+    render_api_reference("loan_xai", "explore")
