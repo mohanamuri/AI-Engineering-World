@@ -17,6 +17,7 @@ from applications.hr_ml.constants import (
 from applications.hr_ml.services.metrics import EvaluationResult, evaluate
 from applications.hr_ml.services.preprocessor import PreprocessResult
 from applications.hr_ml.services.trainer import TrainResult
+from applications.shared.api_reference import render_api_reference
 
 CHART_COLOR = "#4f46e5"
 HEATMAP_COLORS = [[0.0, "#f0fdf4"], [0.5, "#86efac"], [1.0, "#15803d"]]
@@ -54,6 +55,7 @@ def render() -> None:
     _render_feature_importance(train_result)
     st.divider()
     _render_classification_report(eval_result)
+    render_api_reference("hr_ml", "evaluate")
 
 
 def _get_or_compute_eval(train_result, preprocess_result):

@@ -5,6 +5,7 @@ import streamlit as st
 
 from applications.hr_multi_agent.constants import AGENT_CONFIG_SESSION_KEY, PANEL_RUN_HISTORY_SESSION_KEY
 from applications.hr_multi_agent.services.panel_graph import AgentConfig, PanelRunResult, run_panel
+from applications.shared.api_reference import render_api_reference
 
 _RISK_COLOR = {"HIGH": "#ef4444", "MEDIUM": "#f97316", "LOW": "#22c55e", "UNKNOWN": "#94a3b8"}
 _REC_COLOR = {"HIGH_RISK": "#ef4444", "INTERVENE": "#f97316", "RETAIN": "#22c55e"}
@@ -38,6 +39,7 @@ def render() -> None:
 
     latest: PanelRunResult = history[-1]
     _render_panel(latest)
+    render_api_reference("hr_multi_agent", "panel")
 
 
 def _do_run(employee, config, history):

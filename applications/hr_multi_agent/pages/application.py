@@ -3,6 +3,7 @@
 import streamlit as st
 from applications.hr_multi_agent.constants import AGENT_CONFIG_SESSION_KEY, PANEL_RUN_HISTORY_SESSION_KEY
 from applications.hr_multi_agent.services.panel_graph import AgentConfig
+from applications.shared.api_reference import render_api_reference
 
 
 _DEFAULT = {
@@ -63,3 +64,4 @@ def render() -> None:
         st.session_state["hr_ma_auto_run"] = True
         st.session_state["hr_ma_nav_pending"] = "👥 Panel"
         st.rerun()
+    render_api_reference("hr_multi_agent", "application")

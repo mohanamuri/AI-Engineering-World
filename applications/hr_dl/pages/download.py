@@ -16,6 +16,7 @@ from applications.hr_dl.constants import (
     PREPROCESS_RESULT_SESSION_KEY, TRAIN_RESULT_SESSION_KEY,
 )
 from applications.hr_ml.services.metrics import EvaluationResult
+from applications.shared.api_reference import render_api_reference
 
 _TRAIN_PAGE_LABEL = "🧠 Train Neural Network"
 
@@ -67,6 +68,7 @@ def render() -> None:
         st.download_button("Download bundle (.pkl)", data=_jbytes(bundle),
                            file_name=f"{slug}_bundle.pkl", mime="application/octet-stream",
                            use_container_width=True, key="dl_hr_dl_bundle")
+    render_api_reference("hr_dl", "download")
 
 
 def _jbytes(obj) -> bytes:

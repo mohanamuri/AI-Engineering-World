@@ -12,6 +12,7 @@ from applications.loan_agent.constants import (
     RUN_RESULT_SESSION_KEY,
 )
 from applications.loan_agent.services.agent_graph import AgentConfig, AgentRunResult, run_agent
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -70,6 +71,7 @@ def render() -> None:
                 {NAVIGATION_SESSION_KEY: "📄 Decision"}
             ),
         )
+    render_api_reference("loan_agent", "run")
 
 
 def _run_and_store(application: dict, config: AgentConfig) -> bool:

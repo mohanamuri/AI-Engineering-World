@@ -3,6 +3,7 @@ from applications.hr_xai.constants import (
     PREPROCESS_RESULT_SESSION_KEY, TRAIN_RESULT_SESSION_KEY,
 )
 from applications.hr_ml.services.trainer import SUPPORTED_MODELS, TrainingError, get_hyperparameter_defaults, train
+from applications.shared.api_reference import render_api_reference
 
 
 def render():
@@ -62,3 +63,4 @@ def render():
         c1, c2 = st.columns(2)
         c1.metric("Train accuracy", f"{result.train_accuracy:.3f}")
         c2.metric("Test accuracy", f"{result.test_accuracy:.3f}")
+    render_api_reference("hr_xai", "train")

@@ -30,6 +30,7 @@ from applications.loan_xai.services.explainer import (
 )
 from applications.loan_ml.services.preprocessor import PreprocessResult
 from applications.loan_ml.services.trainer import TrainResult
+from applications.shared.api_reference import render_api_reference
 
 CHART_PRIMARY = "#7c3aed"
 CHART_POS = "#059669"
@@ -78,6 +79,7 @@ def render() -> None:
 
     with tab_lime_local:
         _render_local_lime(explain_result, train_result, preprocess_result)
+    render_api_reference("loan_xai", "explain")
 
 
 # ---------------------------------------------------------------------------

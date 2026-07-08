@@ -5,6 +5,7 @@ from applications.hr_dl.services.data_loader import (
     DATASET_METADATA_SESSION_KEY, MAX_UPLOAD_BYTES,
     DatasetValidationError, LoadedDataset, load_csv,
 )
+from applications.shared.api_reference import render_api_reference
 
 
 def render():
@@ -45,3 +46,4 @@ def render():
         st.dataframe(df.head(10), use_container_width=True, hide_index=True)
     else:
         st.caption("No dataset loaded.")
+    render_api_reference("hr_dl", "upload")

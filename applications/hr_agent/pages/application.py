@@ -4,6 +4,7 @@ import streamlit as st
 
 from applications.hr_agent.constants import AGENT_CONFIG_SESSION_KEY, AGENT_RUN_HISTORY_SESSION_KEY
 from applications.hr_agent.services.agent_graph import AgentConfig
+from applications.shared.api_reference import render_api_reference
 
 
 _DEFAULT_EMPLOYEE = {
@@ -80,3 +81,4 @@ def render() -> None:
         st.session_state[AGENT_RUN_HISTORY_SESSION_KEY + "_navigate"] = True
         st.session_state["hr_agent_nav_pending"] = "🚀 Run Agent"
         st.rerun()
+    render_api_reference("hr_agent", "application")

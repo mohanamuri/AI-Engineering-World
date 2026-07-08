@@ -10,6 +10,7 @@ from applications.loan_multi_agent.constants import (
     PANEL_RESULT_SESSION_KEY,
 )
 from applications.loan_multi_agent.services.panel_graph import PanelRunResult
+from applications.shared.api_reference import render_api_reference
 
 _DECISION_COLORS = {
     "APPROVED": "#059669", "DECLINED": "#dc2626",
@@ -83,3 +84,4 @@ def render() -> None:
     st.button("→ Download History",
         on_click=lambda: st.session_state.update(
             {NAVIGATION_SESSION_KEY: "⬇ Download"}))
+    render_api_reference("loan_multi_agent", "history")

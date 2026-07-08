@@ -3,6 +3,7 @@
 from __future__ import annotations
 import streamlit as st
 from applications.hr_agent.constants import AGENT_RUN_HISTORY_SESSION_KEY
+from applications.shared.api_reference import render_api_reference
 
 _RISK_COLORS = {"HIGH": "#ef4444", "MEDIUM": "#f97316", "LOW": "#22c55e", "UNKNOWN": "#94a3b8"}
 
@@ -23,3 +24,4 @@ def render() -> None:
         label = f"#{len(history) - i + 1} · {emp.get('JobRole', 'Employee')} · {result.risk_level} ({result.risk_score}/100)"
         with st.expander(label, expanded=(i == 1)):
             st.markdown(result.final_answer)
+    render_api_reference("hr_agent", "history")

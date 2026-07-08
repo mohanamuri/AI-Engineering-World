@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 
 from applications.hr_ml.services.data_loader import DATAFRAME_SESSION_KEY
 from applications.hr_ml.services.exploration import explore
+from applications.shared.api_reference import render_api_reference
 
 
 def render():
@@ -99,3 +100,4 @@ def render():
     # --- Numeric stats ---
     with st.expander("Numeric summary statistics"):
         st.dataframe(result.describe, use_container_width=True)
+    render_api_reference("hr_ml", "explore")

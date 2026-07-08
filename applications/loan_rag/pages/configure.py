@@ -14,6 +14,7 @@ from applications.loan_rag.constants import (
 from applications.loan_rag.services.document_loader import chunk_text
 from applications.loan_rag.services.rag_chain import RAGConfig
 from applications.loan_rag.services.vector_store import VectorStoreResult, build_vector_store
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -119,6 +120,7 @@ def render() -> None:
                 {NAVIGATION_SESSION_KEY: "💬 Chat"}
             ),
         )
+    render_api_reference("loan_rag", "configure")
 
 
 def _build_and_store(load_result, config: RAGConfig) -> None:

@@ -28,6 +28,7 @@ from applications.loan_dl.constants import (
 from applications.loan_dl.services.trainer import DLTrainResult
 from applications.loan_ml.services.metrics import EvaluationResult
 from applications.loan_ml.services.preprocessor import PreprocessResult
+from applications.shared.api_reference import render_api_reference
 
 _TRAIN_PAGE_LABEL = "🧠 Train Neural Network"
 
@@ -56,6 +57,7 @@ def render() -> None:
     _render_downloads(train_result, preprocess_result, eval_result)
     st.divider()
     _render_usage_snippet(train_result)
+    render_api_reference("loan_dl", "download")
 
 
 # ---------------------------------------------------------------------------

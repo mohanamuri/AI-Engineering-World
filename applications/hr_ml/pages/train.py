@@ -10,6 +10,7 @@ from applications.hr_ml.services.trainer import (
     get_hyperparameter_defaults,
     train,
 )
+from applications.shared.api_reference import render_api_reference
 
 
 def render():
@@ -66,6 +67,7 @@ def render():
         st.info("Train and test accuracy are nearly identical — the model generalises well.")
     else:
         st.success(f"Reasonable train–test gap of {gap:.3f}.")
+    render_api_reference("hr_ml", "train")
 
 
 def _render_hyperparams(model_name: str, defaults: dict) -> dict:

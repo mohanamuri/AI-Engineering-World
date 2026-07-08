@@ -8,6 +8,7 @@ import streamlit as st
 from applications.hr_rag.constants import (
     CHAT_HISTORY_SESSION_KEY, LOAD_RESULT_SESSION_KEY, VECTOR_STORE_SESSION_KEY,
 )
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -41,3 +42,4 @@ def render() -> None:
             mime="text/plain",
             use_container_width=True,
         )
+    render_api_reference("hr_rag", "download")

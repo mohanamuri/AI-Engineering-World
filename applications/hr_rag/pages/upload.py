@@ -13,6 +13,7 @@ from applications.hr_rag.services.document_loader import (
     LoadResult, chunk_text, load_pdf_bytes, load_txt_bytes,
 )
 from applications.hr_rag.services.rag_chain import RAGConfig
+from applications.shared.api_reference import render_api_reference
 
 
 def render() -> None:
@@ -52,6 +53,7 @@ def render() -> None:
         st.success("Document loaded. Navigate to **Explore Chunks** or **Configure RAG** to continue.")
         st.button("→ Go to Configure RAG", type="primary",
                   on_click=lambda: st.session_state.update({NAVIGATION_SESSION_KEY: "⚙️ Configure RAG"}))
+    render_api_reference("hr_rag", "upload")
 
 
 def _load_and_store(load_result: LoadResult) -> None:

@@ -14,6 +14,7 @@ from applications.loan_rag.constants import (
 )
 from applications.loan_rag.services.rag_chain import RAGConfig, RAGResult, run_rag_query
 from applications.loan_rag.services.vector_store import VectorStoreResult
+from applications.shared.api_reference import render_api_reference
 
 # Suggested questions to help new users get started
 _SAMPLE_QUESTIONS = [
@@ -94,6 +95,7 @@ def render() -> None:
                     {NAVIGATION_SESSION_KEY: "📜 History"}
                 ),
             )
+    render_api_reference("loan_rag", "chat")
 
 
 def _run_query(

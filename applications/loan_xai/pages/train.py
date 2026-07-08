@@ -22,6 +22,7 @@ from applications.loan_ml.services.trainer import (
     get_hyperparameter_defaults,
     train,
 )
+from applications.shared.api_reference import render_api_reference
 
 _PREPROCESS_PAGE = "🧹 Preprocess"
 
@@ -72,6 +73,7 @@ def render() -> None:
         m3.metric("Overfit gap", f"{train_result.train_accuracy - train_result.test_accuracy:.1%}")
         m4.metric("Training time", f"{train_result.training_time_seconds:.2f}s")
         st.info("Model trained. Proceed to **Explain** to generate SHAP and LIME explanations.", icon="✅")
+    render_api_reference("loan_xai", "train")
 
 
 def _render_panel() -> tuple[str, dict]:

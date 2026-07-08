@@ -5,6 +5,7 @@ from applications.hr_dl.constants import (
 )
 from applications.hr_dl.services.data_loader import DATAFRAME_SESSION_KEY
 from applications.hr_ml.services.preprocessor import PreprocessConfig, PreprocessingError, preprocess
+from applications.shared.api_reference import render_api_reference
 
 
 def render():
@@ -59,3 +60,4 @@ def render():
     c2.metric("Test rows", f"{len(result.X_test):,}")
     c3.metric("Features", f"{len(result.feature_names):,}")
     c4.metric("Classes", str(list(result.class_labels)))
+    render_api_reference("hr_dl", "preprocess")

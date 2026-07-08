@@ -15,6 +15,7 @@ from applications.hr_xai.constants import (
     NAVIGATION_SESSION_KEY, PREPROCESS_RESULT_SESSION_KEY, TRAIN_RESULT_SESSION_KEY,
 )
 from applications.hr_ml.services.metrics import evaluate
+from applications.shared.api_reference import render_api_reference
 
 _TRAIN_PAGE = "🤖 Train Model"
 
@@ -63,6 +64,7 @@ def render() -> None:
         st.download_button("Download bundle (.pkl)", data=_jb(bundle),
                            file_name=f"{slug}_bundle.pkl", mime="application/octet-stream",
                            use_container_width=True, key="dl_hr_xai_bundle")
+    render_api_reference("hr_xai", "download")
 
 
 def _jb(obj) -> bytes:

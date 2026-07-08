@@ -21,6 +21,7 @@ from applications.hr_xai.constants import (
 from applications.loan_xai.services.explainer import (
     ExplainResult, build_explanation, explain_instance_lime,
 )
+from applications.shared.api_reference import render_api_reference
 
 CHART_PRIMARY = "#0d9488"
 CHART_POS = "#059669"
@@ -57,6 +58,7 @@ def render() -> None:
         _render_local_shap(explain_result, train_result)
     with tab3:
         _render_local_lime(explain_result, train_result)
+    render_api_reference("hr_xai", "explain")
 
 
 def _get_or_compute(train_result, preprocess_result):

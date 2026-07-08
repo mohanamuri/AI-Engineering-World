@@ -6,6 +6,7 @@ from applications.hr_dl.constants import (
     PREPROCESS_RESULT_SESSION_KEY, TRAIN_RESULT_SESSION_KEY,
 )
 from applications.hr_dl.services.trainer import ARCHITECTURES, DLTrainingError, train
+from applications.shared.api_reference import render_api_reference
 
 
 def render():
@@ -71,6 +72,7 @@ def render():
         )
     else:
         st.info("Loss curve not recorded (lbfgs solver doesn't track per-epoch loss).")
+    render_api_reference("hr_dl", "train")
 
 
 def _render_architecture_diagram(sizes: tuple) -> None:

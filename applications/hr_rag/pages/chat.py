@@ -11,6 +11,7 @@ from applications.hr_rag.constants import (
 )
 from applications.hr_rag.services.rag_chain import RAGConfig, RAGResult, run_rag_query
 from applications.hr_rag.services.vector_store import VectorStoreResult
+from applications.shared.api_reference import render_api_reference
 
 _SAMPLE_QUESTIONS = [
     "What is the company's policy on employee retention bonuses?",
@@ -75,6 +76,7 @@ def render() -> None:
             if st.button("🗑 Clear chat", use_container_width=True):
                 st.session_state[CHAT_HISTORY_SESSION_KEY] = []
                 st.rerun()
+    render_api_reference("hr_rag", "chat")
 
 
 def _run_query(query, vs_result, config, history):
