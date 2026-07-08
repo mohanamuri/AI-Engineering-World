@@ -1,5 +1,5 @@
 """
-Start the AI Engineering World FastAPI server.
+Start the AI Engineering World FastAPI server locally.
 
 Usage:
     python run_api.py
@@ -7,8 +7,8 @@ Usage:
 Or with auto-reload during development:
     uvicorn api.main:app --reload --port 8000
 
-Swagger UI → http://localhost:8000/docs
-ReDoc       → http://localhost:8000/redoc
+Local Swagger UI  → http://localhost:8000/docs
+Live API (Render) → https://ai-engineering-world.onrender.com/docs
 """
 
 import uvicorn

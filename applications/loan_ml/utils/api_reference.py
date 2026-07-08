@@ -9,7 +9,7 @@ exactly how to consume the same functionality programmatically.
 
 import streamlit as st
 
-_BASE = "http://localhost:8000"
+_BASE = "https://ai-engineering-world.onrender.com"
 
 # ─── Per-step content ─────────────────────────────────────────────────────────
 
