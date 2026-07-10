@@ -1,5 +1,6 @@
 import streamlit as st
 from core.launcher import go_home
+from app.components.step_nav import render_page_nav, render_stepper
 
 from applications.hr_ml.constants import (
     NAVIGATION_SESSION_KEY,
@@ -65,4 +66,6 @@ def run():
         page = st.radio("Navigation", list(PAGES.keys()), key=NAVIGATION_SESSION_KEY)
         st.caption("Upload IBM HR → Explore → Preprocess → Train → Evaluate → Export")
 
+    render_stepper(list(PAGES.keys()), page)
     PAGES[page]()
+    render_page_nav(list(PAGES.keys()), page, NAVIGATION_SESSION_KEY)

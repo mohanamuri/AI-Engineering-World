@@ -2,6 +2,7 @@
 
 import streamlit as st
 from core.launcher import go_home
+from app.components.step_nav import render_page_nav, render_stepper
 
 from applications.loan_multi_agent.constants import (
     APPLICATION_PAGE_LABEL,
@@ -64,4 +65,6 @@ def run() -> None:
         page = st.radio("Navigation", list(PAGES.keys()), key=NAVIGATION_SESSION_KEY)
         st.caption("Apply → Panel → Consensus → Export")
 
+    render_stepper(list(PAGES.keys()), page)
     PAGES[page]()
+    render_page_nav(list(PAGES.keys()), page, NAVIGATION_SESSION_KEY)
