@@ -1,7 +1,7 @@
 """
 Documentation page — single reference for the entire AI Engineering World platform.
 
-Covers: architecture, tech stack, tier guide, integrations, and API curl commands.
+Covers: architecture, tech stack, tier guide, integrations, API curl commands, and sample data.
 """
 
 import streamlit as st
@@ -14,12 +14,13 @@ def render() -> None:
     st.title("📖 Platform Documentation")
     st.caption("One-place reference — architecture, tech stack, integrations, and live API commands.")
 
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "🏛 Architecture",
         "⚙ Tech Stack",
         "🎯 Tier Guide",
         "🔗 Integrations",
         "🔌 API & curl",
+        "🗂 Sample Data",
     ])
 
     with tab1:
@@ -32,6 +33,8 @@ def render() -> None:
         _integrations()
     with tab5:
         _api_curl()
+    with tab6:
+        _sample_data()
 
 
 # ─── Tab 1 — Architecture ─────────────────────────────────────────────────────
@@ -424,3 +427,156 @@ curl -X POST {_BASE}/api/hr-multi-agent/$SESSION/panel \\
 - **Session IDs** are in-memory only — they reset when Render restarts the service.
 - All endpoints documented interactively at [`/docs`]({_SWAGGER}).
     """)
+
+
+# ─── Tab 6 — Sample Data ──────────────────────────────────────────────────────
+
+def _sample_data() -> None:
+    st.subheader("Sample Data Files")
+    st.write(
+        "All sample files live in the `data/` directory of the repository. "
+        "Use them for demos, testing, and showcasing. Every app works out-of-the-box with its paired file."
+    )
+
+    # ── Domain Projects ──────────────────────────────────────────────────────
+    st.markdown("#### Domain Projects — CSV Datasets")
+    st.info(
+        "Upload these CSV files in the **Upload** step of any ML / DL / XAI tier. "
+        "The pipeline auto-detects the target column."
+    )
+    st.table({
+        "File": [
+            "data/loan_eligibility_sample.csv",
+            "data/hr_attrition_sample.csv",
+        ],
+        "Rows": ["500", "400"],
+        "Target column": ["LoanApproved  (0 / 1)", "Attrition  (Yes / No)"],
+        "Key features": [
+            "Age, AnnualIncome, LoanAmount, CreditScore, EmploymentStatus, ExistingDebt, LoanPurpose",
+            "JobSatisfaction, OverTime, MonthlyIncome, YearsAtCompany, WorkLifeBalance, Department",
+        ],
+        "Used by": [
+            "Loan Eligibility — T1 ML, T2 DL, T3 XAI",
+            "HR Analytics — T1 ML, T2 DL, T3 XAI",
+        ],
+    })
+
+    st.divider()
+
+    # ── RAG — Policy documents ────────────────────────────────────────────────
+    st.markdown("#### RAG — Policy Documents")
+    st.info(
+        "Upload these files in the **Load Policy** step of any RAG tier, "
+        "or use all three together in **RAG Projects → UC1 Multi-Document RAG**."
+    )
+    st.table({
+        "File": [
+            "data/loan_policy.pdf",
+            "data/hr_policy.txt",
+            "data/rag_sample_docs/remote_work_policy.txt",
+            "data/rag_sample_docs/employee_benefits_guide.txt",
+            "data/rag_sample_docs/code_of_conduct.txt",
+        ],
+        "Format": ["PDF", "TXT", "TXT", "TXT", "TXT"],
+        "Content": [
+            "FinCorp Bank loan eligibility and credit policy",
+            "HR attrition, retention, and performance management policy",
+            "Remote work eligibility, equipment, security, and expenses",
+            "Health insurance, 401k, PTO, parental leave, wellness budget",
+            "Conflicts of interest, gifts, anti-bribery, harassment, reporting",
+        ],
+        "Used by": [
+            "Loan RAG (T4)",
+            "HR RAG (T4)",
+            "RAG Projects UC1 (multi-doc demo)",
+            "RAG Projects UC1 (multi-doc demo)",
+            "RAG Projects UC1 (multi-doc demo)",
+        ],
+    })
+
+    st.divider()
+
+    # ── Demo script ───────────────────────────────────────────────────────────
+    st.markdown("#### Demo Script — Multi-Document RAG (UC1)")
+    st.write("For a live showcase of UC1, upload all three `rag_sample_docs/` files together, then try these questions:")
+    st.markdown("""
+| Question | Why it's a good demo |
+|---|---|
+| *"What is the monthly internet allowance for remote workers?"* | Answer is in Benefits Guide — shows single-doc retrieval |
+| *"What happens if an employee violates the remote work security rules?"* | Spans Remote Work Policy + Code of Conduct — shows cross-doc retrieval |
+| *"Summarise the key employee obligations across all three documents."* | Forces the LLM to synthesise from all 3 docs |
+| *"What is the gift limit for external parties and what happens if it's exceeded?"* | Code of Conduct answer — shows exact-term retrieval |
+| *"How many paid parental leave weeks does a primary caregiver receive?"* | Benefits Guide — tests specific numeric fact retrieval |
+    """)
+
+    st.divider()
+
+    # ── Agent / Multi-Agent ───────────────────────────────────────────────────
+    st.markdown("#### Agent & Multi-Agent — No file upload needed")
+    st.write(
+        "T5 (Agent) and T6 (Multi-Agent) take structured form input directly in the UI — "
+        "no file to upload. Use the values below for a quick demo run."
+    )
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**Loan Agent / Multi-Agent — approve scenario**")
+        st.code("""{
+  "age": 35,
+  "annual_income": 85000,
+  "loan_amount": 200000,
+  "credit_score": 740,
+  "employment_status": "Employed",
+  "employment_months": 60,
+  "existing_debt": 12000,
+  "loan_purpose": "Home"
+}""", language="json")
+        st.caption("Expected: APPROVED — strong credit, low DTI")
+
+        st.markdown("**Loan Agent / Multi-Agent — decline scenario**")
+        st.code("""{
+  "age": 24,
+  "annual_income": 28000,
+  "loan_amount": 350000,
+  "credit_score": 530,
+  "employment_status": "Part-Time",
+  "employment_months": 4,
+  "existing_debt": 18000,
+  "loan_purpose": "Personal"
+}""", language="json")
+        st.caption("Expected: DECLINED — poor credit, high DTI, short tenure")
+
+    with col2:
+        st.markdown("**HR Agent / Multi-Agent — low risk scenario**")
+        st.code("""{
+  "Age": 42,
+  "Department": "Research & Development",
+  "JobRole": "Research Director",
+  "JobSatisfaction": 4,
+  "EnvironmentSatisfaction": 4,
+  "WorkLifeBalance": 3,
+  "OverTime": "No",
+  "YearsAtCompany": 12,
+  "YearsSinceLastPromotion": 1,
+  "MonthlyIncome": 15000,
+  "NumCompaniesWorked": 2,
+  "TotalWorkingYears": 18
+}""", language="json")
+        st.caption("Expected: LOW RISK — senior, satisfied, tenured")
+
+        st.markdown("**HR Agent / Multi-Agent — high risk scenario**")
+        st.code("""{
+  "Age": 26,
+  "Department": "Sales",
+  "JobRole": "Sales Representative",
+  "JobSatisfaction": 1,
+  "EnvironmentSatisfaction": 1,
+  "WorkLifeBalance": 1,
+  "OverTime": "Yes",
+  "YearsAtCompany": 1,
+  "YearsSinceLastPromotion": 1,
+  "MonthlyIncome": 2800,
+  "NumCompaniesWorked": 5,
+  "TotalWorkingYears": 4
+}""", language="json")
+        st.caption("Expected: HIGH RISK — low satisfaction, overtime, short tenure")

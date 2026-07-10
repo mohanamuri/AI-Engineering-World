@@ -21,6 +21,7 @@ PROJECTS = [
         "id": "loan_eligibility",
         "name": "Loan Eligibility Prediction",
         "short_name": "Loan Eligibility",
+        "section": "Domain Projects",
         "icon": "💳",
         "category": "Finance · Credit Risk",
         "description": (
@@ -133,6 +134,7 @@ PROJECTS = [
         "id": "hr_analytics",
         "name": "HR Analytics — Employee Attrition",
         "short_name": "HR Analytics",
+        "section": "Domain Projects",
         "icon": "👥",
         "category": "Human Resources · Talent Retention",
         "description": (
@@ -239,6 +241,94 @@ PROJECTS = [
                 ),
                 "what": "Three independent LLM specialists each analysed the employee from their domain perspective. The HR Director resolved any disagreements and synthesised a final consensus decision.",
                 "why_next": "This is the final tier. It mirrors how real HR decisions work — multiple expert teams contributing, an HR Director governing the final call.",
+            },
+        ],
+    },
+
+    {
+        "id": "rag_projects",
+        "name": "RAG Projects",
+        "short_name": "RAG Projects",
+        "section": "RAG Projects",
+        "icon": "📚",
+        "category": "Retrieval · LLM · Vector Search",
+        "description": (
+            "Retrieval-Augmented Generation — four progressively advanced use cases. "
+            "From querying multiple documents simultaneously to self-evaluating answers, "
+            "each use case adds one new RAG capability."
+        ),
+        "apps": [
+            {
+                "id": "rag_uc1",
+                "capability": "Multi-Document RAG",
+                "tier": 1,
+                "tier_label": "UC",
+                "icon": "RAG",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["LangChain", "ChromaDB", "Groq", "HuggingFace"],
+                "description": (
+                    "Upload multiple documents simultaneously. All chunks are embedded "
+                    "into a single vector store with source metadata — every answer "
+                    "shows exactly which document it came from."
+                ),
+                "what": "Uploaded 3 documents into a shared vector store. Each chunk retains its source filename. Asked cross-document questions and saw exactly which document contributed each part of the answer.",
+                "why_next": "Multi-doc RAG uses dense vector similarity alone. Adding keyword-based (BM25) retrieval alongside vector search finds answers that embeddings alone might miss — especially for exact terms and technical jargon.",
+            },
+            {
+                "id": "rag_uc2",
+                "capability": "Hybrid Search RAG",
+                "tier": 2,
+                "tier_label": "UC",
+                "icon": "RAG",
+                "status": "coming_soon",
+                "difficulty": "Advanced",
+                "version": "1.0.0",
+                "stack": ["LangChain", "BM25", "ChromaDB", "Groq"],
+                "description": (
+                    "Combine dense vector search with sparse BM25 keyword retrieval. "
+                    "Reciprocal rank fusion merges both result sets for higher recall "
+                    "on exact terms and technical jargon."
+                ),
+                "what": "Combined cosine-similarity vector search with BM25 keyword matching. RRF fusion improved recall for exact product names and technical terms that embeddings struggled with.",
+                "why_next": "Hybrid search improves retrieval but the pipeline is still passive — it retrieves once per query. An agent can decide when to search, how many times, and whether the retrieved context is sufficient.",
+            },
+            {
+                "id": "rag_uc3",
+                "capability": "Agentic RAG",
+                "tier": 3,
+                "tier_label": "UC",
+                "icon": "RAG",
+                "status": "coming_soon",
+                "difficulty": "Advanced",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "LangChain", "Groq", "ChromaDB"],
+                "description": (
+                    "An LLM agent decides whether to retrieve, reformulates queries "
+                    "when context is insufficient, and iterates until it has enough "
+                    "information to answer confidently."
+                ),
+                "what": "The agent first classified whether retrieval was needed, then retrieved, evaluated context quality, reformulated the query if needed, and only generated an answer when confident.",
+                "why_next": "Agentic RAG retrieves adaptively but still generates answers without self-evaluation. Self-RAG adds an explicit critic step: the model checks its own output and rewrites if it fails quality criteria.",
+            },
+            {
+                "id": "rag_uc4",
+                "capability": "Self-RAG",
+                "tier": 4,
+                "tier_label": "UC",
+                "icon": "RAG",
+                "status": "coming_soon",
+                "difficulty": "Expert",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "LangChain", "Groq", "ChromaDB"],
+                "description": (
+                    "The model generates an answer, then evaluates it on three criteria: "
+                    "grounded in context, relevant to the question, and complete. "
+                    "Low scores trigger a rewrite loop."
+                ),
+                "what": "After generating each answer the model scored it on groundedness, relevance, and completeness. Scores below threshold triggered a query reformulation and re-retrieval cycle.",
+                "why_next": "Self-RAG is the culmination of the RAG progression: richer corpus (multi-doc) → smarter retrieval (hybrid) → autonomous retrieval (agentic) → self-evaluated generation.",
             },
         ],
     },

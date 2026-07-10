@@ -38,29 +38,41 @@ def render_sidebar() -> None:
 
         st.divider()
 
-        # --- Projects (from registry — no hardcoding) ---
-        st.markdown('<div class="aiew-side-label">Projects</div>', unsafe_allow_html=True)
+        # --- Projects grouped by section (from registry — no hardcoding) ---
+        projects = load_projects()
 
-        for project in load_projects():
-            live_count = sum(1 for a in project["apps"] if a["status"] == "live")
-            total_count = len(project["apps"])
+        # Collect unique sections in order of first appearance
+        seen_sections: list[str] = []
+        for project in projects:
+            s = project.get("section", "Projects")
+            if s not in seen_sections:
+                seen_sections.append(s)
 
-            with st.expander(
-                f"{project['icon']}  {project['short_name']}  `{live_count}/{total_count}`",
-                expanded=_project_is_active(project),
-            ):
-                for app in project["apps"]:
-                    is_live = app["status"] == "live"
-                    tier_icon = _TIER_ICONS[app["status"]]
-                    label = f"{tier_icon} T{app['tier']} · {app['capability']}"
+        for section in seen_sections:
+            st.markdown(f'<div class="aiew-side-label">{section}</div>', unsafe_allow_html=True)
+            for project in projects:
+                if project.get("section", "Projects") != section:
+                    continue
+                live_count = sum(1 for a in project["apps"] if a["status"] == "live")
+                total_count = len(project["apps"])
 
-                    _nav_button(
-                        label=label,
-                        active=current_app() == app["id"],
-                        on_click=lambda aid=app["id"]: launch(aid),
-                        disabled=not is_live,
-                        key=app["id"],
-                    )
+                with st.expander(
+                    f"{project['icon']}  {project['short_name']}  `{live_count}/{total_count}`",
+                    expanded=_project_is_active(project),
+                ):
+                    for app in project["apps"]:
+                        is_live = app["status"] == "live"
+                        tier_icon = _TIER_ICONS[app["status"]]
+                        tier_prefix = app.get("tier_label", "T")
+                        label = f"{tier_icon} {tier_prefix}{app['tier']} · {app['capability']}"
+
+                        _nav_button(
+                            label=label,
+                            active=current_app() == app["id"],
+                            on_click=lambda aid=app["id"]: launch(aid),
+                            disabled=not is_live,
+                            key=app["id"],
+                        )
 
         st.divider()
         st.caption("More projects coming soon.")
