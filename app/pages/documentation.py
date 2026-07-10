@@ -354,6 +354,94 @@ def _tier_guide() -> None:
         ],
     })
 
+    st.divider()
+    st.subheader("AI Optimisation Techniques — Coverage Map")
+    st.write(
+        "Four production LLM optimisation patterns — each UC solves one distinct concern "
+        "and answers one of the most common LLM system design interview questions."
+    )
+    st.table({
+        "UC": ["UC1", "UC2", "UC3", "UC4"],
+        "Technique": [
+            "Semantic Caching",
+            "Model Routing",
+            "Memory Patterns",
+            "Streaming + Fallback",
+        ],
+        "Concern": [
+            "Cost",
+            "Cost + Performance",
+            "Memory",
+            "Performance + Reliability",
+        ],
+        "Key interview question it answers": [
+            '"How do you reduce LLM API costs in production?"',
+            '"How do you scale LLM systems without costs exploding?"',
+            '"How do LLMs maintain context across conversations?"',
+            '"How do you make LLM responses feel fast? What if the API goes down?"',
+        ],
+        "Status": [
+            "✅ UC1 — live",
+            "✅ UC2 — live",
+            "✅ UC3 — live",
+            "✅ UC4 — live",
+        ],
+    })
+
+    st.markdown("##### What each UC teaches")
+
+    aiopt_details = [
+        (
+            "UC1 — Semantic Caching",
+            "- **Problem:** Every LLM call costs money. Users ask semantically identical questions in different words.\n"
+            "- **Solution:** Embed each query into a vector. On cache hit (cosine similarity ≥ threshold), return the stored response instantly — no LLM call.\n"
+            "- **Shows:** Latency comparison (cached ~5 ms vs uncached ~800 ms), cache hit rate, cost savings per query.\n"
+            "- **Stack:** `sentence-transformers` (all-MiniLM-L6-v2) · NumPy cosine similarity · Groq llama-3.1-8b-instant",
+        ),
+        (
+            "UC2 — Model Routing",
+            "- **Problem:** A 70B model is 5–10× more expensive than an 8B model. Most queries don't need it.\n"
+            "- **Solution:** A lightweight classifier (one 8B call, max 5 tokens) labels each query SIMPLE or COMPLEX. Simple → 8B; Complex → 70B.\n"
+            "- **Shows:** Routing decision trace, latency difference per model, estimated cost difference.\n"
+            "- **Stack:** Groq llama-3.1-8b-instant (classifier + simple model) · llama-3.3-70b-versatile (complex model)",
+        ),
+        (
+            "UC3 — Memory Patterns",
+            "- **Problem:** LLMs are stateless. Long conversations exceed the context limit or cost too much to resend in full.\n"
+            "- **Buffer Memory:** Keep the last N messages verbatim — simple, hits context limit on long sessions.\n"
+            "- **Summary Memory:** Summarise old turns with an LLM call; keep summary + recent 4 messages — scalable.\n"
+            "- **Entity Memory:** Extract named entities each turn; inject a fact store into the system prompt — best for assistants that remember the user.\n"
+            "- **Shows:** Side-by-side comparison of all 3 strategies on a multi-turn conversation.",
+        ),
+        (
+            "UC4 — Streaming + Fallback",
+            "- **Streaming:** Tokens appear as they are generated → perceived latency drops 70–90 %. Total time is the same; the user just sees output immediately.\n"
+            "- **Fallback:** Primary model fails or rate-limits → retry with exponential backoff → automatically switch to backup model.\n"
+            "- **Shows:** Streaming vs blocking side-by-side, fallback trigger demo with force-fail flag.\n"
+            "- **Stack:** Groq `stream=True` · `st.write_stream()` · retry backoff · llama-3.3-70b-versatile as fallback",
+        ),
+    ]
+
+    for title, body in aiopt_details:
+        with st.expander(title, expanded=False):
+            st.markdown(body)
+
+    st.markdown("##### How all four patterns work together in production")
+    st.code(
+        "User query\n"
+        "    ↓\n"
+        "[UC1] Semantic Cache  → HIT? Return instantly (no LLM needed)\n"
+        "    ↓ MISS\n"
+        "[UC2] Model Router    → Simple? Use 8B (cheap). Complex? Use 70B (powerful).\n"
+        "    ↓\n"
+        "[UC3] Memory          → Inject the right conversation context\n"
+        "    ↓\n"
+        "[UC4] Streaming       → Stream tokens to the user as they arrive\n"
+        "      Fallback        → If primary fails, retry → switch model automatically\n\n"
+        "Result: ~60–80 % lower API cost · ~70–90 % lower perceived latency · near-100 % uptime",
+        language="text",
+    )
+
 
 # ─── Tab 4 — Integrations ─────────────────────────────────────────────────────
 
