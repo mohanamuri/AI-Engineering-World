@@ -51,6 +51,43 @@ def run() -> None:
         unsafe_allow_html=True,
     )
 
+    with st.expander("About this use case", expanded=False):
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("#### What this use case does")
+            st.write(
+                "UC1 (Multi-Document RAG) retrieves chunks using only dense vector similarity — "
+                "it finds chunks that are *semantically similar* to the query. "
+                "This works well for conceptual questions but struggles with exact terms: "
+                "product codes, names, acronyms, or technical jargon that embeddings compress poorly."
+            )
+            st.write(
+                "Hybrid Search RAG runs **two retrievers in parallel** on every query: "
+                "a dense retriever (ChromaDB vector search) and a sparse retriever (BM25 keyword matching). "
+                "Results are merged using **Reciprocal Rank Fusion (RRF)** — a rank-based algorithm that "
+                "rewards chunks appearing in both result sets without needing scores on the same scale."
+            )
+            st.markdown("#### New capability over UC1")
+            st.info(
+                "**UC1** retrieves by meaning only.\n\n"
+                "**UC2** retrieves by meaning AND exact keywords, then fuses both rankings. "
+                "A chunk about '401(k) contribution limits' containing the exact string '23,000' "
+                "will rank highly in BM25 even if its embedding is generic — something pure vector search would miss."
+            )
+        with col2:
+            st.markdown("#### Tech stack")
+            st.table({
+                "Component": ["Dense retriever", "Sparse retriever", "Fusion algorithm", "Embedding model", "LLM", "Vector store"],
+                "Technology": [
+                    "ChromaDB + HuggingFace all-MiniLM-L6-v2",
+                    "BM25 (rank-bm25 library)",
+                    "Reciprocal Rank Fusion (RRF, k=60)",
+                    "all-MiniLM-L6-v2 (local, free)",
+                    "Groq llama-3.1-8b-instant",
+                    "ChromaDB EphemeralClient (in-memory)",
+                ],
+            })
+
     with st.sidebar:
         st.markdown(
             '<div class="aiew-side-label">Hybrid Search RAG · UC2 workflow</div>',
