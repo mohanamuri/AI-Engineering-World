@@ -286,6 +286,37 @@ def _tier_guide() -> None:
         ],
     })
 
+    st.divider()
+    st.subheader("MAS Patterns — Coverage Map")
+    st.write("The Multi-Agent Projects section covers four progressively advanced multi-agent coordination patterns.")
+    st.table({
+        "UC": ["UC1", "UC2", "UC3", "UC4"],
+        "Pattern": [
+            "Supervisor Pipeline",
+            "Parallel Agents",
+            "Debate & Judge",
+            "Research Team",
+        ],
+        "Agents": [
+            "Collector → Processor → Writer → Supervisor",
+            "Facts + Critic + Creative → Aggregator",
+            "Proponent ↔ Opponent → Judge",
+            "Planner → Researcher × N → Analyst → Writer",
+        ],
+        "Key concept": [
+            "Fixed sequential pipeline — each agent receives the previous agent's output (chained context)",
+            "Fan-out / Fan-in — three independent agents, no shared state, merged by Aggregator",
+            "Adversarial pattern — opposing agents surface trade-offs; neutral Judge arbitrates",
+            "Iterative research loop — Researcher called once per question; memory accumulates across all stages",
+        ],
+        "Status": [
+            "✅ UC1 — live",
+            "✅ UC2 — live",
+            "✅ UC3 — live",
+            "✅ UC4 — live",
+        ],
+    })
+
 
 # ─── Tab 4 — Integrations ─────────────────────────────────────────────────────
 
