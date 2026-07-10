@@ -317,6 +317,43 @@ def _tier_guide() -> None:
         ],
     })
 
+    st.divider()
+    st.subheader("Media Intelligence Patterns — Coverage Map")
+    st.write("The Media Projects section covers four multimodal AI use cases — audio, video, image, and document — all powered by Groq free-tier APIs (Whisper + Vision).")
+    st.table({
+        "UC": ["UC1", "UC2", "UC3", "UC4"],
+        "Name": [
+            "Meeting Intelligence",
+            "Video Intelligence",
+            "Image Intelligence",
+            "Document Scanner",
+        ],
+        "Input": [
+            ".mp3 / .wav / .m4a",
+            ".mp4 / .mov",
+            ".jpg / .png",
+            "Photo of doc / whiteboard / slide",
+        ],
+        "Pipeline": [
+            "Groq Whisper → transcript → LLM extracts summary, decisions, action items, sentiment",
+            "ffmpeg audio extraction → Groq Whisper → transcript → same structured report as UC1",
+            "Groq Vision (llama-4-scout-17b) → describe scene, extract embedded text, answer questions",
+            "Groq Vision (llama-4-scout-17b) → structured extraction → export JSON / plain text",
+        ],
+        "Key concept": [
+            "Speech-to-text + LLM structured extraction — one audio file produces a complete meeting report",
+            "Video-to-audio demux (ffmpeg) feeds the same Whisper + LLM pipeline as Meeting Intelligence",
+            "Vision-language model processes raw image pixels — no OCR pre-step required",
+            "Vision LLM turns a photo of any document into machine-readable structured data",
+        ],
+        "Status": [
+            "✅ UC1 — live",
+            "✅ UC2 — live",
+            "✅ UC3 — live",
+            "✅ UC4 — live",
+        ],
+    })
+
 
 # ─── Tab 4 — Integrations ─────────────────────────────────────────────────────
 
@@ -534,8 +571,8 @@ def _sample_data() -> None:
     )
     st.table({
         "File": [
-            "data/loan_eligibility_sample.csv",
-            "data/hr_attrition_sample.csv",
+            "data/loan_docs/loan_eligibility_sample.csv",
+            "data/hr_docs/hr_attrition_sample.csv",
         ],
         "Rows": ["500", "400"],
         "Target column": ["LoanApproved  (0 / 1)", "Attrition  (Yes / No)"],
@@ -559,8 +596,8 @@ def _sample_data() -> None:
     )
     st.table({
         "File": [
-            "data/loan_policy.pdf",
-            "data/hr_policy.txt",
+            "data/loan_docs/loan_policy.pdf",
+            "data/hr_docs/hr_policy.txt",
             "data/rag_sample_docs/remote_work_policy.txt",
             "data/rag_sample_docs/employee_benefits_guide.txt",
             "data/rag_sample_docs/code_of_conduct.txt",

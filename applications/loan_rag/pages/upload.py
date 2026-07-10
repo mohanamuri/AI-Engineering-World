@@ -34,7 +34,7 @@ def render() -> None:
     )
 
     # ---- Default policy shortcut ----------------------------------------
-    default_path = Path(__file__).resolve().parents[4] / "data" / "loan_policy.pdf"
+    default_path = Path(__file__).resolve().parents[4] / "data" / "loan_docs" / "loan_policy.pdf"
     default_available = default_path.exists()
 
     col_default, col_upload = st.columns(2)

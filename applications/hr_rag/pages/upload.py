@@ -17,7 +17,7 @@ from applications.hr_rag.services.document_loader import (
 from applications.hr_rag.services.rag_chain import RAGConfig
 from applications.shared.api_reference import render_api_reference
 
-_DEFAULT_PATH = Path(__file__).resolve().parents[3] / "data" / "hr_policy.txt"
+_DEFAULT_PATH = Path(__file__).resolve().parents[3] / "data" / "hr_docs" / "hr_policy.txt"
 
 
 def render() -> None:

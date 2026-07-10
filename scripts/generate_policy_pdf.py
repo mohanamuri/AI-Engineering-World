@@ -340,6 +340,6 @@ def generate_pdf(output_path: str) -> None:
 
 
 if __name__ == "__main__":
-    out = Path(__file__).resolve().parent.parent / "data" / "loan_policy.pdf"
+    out = Path(__file__).resolve().parent.parent / "data" / "loan_docs" / "loan_policy.pdf"
     out.parent.mkdir(exist_ok=True)
     generate_pdf(str(out))
