@@ -5,6 +5,8 @@ but stores the result under loan_dl-specific session keys so both apps
 can be loaded simultaneously without overwriting each other's data.
 """
 
+from pathlib import Path
+
 import streamlit as st
 
 from components.tier_guide import render_tier_guide
@@ -22,31 +24,37 @@ from applications.loan_ml.services.data_loader import (
 from applications.loan_ml.utils.helpers import format_bytes
 from applications.shared.api_reference import render_api_reference
 
-
 PREVIEW_ROWS = 10
+_SAMPLE_PATH = Path(__file__).resolve().parents[3] / "data" / "loan_eligibility_sample.csv"
 
 
 def render() -> None:
     st.header("📤 Upload Dataset")
     render_tier_guide("loan_dl")
-    st.info(
-        "Upload a UTF-8 CSV dataset to begin the deep learning workflow. "
-        "The validated dataset remains available as you move between pages."
-    )
 
-    uploaded_file = st.file_uploader(
-        "Choose CSV File",
-        type=["csv"],
-        accept_multiple_files=False,
-        help=(
-            f"Maximum size: {MAX_UPLOAD_BYTES // (1024 * 1024)} MB. "
-            "The file must contain headers and at least one data row."
-        ),
-        key="loan_dl_csv_uploader",
-    )
+    col_sample, col_upload = st.columns(2)
 
-    if uploaded_file is not None:
-        _process_upload(uploaded_file.name, uploaded_file.getvalue())
+    with col_sample:
+        with st.container(border=True):
+            st.markdown("#### Use sample dataset")
+            st.caption("loan_eligibility_sample.csv · 500 rows · 13 columns")
+            st.caption("Same dataset as T1 — compare ML vs DL results directly.")
+            if _SAMPLE_PATH.exists():
+                if st.button("Load sample dataset", use_container_width=True, type="primary"):
+                    _process_upload("loan_eligibility_sample.csv", _SAMPLE_PATH.read_bytes())
+            else:
+                st.warning("Sample file not found in data/.")
+
+    with col_upload:
+        with st.container(border=True):
+            st.markdown("#### Upload your own")
+            st.caption(f"Supported: CSV · Max {MAX_UPLOAD_BYTES // (1024 * 1024)} MB")
+            uploaded_file = st.file_uploader(
+                "Choose CSV File", type=["csv"], accept_multiple_files=False,
+                label_visibility="collapsed", key="loan_dl_csv_uploader",
+            )
+            if uploaded_file is not None:
+                _process_upload(uploaded_file.name, uploaded_file.getvalue())
 
     dataframe = st.session_state.get(DATAFRAME_SESSION_KEY)
     metadata = st.session_state.get(DATASET_METADATA_SESSION_KEY)
@@ -55,6 +63,7 @@ def render() -> None:
         _render_dataset_summary(dataframe, metadata)
     else:
         st.caption("No validated dataset is currently loaded.")
+
     render_api_reference("loan_dl", "upload")
 
 
@@ -70,9 +79,8 @@ def _process_upload(filename: str, content: bytes) -> None:
         _store_dataset(dataset)
 
     st.success(
-        f"Loaded **{dataset.filename}** successfully — "
-        f"{len(dataset.dataframe):,} rows and "
-        f"{len(dataset.dataframe.columns):,} columns."
+        f"Loaded **{dataset.filename}** — "
+        f"{len(dataset.dataframe):,} rows · {len(dataset.dataframe.columns):,} columns."
     )
 
 
@@ -89,12 +97,10 @@ def _clear_dataset() -> None:
 
 def _render_dataset_summary(dataframe, metadata: dict) -> None:
     st.subheader("Dataset overview")
-
-    row_metric, column_metric, size_metric = st.columns(3)
-    row_metric.metric("Rows", f"{metadata['rows']:,}")
-    column_metric.metric("Columns", f"{metadata['columns']:,}")
-    size_metric.metric("File size", format_bytes(int(metadata["size_bytes"])))
-
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Rows", f"{metadata['rows']:,}")
+    c2.metric("Columns", f"{metadata['columns']:,}")
+    c3.metric("File size", format_bytes(int(metadata["size_bytes"])))
     st.markdown(f"**Source:** `{metadata['filename']}`")
     st.markdown(f"**Preview:** first {min(PREVIEW_ROWS, len(dataframe)):,} rows")
-    st.dataframe(dataframe.head(PREVIEW_ROWS), width="stretch", hide_index=True)
+    st.dataframe(dataframe.head(PREVIEW_ROWS), use_container_width=True, hide_index=True)
