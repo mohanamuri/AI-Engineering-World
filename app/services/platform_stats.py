@@ -7,6 +7,6 @@ def dashboard_stats() -> dict:
     return {
         "live": live_count,
         "tiers": 6,
-        "stack": 13,
         "models": 3,
+        "open_source": "100%",
     }
