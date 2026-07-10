@@ -1,0 +1,176 @@
+ACME CORPORATION — REMOTE WORK POLICY
+Version 3.1 | Effective Date: January 1, 2024
+Human Resources Department
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. PURPOSE AND SCOPE
+
+This policy establishes guidelines for remote work arrangements at ACME Corporation.
+It applies to all full-time employees, part-time employees, and contractors who
+perform work from a location other than a designated ACME office.
+
+The purpose of this policy is to:
+- Provide flexibility while maintaining productivity and collaboration
+- Ensure data security and compliance when working outside the office
+- Set clear expectations for availability, communication, and performance
+- Support employee well-being and work-life balance
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. ELIGIBILITY
+
+2.1 Who May Work Remotely
+Employees are eligible for remote work if they meet ALL of the following criteria:
+- Completed at least 6 months of employment at ACME Corporation
+- Demonstrated satisfactory or above performance in the last review cycle
+- Hold a role that does not require daily on-site physical presence
+- Have a suitable home work environment (private space, reliable internet)
+
+2.2 Roles Excluded from Remote Work
+The following roles require full-time on-site presence and are NOT eligible:
+- Manufacturing and production floor staff
+- Facilities and building management
+- On-site security personnel
+- Reception and front-desk roles
+- Laboratory technicians requiring specialised equipment
+
+2.3 Hybrid vs. Fully Remote
+- Hybrid remote: Employee works remotely 2–3 days per week, on-site remainder.
+- Fully remote: Employee works entirely remotely. Requires VP-level approval.
+- Fully remote employees must visit the nearest ACME office at least once per quarter.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. APPLICATION PROCESS
+
+3.1 How to Apply
+Employees wishing to work remotely must:
+1. Complete the Remote Work Request Form (available on HR Portal > Forms).
+2. Discuss the arrangement with their direct manager.
+3. Obtain written approval from their manager AND HR Business Partner.
+4. Complete the Remote Work Security Training module (takes ~45 minutes).
+5. Return the signed Remote Work Agreement to HR within 5 business days.
+
+3.2 Trial Period
+All new remote work arrangements begin with a 90-day trial period.
+During this period either the employee or the manager may terminate
+the arrangement with 5 business days notice and no adverse consequences.
+
+3.3 Review and Renewal
+Remote work arrangements are reviewed annually during the performance
+appraisal cycle. Continued eligibility is not guaranteed and depends on
+business needs and individual performance.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. EXPECTATIONS WHILE WORKING REMOTELY
+
+4.1 Core Hours
+All remote employees must be available and responsive during core hours:
+- Monday to Friday: 10:00 AM – 3:00 PM (employee's local time zone)
+- Employees should communicate their time zone to their manager and team.
+
+4.2 Communication
+- Respond to messages via Slack within 2 hours during core hours.
+- Respond to email within 4 hours during core hours.
+- Attend all scheduled video meetings with camera on unless pre-agreed.
+- Proactively communicate blockers, delays, or unexpected unavailability.
+
+4.3 Availability and Calendar
+- Keep your calendar up to date with accurate availability.
+- Mark out-of-office periods at least 24 hours in advance.
+- Do not schedule personal appointments during core hours without manager approval.
+
+4.4 Performance
+Remote employees are held to the same performance standards as on-site employees.
+Remote work is a privilege that can be revoked if performance declines.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. EQUIPMENT AND EXPENSES
+
+5.1 Company-Provided Equipment
+ACME provides the following equipment for approved remote workers:
+- Laptop (standard configuration per role)
+- Headset for video conferencing
+- Access to required software licences
+
+5.2 Employee-Provided Equipment
+Employees are responsible for:
+- A suitable desk or workspace
+- Reliable broadband internet (minimum 25 Mbps download / 10 Mbps upload)
+- A quiet, private area for calls and meetings
+
+5.3 Internet Allowance
+Employees working fully remote receive a monthly internet allowance of $50,
+paid via the standard expense reimbursement process. Hybrid employees are
+not eligible for the internet allowance.
+
+5.4 Office Supplies
+A one-time home office setup allowance of $300 is available to employees
+approved for full-time remote work. Claims must be submitted within 90 days
+of the remote work arrangement start date.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6. DATA SECURITY AND COMPLIANCE
+
+6.1 Security Requirements
+Remote employees must comply with all ACME Information Security policies, including:
+- Use only ACME-issued devices for work tasks. Personal devices are prohibited
+  for accessing confidential company data.
+- Connect via the ACME VPN whenever accessing internal systems.
+- Never use public Wi-Fi (cafes, airports, hotels) without VPN active.
+- Lock your screen when stepping away from your workstation.
+- Store all work files on approved cloud platforms (OneDrive, SharePoint).
+  Local storage of company data is prohibited.
+
+6.2 Physical Security
+- Ensure your workspace is private — no family members or third parties
+  should be able to view confidential information on your screen.
+- Paper documents with confidential information must be shredded when no
+  longer needed. Do not store sensitive paper documents at home long-term.
+
+6.3 Data Breach Response
+If you suspect a security incident (lost device, phishing click, unauthorised
+access), report it immediately to security@acme.com and your manager.
+Do not wait — time is critical in breach response.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+7. HEALTH AND SAFETY
+
+ACME is committed to the health and safety of all employees regardless of
+work location. Remote employees are responsible for:
+- Ensuring their home workspace meets basic ergonomic standards
+  (appropriate chair height, monitor at eye level, adequate lighting).
+- Taking regular breaks — at least 5 minutes per hour away from the screen.
+- Reporting work-related injuries that occur while working from home to HR
+  within 24 hours. Home-office injuries may be covered under workers compensation.
+
+ACME provides access to an online ergonomics self-assessment tool via the
+HR Portal. Employees experiencing discomfort are encouraged to request an
+ergonomics consultation at no cost.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+8. POLICY VIOLATIONS
+
+Failure to comply with this policy may result in:
+- Revocation of remote work privileges
+- Disciplinary action up to and including termination for security violations
+- Personal liability for data breaches caused by non-compliance
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+9. CONTACT
+
+Questions about this policy should be directed to:
+HR Business Partner Team: hr-bp@acme.com
+IT Security: security@acme.com
+HR Helpdesk: +1 (800) 555-0100 ext. 4700
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Document Owner: VP Human Resources
+Last Reviewed: December 2023 | Next Review: December 2024
