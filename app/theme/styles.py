@@ -352,7 +352,9 @@ def apply_theme() -> None:
             margin-top: .3rem;
         }
 
-        .aiew-byline-link {
+        .aiew-byline-link,
+        .aiew-byline-link:link,
+        .aiew-byline-link:visited {
             color: #4ade80;
             text-decoration: none;
             font-weight: 700;
