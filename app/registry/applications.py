@@ -21,6 +21,7 @@ PROJECTS = [
         "id": "loan_eligibility",
         "name": "Loan Eligibility Prediction",
         "short_name": "Loan Eligibility",
+        "section": "Domain Projects",
         "icon": "💳",
         "category": "Finance · Credit Risk",
         "description": (
@@ -133,6 +134,7 @@ PROJECTS = [
         "id": "hr_analytics",
         "name": "HR Analytics — Employee Attrition",
         "short_name": "HR Analytics",
+        "section": "Domain Projects",
         "icon": "👥",
         "category": "Human Resources · Talent Retention",
         "description": (
@@ -247,6 +249,7 @@ PROJECTS = [
         "id": "rag_projects",
         "name": "RAG Projects",
         "short_name": "RAG Projects",
+        "section": "RAG Projects",
         "icon": "📚",
         "category": "Retrieval · LLM · Vector Search",
         "description": (
