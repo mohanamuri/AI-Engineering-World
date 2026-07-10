@@ -50,10 +50,10 @@ def _section_header(title: str, kicker: str, caption: str) -> None:
 def _render_kpis() -> None:
     stats = dashboard_stats()
     metrics = (
-        ("Projects", stats["projects"], "Domain problem areas", "aiew-kpi-t1"),
-        ("Capabilities", stats["capabilities"], "Techniques per project", "aiew-kpi-t2"),
-        ("Live apps", stats["live"], "Ready to explore", "aiew-kpi-t3"),
-        ("Platform status", stats["status"], "Local environment healthy", "aiew-kpi-t4"),
+        ("Live apps", stats["live"], "End-to-end workflows", "aiew-kpi-t1"),
+        ("Capability tiers", stats["tiers"], "ML → DL → XAI → RAG → Agent → MAS", "aiew-kpi-t2"),
+        ("Techniques", stats["techniques"], "6 domain · 4 RAG · 4 Agent", "aiew-kpi-t3"),
+        ("LLM models", stats["models"], "llama-3.1-8b · llama-3.3-70b · gemma2-9b", "aiew-kpi-t4"),
     )
     columns = st.columns(4)
     for column, (label, value, caption, extra_class) in zip(columns, metrics, strict=True):
