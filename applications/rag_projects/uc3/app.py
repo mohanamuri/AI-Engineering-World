@@ -3,6 +3,7 @@
 import streamlit as st
 from core.launcher import go_home
 
+from app.components.step_nav import render_page_nav, render_stepper
 from applications.rag_projects.uc3.constants import NAVIGATION_SESSION_KEY
 from applications.rag_projects.uc3.pages import chat, configure, history, upload
 
@@ -99,4 +100,6 @@ def run() -> None:
         st.caption("🤔 Classify  ·  🔍 Retrieve  ·  📊 Evaluate")
         st.caption("✏️ Reformulate  ·  ✅ Generate")
 
+    render_stepper(list(PAGES.keys()), page)
     PAGES[page]()
+    render_page_nav(list(PAGES.keys()), page, NAVIGATION_SESSION_KEY)

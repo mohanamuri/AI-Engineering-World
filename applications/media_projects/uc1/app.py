@@ -3,6 +3,7 @@
 import streamlit as st
 from core.launcher import go_home
 
+from app.components.step_nav import render_page_nav, render_stepper
 from applications.media_projects.uc1.constants import NAVIGATION_SESSION_KEY
 from applications.media_projects.uc1.pages import analyse, export, process, upload
 
@@ -87,4 +88,6 @@ def run() -> None:
         st.divider()
         st.caption("🎙️ Whisper  ·  🧠 LLM extraction  ·  📥 JSON / TXT")
 
+    render_stepper(list(PAGES.keys()), page)
     PAGES[page]()
+    render_page_nav(list(PAGES.keys()), page, NAVIGATION_SESSION_KEY)

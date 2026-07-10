@@ -3,6 +3,7 @@
 import streamlit as st
 from core.launcher import go_home
 
+from app.components.step_nav import render_page_nav, render_stepper
 from applications.rag_projects.uc4.constants import NAVIGATION_SESSION_KEY
 from applications.rag_projects.uc4.pages import chat, configure, history, upload
 
@@ -100,4 +101,6 @@ def run() -> None:
         st.divider()
         st.caption("🟢 Pass  ·  🟡 Borderline  ·  🔴 Fail")
 
+    render_stepper(list(PAGES.keys()), page)
     PAGES[page]()
+    render_page_nav(list(PAGES.keys()), page, NAVIGATION_SESSION_KEY)
