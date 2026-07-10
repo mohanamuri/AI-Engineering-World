@@ -6,6 +6,23 @@ import streamlit as st
 def render() -> None:
     st.subheader("📖 Concept — Memory Patterns")
 
+    st.info(
+        "**What you'll learn in this app**\n\n"
+        "- Why AI conversations don't automatically 'remember' previous messages\n"
+        "- Three different strategies for managing conversation history\n"
+        "- When to use Buffer, Summary, or Entity memory\n"
+        "- How to compare the three strategies side by side in the Playground"
+    )
+
+    st.markdown(
+        "Have you noticed that if you start a new chat with an AI, it has no memory of your previous conversation? "
+        "That's because every AI call is **stateless** — it only knows what you send it right now.\n\n"
+        "To maintain a conversation, you have to send all previous messages every time. "
+        "But conversations get long — and sending the entire history becomes expensive and slow.\n\n"
+        "**Memory patterns** are strategies for deciding *what* to include in each AI call — "
+        "keeping what matters, compressing or discarding what doesn't."
+    )
+
     st.markdown(
         """
         ### The Context Window Problem

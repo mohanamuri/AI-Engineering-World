@@ -5,8 +5,21 @@ import streamlit as st
 
 def render() -> None:
     st.subheader("📖 Zero-shot vs Few-shot Prompting")
+
+    st.info(
+        "**What you'll learn in this app**\n\n"
+        "- What 'prompting' means and why it matters\n"
+        "- The difference between zero-shot and few-shot in plain English\n"
+        "- When to use examples and when not to bother\n"
+        "- How to try both approaches yourself in the Playground"
+    )
+
+    st.markdown(
+        "**Prompting** means writing instructions for an AI — the words you type before your actual request. "
+        "The same question can get very different answers depending on how you frame it.\n\n"
+        "The first choice every prompt engineer makes: *do I give the AI examples, or not?*"
+    )
     st.write(
-        "The simplest lever in prompt engineering: whether you provide examples or not. "
         "This single choice has a large effect on output quality, consistency, and style."
     )
 

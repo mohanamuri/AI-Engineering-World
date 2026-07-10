@@ -6,6 +6,25 @@ import streamlit as st
 def render() -> None:
     st.subheader("📖 Concept — Model Routing")
 
+    st.info(
+        "**What you'll learn in this app**\n\n"
+        "- Why using a powerful (expensive) AI for every question is wasteful\n"
+        "- How a quick classifier decides which model to use for each query\n"
+        "- What SIMPLE vs COMPLEX means for an AI query\n"
+        "- How to watch routing decisions happen in real time in the Playground"
+    )
+
+    st.markdown(
+        "Think of it like a hospital triage system. "
+        "Not every patient needs a specialist surgeon — "
+        "most can be handled by a general practitioner.\n\n"
+        "Similarly, not every AI query needs the most powerful (and expensive) model. "
+        "*'What is the capital of France?'* doesn't need the same model as "
+        "*'Write a 5-year business strategy for entering the Asian market.'*\n\n"
+        "**Model routing** automatically sends each query to the right model — "
+        "saving money on simple queries while preserving quality on complex ones."
+    )
+
     st.markdown(
         """
         ### The Cost Problem

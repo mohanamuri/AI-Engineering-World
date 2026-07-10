@@ -5,11 +5,12 @@ from core.launcher import go_home
 
 from app.components.step_nav import render_page_nav, render_stepper
 from applications.mas_projects.uc2.constants import NAVIGATION_SESSION_KEY
-from applications.mas_projects.uc2.pages import configure, history, setup
+from applications.mas_projects.uc2.pages import concept, configure, history, setup
 from applications.mas_projects.uc2.pages import run as run_page
 
 
 PAGES = {
+    "📖 Concept":  concept.render,
     "🛠️ Setup":     setup.render,
     "⚙️ Configure": configure.render,
     "▶️ Run":        run_page.render,

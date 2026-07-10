@@ -5,10 +5,11 @@ from core.launcher import go_home
 
 from app.components.step_nav import render_page_nav, render_stepper
 from applications.rag_projects.uc4.constants import NAVIGATION_SESSION_KEY
-from applications.rag_projects.uc4.pages import chat, configure, history, upload
+from applications.rag_projects.uc4.pages import chat, concept, configure, history, upload
 
 
 PAGES = {
+    "📖 Concept": concept.render,
     "📄 Upload Docs": upload.render,
     "⚙️ Configure": configure.render,
     "💬 Chat": chat.render,

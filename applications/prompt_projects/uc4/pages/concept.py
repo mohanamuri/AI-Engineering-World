@@ -5,6 +5,24 @@ import streamlit as st
 
 def render() -> None:
     st.subheader("📖 Prompt Chaining")
+
+    st.info(
+        "**What you'll learn in this app**\n\n"
+        "- Why one big prompt often gives shallow, mediocre results\n"
+        "- How breaking a task into focused sub-prompts improves quality\n"
+        "- What 'chaining' means — output of step 1 becomes input of step 2\n"
+        "- How to try single prompt vs chained prompt on the same task in the Playground"
+    )
+
+    st.markdown(
+        "Imagine asking one person to simultaneously research, write, and edit a report. "
+        "They'd do an average job at all three. "
+        "But if you split it — a researcher, then a writer, then an editor — "
+        "each one focuses and does their part brilliantly.\n\n"
+        "**Prompt chaining** applies the same logic to AI: "
+        "instead of one big prompt, you run a sequence of focused prompts, "
+        "each building on the previous output."
+    )
     st.write(
         "Complex tasks overwhelm a single prompt. Prompt chaining breaks them into a sequence of "
         "focused sub-prompts — each doing one thing well — where every step's output becomes "

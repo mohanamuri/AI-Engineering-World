@@ -14,13 +14,14 @@ def render() -> None:
     st.title("📖 Platform Documentation")
     st.caption("One-place reference — architecture, tech stack, integrations, and live API commands.")
 
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
         "🏛 Architecture",
         "⚙ Tech Stack",
         "🎯 Tier Guide",
         "🔗 Integrations",
         "🔌 API & curl",
         "🗂 Sample Data",
+        "📚 Glossary",
     ])
 
     with tab1:
@@ -35,6 +36,8 @@ def render() -> None:
         _api_curl()
     with tab6:
         _sample_data()
+    with tab7:
+        _glossary()
 
 
 # ─── Tab 1 — Architecture ─────────────────────────────────────────────────────
@@ -793,3 +796,99 @@ def _sample_data() -> None:
   "TotalWorkingYears": 4
 }""", language="json")
         st.caption("Expected: HIGH RISK — low satisfaction, overtime, short tenure")
+
+
+# ─── Tab 7 — Glossary ────────────────────────────────────────────────────────
+
+def _glossary() -> None:
+    st.subheader("📚 Glossary — Plain English Definitions")
+    st.write(
+        "New to AI? These are the key terms you'll encounter across all apps on this platform. "
+        "No jargon — just simple explanations."
+    )
+
+    terms = [
+        ("Agent", "AI",
+         "An AI that can take actions, not just generate text. "
+         "An agent decides what to do (reason), does it (act), reads the result (observe), "
+         "and repeats until the task is complete. It's like a worker, not just a calculator."),
+        ("Chunk", "RAG",
+         "A small piece of a larger document — usually a paragraph or a few sentences. "
+         "Documents are split into chunks so the AI can search them efficiently. "
+         "Smaller pieces are easier to match to a specific question."),
+        ("Context Window", "LLM",
+         "The maximum amount of text an AI model can read and remember in one call. "
+         "Everything you send (instructions, history, documents) must fit inside this limit. "
+         "Going over it means the AI forgets the oldest parts."),
+        ("Embedding", "RAG / AI Opt",
+         "A list of numbers that represents the *meaning* of a piece of text. "
+         "Think of it as a fingerprint for language. "
+         "Two sentences that mean the same thing have similar embeddings, "
+         "even if the words are completely different."),
+        ("Fallback", "AI Opt",
+         "An automatic backup plan when the primary AI model fails or is too slow. "
+         "Your app switches to a secondary model without the user noticing any interruption."),
+        ("Fan-out / Fan-in", "MAS",
+         "Fan-out: sending the same task to multiple agents at once. "
+         "Fan-in: collecting all their outputs and combining them into one answer. "
+         "Like distributing work to a team, then consolidating their reports."),
+        ("Groundedness", "RAG",
+         "An answer is 'grounded' if every claim it makes is supported by the documents provided. "
+         "A grounded answer never makes things up — it only says what the sources support."),
+        ("Hallucination", "LLM",
+         "When an AI makes up facts that sound plausible but are wrong. "
+         "Example: 'Einstein won the Nobel Prize in 1923' (it was 1921). "
+         "RAG and grounding techniques help reduce hallucinations."),
+        ("LLM", "Core",
+         "Large Language Model — an AI trained on vast amounts of text that can read, write, "
+         "reason, summarise, translate, and answer questions in natural language. "
+         "Examples: GPT-4, LLaMA, Gemini."),
+        ("MAS", "MAS",
+         "Multi-Agent System — a system where multiple AI agents work together, "
+         "each with a specific role, to complete a task that would be too complex for one agent alone."),
+        ("RAG", "RAG",
+         "Retrieval-Augmented Generation. A technique where the AI retrieves relevant information "
+         "from your documents before generating a response. "
+         "This gives the AI access to your specific knowledge without retraining it."),
+        ("ReAct", "Agent",
+         "Reason + Act — a pattern where an agent alternates between thinking about what to do "
+         "and doing it (calling a tool), until it has enough information to answer. "
+         "Every step is visible in the reasoning trace."),
+        ("Semantic", "RAG / AI Opt",
+         "Related to *meaning*, not exact words. "
+         "'Semantic search' finds text that means the same thing as your query — "
+         "even if it uses completely different words."),
+        ("Similarity Score", "RAG / AI Opt",
+         "A number between 0 and 1 measuring how similar two pieces of text are in meaning. "
+         "1.0 = identical meaning. 0.85+ = essentially the same question. "
+         "0.5 = related but different topics."),
+        ("Streaming", "AI Opt",
+         "Showing the AI's response word-by-word as it's generated, instead of waiting for the full response. "
+         "It feels much faster because you start reading immediately — "
+         "even though the total generation time is the same."),
+        ("Token", "LLM",
+         "The basic unit an AI processes — roughly a word or part of a word. "
+         "'Hello world' is about 2 tokens. AI APIs charge by the number of tokens processed. "
+         "The context window is measured in tokens."),
+        ("Tool", "Agent",
+         "A function that an AI agent can call to interact with the world: "
+         "search Wikipedia, run a calculation, call an API, read a file. "
+         "Tools give agents real-world capabilities that a plain LLM doesn't have."),
+        ("Vector Store", "RAG",
+         "A special database that stores embeddings (text fingerprints) and can search them "
+         "very quickly by similarity. It's the 'smart filing cabinet' that makes RAG work. "
+         "Examples used here: ChromaDB."),
+        ("Whisper", "Media",
+         "An AI model that converts spoken audio into text (speech-to-text). "
+         "It handles multiple languages, accents, and background noise. "
+         "Created by OpenAI, used here via Groq's fast inference."),
+    ]
+
+    # Group by area
+    col_left, col_right = st.columns(2)
+    for i, (term, area, definition) in enumerate(sorted(terms, key=lambda x: x[0])):
+        target = col_left if i % 2 == 0 else col_right
+        with target:
+            with st.container(border=True):
+                st.markdown(f"**{term}** &nbsp; `{area}`")
+                st.write(definition)
