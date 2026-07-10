@@ -52,8 +52,8 @@ def _render_kpis() -> None:
     metrics = (
         ("Live apps", stats["live"], "End-to-end workflows", "aiew-kpi-t1"),
         ("Capability tiers", stats["tiers"], "ML → DL → XAI → RAG → Agent → MAS", "aiew-kpi-t2"),
-        ("Tech Stack", stats["stack"], "scikit-learn · LangChain · LangGraph · FastAPI", "aiew-kpi-t3"),
-        ("LLMs", stats["models"], "llama-3.1-8b · llama-3.3-70b · gemma2-9b", "aiew-kpi-t4"),
+        ("LLMs", stats["models"], "llama-3.1-8b · llama-3.3-70b · gemma2-9b", "aiew-kpi-t3"),
+        ("Open Source", stats["open_source"], "No paid APIs · fully local", "aiew-kpi-t4"),
     )
     columns = st.columns(4)
     for column, (label, value, caption, extra_class) in zip(columns, metrics, strict=True):
