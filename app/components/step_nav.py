@@ -114,26 +114,29 @@ def render_page_nav(pages: list[str], current: str, nav_key: str) -> None:
     if not has_prev and not has_next:
         return
 
+    def _go(target: str) -> None:
+        st.session_state[nav_key] = target
+
     st.divider()
     col_prev, _, col_next = st.columns([2, 6, 2])
 
     if has_prev:
         with col_prev:
-            if st.button(
+            st.button(
                 f"← {steps[current_idx - 1]}",
                 use_container_width=True,
                 key=f"_snav_prev_{nav_key}",
-            ):
-                st.session_state[nav_key] = steps[current_idx - 1]
-                st.rerun()
+                on_click=_go,
+                args=(steps[current_idx - 1],),
+            )
 
     if has_next:
         with col_next:
-            if st.button(
+            st.button(
                 f"{steps[current_idx + 1]} →",
                 use_container_width=True,
                 type="primary",
                 key=f"_snav_next_{nav_key}",
-            ):
-                st.session_state[nav_key] = steps[current_idx + 1]
-                st.rerun()
+                on_click=_go,
+                args=(steps[current_idx + 1],),
+            )
