@@ -1,7 +1,18 @@
-"""RAG Projects — UC4: Self-RAG (Coming Soon)."""
+"""RAG Projects — UC4: Self-RAG entry point."""
 
 import streamlit as st
 from core.launcher import go_home
+
+from applications.rag_projects.uc4.constants import NAVIGATION_SESSION_KEY
+from applications.rag_projects.uc4.pages import chat, configure, history, upload
+
+
+PAGES = {
+    "📄 Upload Docs": upload.render,
+    "⚙️ Configure": configure.render,
+    "💬 Chat": chat.render,
+    "📜 History": history.render,
+}
 
 
 def run() -> None:
@@ -20,18 +31,19 @@ def run() -> None:
                     <div class="aiew-tb-cap">RAG Projects · Use Case 4 of 4</div>
                     <div class="aiew-tb-title">Self-RAG</div>
                     <div class="aiew-tb-desc">
-                        The model generates an answer, then critiques it on three dimensions:
-                        grounded in context, relevant to the question, and complete.
-                        Low scores on any dimension trigger a rewrite loop.
+                        After generating an answer, the LLM scores it on Groundedness,
+                        Relevance, and Completeness. If any score is too low, it rewrites
+                        the query, re-retrieves, and tries again. The critique scorecard
+                        is shown for every attempt.
                     </div>
-                    <div class="aiew-tb-flow">📄 Upload → 💬 Query → ✍️ Generate → 🔍 Critique (ground · relevance · completeness) → 🔄 Rewrite if needed → ✅ Final Answer</div>
+                    <div class="aiew-tb-flow">📄 Upload → 💬 Query → ✍️ Generate → 🔍 Critique → 🔄 Rewrite if needed → ✅ Final Answer</div>
                     <div>
                         <span class="aiew-tech-pill">LangGraph</span>
                         <span class="aiew-tech-pill">LangChain</span>
                         <span class="aiew-tech-pill">ChromaDB</span>
                         <span class="aiew-tech-pill">Groq</span>
                         <span class="aiew-tech-pill">Self-Reflection</span>
-                        <span class="aiew-tech-pill">HuggingFace</span>
+                        <span class="aiew-tech-pill">all-MiniLM-L6-v2</span>
                     </div>
                 </div>
             </div>
@@ -40,74 +52,52 @@ def run() -> None:
         unsafe_allow_html=True,
     )
 
-    st.markdown(
-        """
-        <div style="display:inline-flex;align-items:center;gap:.5rem;
-                    background:#fff7ed;border:1px solid #fed7aa;border-radius:.5rem;
-                    padding:.5rem 1rem;margin:1rem 0;">
-            <span style="font-size:1.1rem;">🔧</span>
-            <span style="font-weight:700;color:#c2410c;font-size:.9rem;">In Development</span>
-            <span style="color:#9a3412;font-size:.85rem;">— Final RAG use case</span>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    with st.expander("About this use case", expanded=False):
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("#### What this use case does")
+            st.write(
+                "UC1, UC2, and UC3 all generate an answer and stop — they never ask "
+                "whether the answer is actually good."
+            )
+            st.write(
+                "UC4 adds a **self-critique step** after every answer. "
+                "The LLM reads its own answer and scores it on three things: "
+                "Is every claim supported by the documents? Does it answer the actual question? "
+                "Is anything important missing? "
+                "If any score is too low, it rewrites the search query, fetches new passages, "
+                "and tries again — showing you a scorecard for each attempt."
+            )
+            st.markdown("#### New capability over UC3")
+            st.info(
+                "**UC3** decides when and how to search (retrieval quality).\n\n"
+                "**UC4** decides when the *answer itself* is good enough (generation quality). "
+                "It is the only use case where the LLM explicitly judges and rewrites its own output."
+            )
+        with col2:
+            st.markdown("#### Tech stack")
+            st.table({
+                "Component": ["Agent framework", "Critique mechanism",
+                               "Critique dimensions", "Rewrite strategy",
+                               "Embedding model", "LLM"],
+                "Technology": [
+                    "LangGraph StateGraph",
+                    "Separate Groq LLM call scores each dimension 1–5",
+                    "Groundedness · Relevance · Completeness",
+                    "Rewrite query + re-retrieve + regenerate on low scores",
+                    "all-MiniLM-L6-v2 (local, free)",
+                    "Groq llama-3.1-8b-instant",
+                ],
+            })
 
-    st.divider()
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.markdown("### What this use case does")
-        st.write(
-            "UC3 (Agentic RAG) decides *when* to retrieve and *how many times*. "
-            "But once a final answer is generated, neither UC1, UC2, nor UC3 ask: "
-            "**is this answer actually good?**"
+    with st.sidebar:
+        st.markdown(
+            '<div class="aiew-side-label">Self-RAG · UC4 workflow</div>',
+            unsafe_allow_html=True,
         )
-        st.write(
-            "Self-RAG adds an explicit **self-critique loop** after generation. "
-            "The LLM scores its own answer on three dimensions: "
-            "**Groundedness** (is every claim in the context?), "
-            "**Relevance** (does the answer address the actual question?), and "
-            "**Completeness** (is anything important missing?). "
-            "If any score falls below a threshold, the pipeline rewrites the answer "
-            "— up to a configurable maximum number of rewrite attempts."
-        )
+        page = st.radio("Navigation", list(PAGES.keys()), key=NAVIGATION_SESSION_KEY)
+        st.caption("Upload → Configure → Chat → History")
+        st.divider()
+        st.caption("🟢 Pass  ·  🟡 Borderline  ·  🔴 Fail")
 
-        st.markdown("### New capability over UC3")
-        st.info(
-            "**UC3** controls retrieval quality adaptively.\n\n"
-            "**UC4** controls *generation* quality adaptively. "
-            "It is the only UC where the model explicitly judges and rewrites its own output. "
-            "The UI shows the critique scores and rewrite history for full transparency."
-        )
-
-    with col2:
-        st.markdown("### Tech stack")
-        st.table({
-            "Component": [
-                "Agent framework",
-                "Critique mechanism",
-                "Critique dimensions",
-                "Rewrite strategy",
-                "Embedding model",
-                "LLM",
-            ],
-            "Technology": [
-                "LangGraph StateGraph",
-                "Separate LLM call scores each dimension 1–5",
-                "Groundedness · Relevance · Completeness",
-                "Reformulate + re-retrieve + regenerate on low scores",
-                "all-MiniLM-L6-v2 (local, free)",
-                "Groq llama-3.1-8b-instant",
-            ],
-        })
-
-        st.markdown("### What will be built")
-        st.markdown("""
-- **Self-RAG graph** — LangGraph StateGraph: retrieve → generate → critique → (rewrite → retrieve → generate)* → final
-- **Critique scorecard** — shows Groundedness / Relevance / Completeness scores for each generation attempt
-- **Rewrite history** — every version of the answer with its critique scores, side-by-side
-- **Configure page** — set critique thresholds and max rewrite attempts
-- **Chat page** — final answer + expandable critique trail
-        """)
+    PAGES[page]()
