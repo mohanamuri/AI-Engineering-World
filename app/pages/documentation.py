@@ -229,6 +229,63 @@ def _tier_guide() -> None:
                 st.info(f"**Key concept:** {t['key_concept']}")
                 st.caption(f"**Services layer:** `{t['services']}`")
 
+    st.divider()
+    st.subheader("RAG Patterns — Coverage Map")
+    st.write("The RAG Projects section covers four progressively advanced retrieval patterns. Three additional patterns are identified for future use cases.")
+    st.table({
+        "Type": [
+            "Multi-Document RAG",
+            "Hybrid Search RAG",
+            "Agentic RAG",
+            "Self-RAG",
+            "GraphRAG",
+            "Corrective RAG (CRAG)",
+            "Modular RAG",
+        ],
+        "What it does": [
+            "Multiple docs embedded into a single vector store; every answer cites its source document",
+            "BM25 keyword search + dense vector search fused via Reciprocal Rank Fusion (RRF)",
+            "Agent decides whether to retrieve, reformulates query if context is weak, iterates",
+            "Generates answer then self-critiques on Groundedness, Relevance, Completeness; rewrites on low scores",
+            "Extracts a knowledge graph (entities + relationships) from docs; retrieves via graph traversal + vector search",
+            "Grades each retrieved document for relevance; falls back to web search if context is insufficient",
+            "Composable pipeline with swappable retriever, reranker, and generator components",
+        ],
+        "Status": [
+            "✅ UC1 — live",
+            "✅ UC2 — live",
+            "✅ UC3 — live",
+            "✅ UC4 — live",
+            "❌ Not built — planned UC5 (NetworkX-based, no paid API)",
+            "❌ Not built — planned UC6 (DuckDuckGo fallback)",
+            "❌ Not built — planned UC7",
+        ],
+    })
+
+    st.divider()
+    st.subheader("Agent Patterns — Coverage Map")
+    st.write("The Agent Projects section covers four standalone LangGraph agent architectures.")
+    st.table({
+        "Pattern": [
+            "ReAct Agent",
+            "Plan-and-Execute",
+            "Reflection Agent",
+            "Multi-Agent Supervisor",
+        ],
+        "What it does": [
+            "Reason+Act loop — LLM reasons, calls a tool, observes, reasons again until it can answer",
+            "Planner creates a multi-step plan upfront; executor runs each step; responder synthesises",
+            "Generator writes draft; critic scores Clarity/Accuracy/Completeness; reviser rewrites on low scores",
+            "Supervisor routes sub-tasks to specialist agents (Researcher, Analyst, Writer); Writer is terminal",
+        ],
+        "Status": [
+            "✅ UC1 — live",
+            "✅ UC2 — live",
+            "✅ UC3 — live",
+            "✅ UC4 — live",
+        ],
+    })
+
 
 # ─── Tab 4 — Integrations ─────────────────────────────────────────────────────
 
