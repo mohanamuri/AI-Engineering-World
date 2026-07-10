@@ -95,20 +95,28 @@ def load_txt_bytes(file_bytes: bytes, filename: str) -> LoadResult:
 
 
 def load_default_policy() -> LoadResult:
-    """Load the bundled loan_policy.pdf from the repo's data/ directory.
+    """Load the bundled loan policy from the repo's data/ directory.
+
+    Prefers loan_policy.txt (plain text, always parses reliably) and
+    falls back to loan_policy.pdf if the txt file is not present.
 
     Returns a LoadResult so the rest of the pipeline treats it identically
     to a user-uploaded file.
     """
     from pathlib import Path
 
-    policy_path = Path(__file__).resolve().parents[3] / "data" / "loan_docs" / "loan_policy.pdf"
-    if not policy_path.exists():
-        raise FileNotFoundError(
-            f"Default policy PDF not found at {policy_path}. "
-            "Run: python scripts/generate_policy_pdf.py"
-        )
-    return load_pdf_bytes(policy_path.read_bytes(), "loan_policy.pdf")
+    data_dir = Path(__file__).resolve().parents[3] / "data" / "loan_docs"
+    txt_path = data_dir / "loan_policy.txt"
+    pdf_path = data_dir / "loan_policy.pdf"
+
+    if txt_path.exists():
+        return load_txt_bytes(txt_path.read_bytes(), "loan_policy.txt")
+    if pdf_path.exists():
+        return load_pdf_bytes(pdf_path.read_bytes(), "loan_policy.pdf")
+    raise FileNotFoundError(
+        f"Default policy not found in {data_dir}. "
+        "Run: python scripts/generate_policy_pdf.py"
+    )
 
 
 # ---------------------------------------------------------------------------

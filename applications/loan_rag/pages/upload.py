@@ -34,8 +34,8 @@ def render() -> None:
     )
 
     # ---- Default policy shortcut ----------------------------------------
-    default_path = Path(__file__).resolve().parents[3] / "data" / "loan_docs" / "loan_policy.pdf"
-    default_available = default_path.exists()
+    data_dir = Path(__file__).resolve().parents[3] / "data" / "loan_docs"
+    default_available = (data_dir / "loan_policy.txt").exists() or (data_dir / "loan_policy.pdf").exists()
 
     col_default, col_upload = st.columns(2)
 
@@ -44,11 +44,11 @@ def render() -> None:
             st.markdown("#### Use default policy")
             st.caption("FinCorp Bank Loan Eligibility Policy v3.2 (5 pages, Jan 2024)")
             if default_available:
-                if st.button("Load loan_policy.pdf", use_container_width=True, type="primary"):
+                if st.button("Load default policy", use_container_width=True, type="primary"):
                     _load_and_store(load_default_policy())
             else:
                 st.warning(
-                    "Default policy PDF not found. "
+                    "Default policy not found. "
                     "Run: `python scripts/generate_policy_pdf.py`"
                 )
 
