@@ -424,7 +424,7 @@ PROJECTS = [
     {
         "id": "mas_projects",
         "name": "MAS Projects",
-        "short_name": "MAS Projects",
+        "short_name": "Multi-Agent Projects",
         "section": "Multi-Agent Projects",
         "icon": "🕸️",
         "category": "Multi-Agent Systems · LangGraph · Coordination",
