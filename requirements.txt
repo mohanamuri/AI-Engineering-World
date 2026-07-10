@@ -48,6 +48,7 @@ joblib>=1.4
 xgboost>=2.0
 shap==0.52.0
 lime>=0.2.0
+rank-bm25>=0.2.0
 langchain>=0.3.0
 langchain-core>=0.3.0
 langchain-text-splitters>=0.3.0
