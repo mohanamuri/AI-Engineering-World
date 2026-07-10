@@ -10,6 +10,7 @@ from services.platform_stats import dashboard_stats
 
 
 def render() -> None:
+    _render_start_here()
     _section_header("Platform at a glance", "Overview", "A growing collection of end-to-end AI engineering work.")
     _render_kpis()
 
@@ -237,6 +238,22 @@ def _render_project_progression(project: dict) -> None:
 
             if not is_last:
                 st.divider()
+
+
+# ---------------------------------------------------------------------------
+# Start Here banner
+# ---------------------------------------------------------------------------
+
+def _render_start_here() -> None:
+    st.info(
+        "**New to AI? Start here →**\n\n"
+        "Open **Loan Eligibility** from the sidebar → choose **T1 · Machine Learning**.\n"
+        "It walks you through a complete AI workflow step by step — upload data, train a model, "
+        "evaluate results — in plain English. Each tier builds on the last.\n\n"
+        "Every app has a **📖 Concept** page — read it first before running anything. "
+        "It explains the idea, shows a diagram, and defines every term you'll see.",
+        icon="🚀",
+    )
 
 
 # ---------------------------------------------------------------------------

@@ -6,6 +6,23 @@ import streamlit as st
 def render() -> None:
     st.subheader("📖 Concept — Streaming + Fallback")
 
+    st.info(
+        "**What you'll learn in this app**\n\n"
+        "- Why waiting for a full AI response feels slow — and how streaming fixes it\n"
+        "- What happens when an AI API is overloaded or rate-limited\n"
+        "- How automatic fallback keeps your app running even when the primary AI fails\n"
+        "- How to experience streaming and fallback live in the Playground"
+    )
+
+    st.markdown(
+        "You've used ChatGPT and noticed the response **types itself out word by word** "
+        "instead of appearing all at once. That's streaming — and it makes the experience feel "
+        "dramatically faster, even though the total time is the same.\n\n"
+        "And sometimes AI APIs get overloaded and return errors. "
+        "**Fallback** automatically switches to a backup model so users never see a failure.\n\n"
+        "These are two independent production patterns that every real AI application needs."
+    )
+
     st.markdown("### Two Independent Production Patterns")
 
     col1, col2 = st.columns(2)

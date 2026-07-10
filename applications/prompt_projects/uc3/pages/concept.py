@@ -7,6 +7,22 @@ import json
 
 def render() -> None:
     st.subheader("📖 Structured Output")
+
+    st.info(
+        "**What you'll learn in this app**\n\n"
+        "- Why free-form AI output breaks software pipelines\n"
+        "- How to tell the AI to return data in a fixed format every time\n"
+        "- What JSON is and why it's the standard format for structured output\n"
+        "- How to try structured vs free-form extraction in the Playground"
+    )
+
+    st.markdown(
+        "Imagine you ask an AI to analyse a product review and extract the sentiment. "
+        "Without structure, it might say: *'This review is quite positive overall, "
+        "though there are some concerns about...'* — great for reading, useless for a database.\n\n"
+        "**Structured output** means telling the AI exactly what format to use — "
+        "like a form to fill in, not a blank page to write on."
+    )
     st.write(
         "Freeform LLM output is great for humans to read but hard for code to process. "
         "Structured output techniques force the model to return valid JSON every time — "

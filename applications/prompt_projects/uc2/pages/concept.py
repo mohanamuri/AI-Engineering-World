@@ -5,9 +5,22 @@ import streamlit as st
 
 def render() -> None:
     st.subheader("📖 Chain-of-Thought Prompting")
+
+    st.info(
+        "**What you'll learn in this app**\n\n"
+        "- Why AI sometimes gets wrong answers to seemingly simple questions\n"
+        "- How one phrase ('Let's think step by step') dramatically improves accuracy\n"
+        "- When Chain-of-Thought helps most — and when it's overkill\n"
+        "- How to try direct vs CoT prompting side by side in the Playground"
+    )
+
+    st.markdown(
+        "Have you ever asked an AI a maths or logic question and got a confidently wrong answer? "
+        "That happens because the model 'jumps to a conclusion' without thinking through the steps.\n\n"
+        "**Chain-of-Thought (CoT)** is a technique that fixes this: you tell the AI to "
+        "*think out loud* before answering — and it suddenly gets the right answer."
+    )
     st.write(
-        "Chain-of-Thought (CoT) is a prompting technique that instructs the model to reason "
-        "through a problem step by step before producing a final answer. "
         "It was introduced by Wei et al. (2022) and remains one of the most impactful "
         "zero-cost improvements in prompt engineering."
     )
