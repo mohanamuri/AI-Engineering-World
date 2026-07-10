@@ -333,6 +333,94 @@ PROJECTS = [
         ],
     },
 
+    {
+        "id": "agent_projects",
+        "name": "Agent Projects",
+        "short_name": "Agent Projects",
+        "section": "Agent Projects",
+        "icon": "🤖",
+        "category": "Autonomous Agents · LangGraph · Tools",
+        "description": (
+            "Standalone LangGraph agent showcases — four progressively advanced architectures. "
+            "From a simple tool-use loop to a multi-agent supervisor system, "
+            "each use case adds one new architectural concept."
+        ),
+        "apps": [
+            {
+                "id": "agent_uc1",
+                "capability": "ReAct Agent",
+                "tier": 1,
+                "tier_label": "UC",
+                "icon": "AGT",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "Groq", "Wikipedia API", "Calculator"],
+                "description": (
+                    "The classic Reason+Act loop: the LLM reasons about what to do, "
+                    "calls a tool, observes the result, and reasons again — cycling "
+                    "until it can answer. Every step is visible."
+                ),
+                "what": "The agent reasoned step-by-step and called tools (Wikipedia, Calculator) as needed. Each thought, tool call, and observation was captured in a trace.",
+                "why_next": "ReAct reacts one step at a time with no upfront plan. Plan-and-Execute separates planning from execution — the agent creates a full plan before taking any action.",
+            },
+            {
+                "id": "agent_uc2",
+                "capability": "Plan-and-Execute Agent",
+                "tier": 2,
+                "tier_label": "UC",
+                "icon": "AGT",
+                "status": "live",
+                "difficulty": "Advanced",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "Groq", "Wikipedia API", "Calculator"],
+                "description": (
+                    "Before acting, the agent creates a numbered multi-step plan. "
+                    "An executor runs each step in order (calling tools where needed), "
+                    "then a responder synthesises all results."
+                ),
+                "what": "The planner created a multi-step plan upfront. The executor ran each step using appropriate tools. The responder synthesised all step results into a coherent final answer.",
+                "why_next": "Plan-and-Execute runs a static plan. A Reflection agent can evaluate its own output quality and rewrite if needed — without any external tools.",
+            },
+            {
+                "id": "agent_uc3",
+                "capability": "Reflection Agent",
+                "tier": 3,
+                "tier_label": "UC",
+                "icon": "AGT",
+                "status": "live",
+                "difficulty": "Advanced",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "Groq", "Self-Critique Loop"],
+                "description": (
+                    "The agent writes a draft, then acts as its own critic — scoring "
+                    "Clarity, Accuracy, and Completeness (1–5 each). Low scores trigger "
+                    "a targeted rewrite. No external tools required."
+                ),
+                "what": "After each draft the agent scored its own output on three dimensions. Scores below the threshold triggered a targeted rewrite, with the critique embedded in the next prompt.",
+                "why_next": "Reflection is a single agent talking to itself. Multi-Agent systems split cognition across specialists — each agent only does one thing, coordinated by a Supervisor.",
+            },
+            {
+                "id": "agent_uc4",
+                "capability": "Multi-Agent Supervisor",
+                "tier": 4,
+                "tier_label": "UC",
+                "icon": "AGT",
+                "status": "live",
+                "difficulty": "Expert",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "Groq", "Supervisor Pattern", "Wikipedia API", "Calculator"],
+                "description": (
+                    "A Supervisor LLM routes tasks to three specialists: "
+                    "a Researcher (Wikipedia), an Analyst (Calculator), and a Writer. "
+                    "After each specialist acts, the Supervisor re-evaluates until done."
+                ),
+                "what": "The Supervisor routed sub-tasks to Researcher, Analyst, and Writer agents. Each specialist contributed its domain output. The Writer synthesised a final answer from all contributions.",
+                "why_next": "This is the final tier. It mirrors how real teams work: a manager coordinates specialists rather than doing everything alone.",
+            },
+        ],
+    },
+
 ]
 
 
