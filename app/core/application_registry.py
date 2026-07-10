@@ -43,6 +43,11 @@ from applications.prompt_projects.uc2.app import run as prompt_uc2
 from applications.prompt_projects.uc3.app import run as prompt_uc3
 from applications.prompt_projects.uc4.app import run as prompt_uc4
 
+from applications.aiopt_projects.uc1.app import run as aiopt_uc1
+from applications.aiopt_projects.uc2.app import run as aiopt_uc2
+from applications.aiopt_projects.uc3.app import run as aiopt_uc3
+from applications.aiopt_projects.uc4.app import run as aiopt_uc4
+
 APPLICATION_RUNNERS = {
     "loan_ml": loan_ml,
     "loan_dl": loan_dl,
@@ -76,4 +81,8 @@ APPLICATION_RUNNERS = {
     "prompt_uc2": prompt_uc2,
     "prompt_uc3": prompt_uc3,
     "prompt_uc4": prompt_uc4,
+    "aiopt_uc1": aiopt_uc1,
+    "aiopt_uc2": aiopt_uc2,
+    "aiopt_uc3": aiopt_uc3,
+    "aiopt_uc4": aiopt_uc4,
 }

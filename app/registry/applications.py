@@ -601,6 +601,97 @@ PROJECTS = [
     },
 
     {
+        "id": "aiopt_projects",
+        "name": "AI Optimisation Techniques",
+        "short_name": "AI Optimisation",
+        "section": "AI Optimisation Techniques",
+        "icon": "⚙️",
+        "category": "LLM Optimisation · Cost · Performance · Resilience",
+        "description": (
+            "Four production LLM optimisation patterns — from semantic caching to model routing, "
+            "memory management to streaming and fallback. "
+            "Each use case teaches one technique via concept, interactive playground, "
+            "side-by-side comparison, and actionable insights with interview Q&A."
+        ),
+        "apps": [
+            {
+                "id": "aiopt_uc1",
+                "capability": "Semantic Caching",
+                "tier": 1,
+                "tier_label": "UC",
+                "icon": "⚙️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Groq", "sentence-transformers", "all-MiniLM-L6-v2", "NumPy", "Streamlit"],
+                "description": (
+                    "Skip redundant LLM calls using vector similarity. "
+                    "Embed queries with sentence-transformers, find semantically similar cached responses "
+                    "above a cosine-similarity threshold, and return them instantly — reducing cost and latency."
+                ),
+                "what": "Embedded user queries into 384-dim vectors. On each new query, searched the in-memory cache by cosine similarity. Cache hits returned instantly without an LLM call.",
+                "why_next": "Caching avoids repeat calls. Model Routing goes further — for unavoidable calls, route each query to the cheapest model that can handle it well.",
+            },
+            {
+                "id": "aiopt_uc2",
+                "capability": "Model Routing",
+                "tier": 2,
+                "tier_label": "UC",
+                "icon": "⚙️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Groq", "llama-3.1-8b-instant", "llama-3.3-70b-versatile", "Streamlit"],
+                "description": (
+                    "A lightweight classifier reads each query and decides whether to use "
+                    "the fast 8B model or the powerful 70B model. "
+                    "Simple queries go to 8B; complex queries go to 70B. "
+                    "Reduce API cost by 60–80 % without sacrificing quality."
+                ),
+                "what": "A complexity classifier (one 8B call, max 5 tokens) labelled each query SIMPLE or COMPLEX. Simple queries ran on the 8B model; complex ones escalated to the 70B model.",
+                "why_next": "Routing controls which model runs. Memory Patterns control what context the model receives — essential for maintaining coherent multi-turn conversations.",
+            },
+            {
+                "id": "aiopt_uc3",
+                "capability": "Memory Patterns",
+                "tier": 3,
+                "tier_label": "UC",
+                "icon": "⚙️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Groq", "llama-3.1-8b-instant", "Buffer Memory", "Summary Memory", "Entity Memory"],
+                "description": (
+                    "Three memory strategies for multi-turn LLM conversations: "
+                    "Buffer (keep last N messages), Summary (compress old turns with LLM), "
+                    "and Entity (extract named entities into a persistent fact store). "
+                    "No LangChain required — built from scratch with Groq."
+                ),
+                "what": "Implemented three memory strategies from scratch. Compared how each handles a 10-turn conversation — measuring tokens sent, context quality, and extra LLM calls required.",
+                "why_next": "Memory controls what the model knows. Streaming + Fallback control how reliably and quickly the model delivers its response in production.",
+            },
+            {
+                "id": "aiopt_uc4",
+                "capability": "Streaming + Fallback",
+                "tier": 4,
+                "tier_label": "UC",
+                "icon": "⚙️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Groq", "Token Streaming", "SSE", "Retry + Backoff", "Model Fallback"],
+                "description": (
+                    "Two production resilience patterns: Streaming returns tokens as they generate — "
+                    "perceived latency drops 70–90 %. Fallback retries the primary model then "
+                    "automatically switches to a backup on failure. Essential for reliable LLM APIs."
+                ),
+                "what": "Implemented Groq streaming with st.write_stream() for real-time token delivery. Built retry-with-backoff fallback that switches to the 70B model when the primary fails.",
+                "why_next": "This completes the AI Optimisation arc: cache (UC1) → route (UC2) → remember (UC3) → stream reliably (UC4). Together these four patterns underpin production LLM systems.",
+            },
+        ],
+    },
+
+    {
         "id": "media_projects",
         "name": "Media Intelligence",
         "short_name": "Media Projects",
