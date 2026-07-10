@@ -28,6 +28,11 @@ from applications.agent_projects.uc2.app import run as agent_uc2
 from applications.agent_projects.uc3.app import run as agent_uc3
 from applications.agent_projects.uc4.app import run as agent_uc4
 
+from applications.mas_projects.uc1.app import run as mas_uc1
+from applications.mas_projects.uc2.app import run as mas_uc2
+from applications.mas_projects.uc3.app import run as mas_uc3
+from applications.mas_projects.uc4.app import run as mas_uc4
+
 APPLICATION_RUNNERS = {
     "loan_ml": loan_ml,
     "loan_dl": loan_dl,
@@ -49,4 +54,8 @@ APPLICATION_RUNNERS = {
     "agent_uc2": agent_uc2,
     "agent_uc3": agent_uc3,
     "agent_uc4": agent_uc4,
+    "mas_uc1": mas_uc1,
+    "mas_uc2": mas_uc2,
+    "mas_uc3": mas_uc3,
+    "mas_uc4": mas_uc4,
 }

@@ -421,6 +421,96 @@ PROJECTS = [
         ],
     },
 
+    {
+        "id": "mas_projects",
+        "name": "MAS Projects",
+        "short_name": "MAS Projects",
+        "section": "Multi-Agent Projects",
+        "icon": "🕸️",
+        "category": "Multi-Agent Systems · LangGraph · Coordination",
+        "description": (
+            "Standalone LangGraph multi-agent showcases — four progressively advanced architectures. "
+            "From a fixed sequential pipeline to an adversarial debate to a full research crew, "
+            "each use case introduces a distinct MAS coordination pattern."
+        ),
+        "apps": [
+            {
+                "id": "mas_uc1",
+                "capability": "Supervisor Pipeline",
+                "tier": 1,
+                "tier_label": "UC",
+                "icon": "MAS",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "Groq", "Pipeline Pattern", "Wikipedia API"],
+                "description": (
+                    "A fixed sequential pipeline: Collector gathers facts, Processor extracts insights, "
+                    "Writer drafts the response, Supervisor closes with an executive summary. "
+                    "Each agent receives the previous agent's output as its primary input."
+                ),
+                "what": "The Supervisor coordinated a fixed 4-stage pipeline. Each agent received the previous stage's output, accumulating knowledge from Collector → Processor → Writer → Supervisor.",
+                "why_next": "A pipeline is sequential and deterministic. Parallel Agents removes the dependency chain — three independent specialists tackle the same task simultaneously, then merge.",
+            },
+            {
+                "id": "mas_uc2",
+                "capability": "Parallel Agents",
+                "tier": 2,
+                "tier_label": "UC",
+                "icon": "MAS",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "Groq", "Fan-out / Fan-in", "Wikipedia API"],
+                "description": (
+                    "Three independent specialist agents tackle the same task from different angles "
+                    "(Facts, Critic, Creative) with no shared intermediate state. "
+                    "An Aggregator merges all three perspectives into one coherent answer."
+                ),
+                "what": "Three independent agents produced separate perspectives without sharing context. The Aggregator synthesised a richer, more balanced answer than any single agent could.",
+                "why_next": "Parallel agents cooperate. An adversarial pattern goes further — two agents actively oppose each other, surfacing trade-offs a cooperative team might miss.",
+            },
+            {
+                "id": "mas_uc3",
+                "capability": "Debate & Judge",
+                "tier": 3,
+                "tier_label": "UC",
+                "icon": "MAS",
+                "status": "live",
+                "difficulty": "Advanced",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "Groq", "Adversarial Pattern", "Conditional Routing"],
+                "description": (
+                    "Two adversarial agents argue opposing positions across multiple rounds. "
+                    "A neutral Judge evaluates both sides on logic, evidence, and persuasion, "
+                    "then declares a winner. "
+                    "A conditional edge controls how many rounds run."
+                ),
+                "what": "Proponent and Opponent argued back and forth for N rounds. The Judge evaluated the full debate and declared a winner based on logic, evidence, and persuasion quality.",
+                "why_next": "Debate is adversarial but still a flat two-agent pattern. A Research Team is hierarchical with multiple specialised roles, memory, and an iterative research loop.",
+            },
+            {
+                "id": "mas_uc4",
+                "capability": "Research Team",
+                "tier": 4,
+                "tier_label": "UC",
+                "icon": "MAS",
+                "status": "live",
+                "difficulty": "Expert",
+                "version": "1.0.0",
+                "stack": ["LangGraph", "Groq", "Iterative Research Loop", "Wikipedia API"],
+                "description": (
+                    "A full four-agent research crew: Planner breaks the query into questions, "
+                    "Researcher answers each one (Wikipedia, called in a loop), "
+                    "Analyst synthesises all findings, Writer produces the final report. "
+                    "Memory accumulates across every stage."
+                ),
+                "what": "The Planner decomposed the query into sub-questions. The Researcher looped once per question. The Analyst synthesised all findings. The Writer produced a comprehensive report.",
+                "why_next": "This is the final tier. It demonstrates the most complete MAS pattern: multi-role pipeline, iterative sub-task execution, and memory passing across all stages.",
+            },
+        ],
+    },
+
 ]
 
 
