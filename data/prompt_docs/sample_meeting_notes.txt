@@ -1,0 +1,18 @@
+Meeting Notes — Product Roadmap Review
+Date: Q3 Planning Session
+Attendees: Sarah (PM), James (Eng Lead), Priya (Design), Tom (Data)
+
+Discussion points:
+- Mobile app v2.0 launch pushed to end of Q3 due to backend API delays
+- Dark mode feature approved for v2.0 — Priya to deliver mockups by Friday
+- Tom flagged that analytics dashboard has a 3-second load time issue; needs investigation
+- New onboarding flow A/B test starts next week; target 20% improvement in D7 retention
+- James raised concern about tech debt in authentication module — allocated 2 sprints to address
+
+Decisions:
+1. v2.0 launch date: September 30th
+2. Dark mode: included in v2.0 scope
+3. Analytics perf fix: P1 priority, assigned to Tom's team
+4. Auth refactor: scheduled for Q4 Sprint 1-2
+
+Next meeting: Two weeks. Sarah to send calendar invite.

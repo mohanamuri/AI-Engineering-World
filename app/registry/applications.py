@@ -513,6 +513,94 @@ PROJECTS = [
 
 
     {
+        "id": "prompt_projects",
+        "name": "Prompt Engineering",
+        "short_name": "Prompt Engineering",
+        "section": "Prompt Engineering",
+        "icon": "✍️",
+        "category": "Prompt Design · LLM · Groq",
+        "description": (
+            "Four core prompting techniques — from zero-shot basics to multi-step chains. "
+            "Each use case teaches one technique via concept, interactive playground, "
+            "side-by-side comparison, and actionable insights."
+        ),
+        "apps": [
+            {
+                "id": "prompt_uc1",
+                "capability": "Zero-shot vs Few-shot",
+                "tier": 1,
+                "tier_label": "UC",
+                "icon": "✍️",
+                "status": "live",
+                "difficulty": "Beginner",
+                "version": "1.0.0",
+                "stack": ["Groq", "llama-3.1-8b-instant", "Streamlit"],
+                "description": (
+                    "Run the same task with zero examples vs 2–3 demonstrations. "
+                    "See how few-shot examples anchor the model's output style and consistency, "
+                    "and measure the token overhead of adding examples."
+                ),
+                "what": "Ran the same task zero-shot and few-shot. Compared output style, consistency, and token cost. Learned when examples help and when they're overkill.",
+                "why_next": "Zero/few-shot controls what examples the model sees. Chain-of-Thought controls how it reasons — adding explicit step-by-step thinking before answering.",
+            },
+            {
+                "id": "prompt_uc2",
+                "capability": "Chain-of-Thought",
+                "tier": 2,
+                "tier_label": "UC",
+                "icon": "✍️",
+                "status": "live",
+                "difficulty": "Beginner",
+                "version": "1.0.0",
+                "stack": ["Groq", "llama-3.1-8b-instant", "Streamlit"],
+                "description": (
+                    "Add 'Let's think step by step' to unlock the model's reasoning ability. "
+                    "Compare direct answers vs step-by-step reasoning on math, logic, "
+                    "and multi-step problems — no examples needed."
+                ),
+                "what": "Compared direct answers vs Chain-of-Thought reasoning on logic and math problems. Observed how visible reasoning steps reduce errors and improve accuracy.",
+                "why_next": "CoT controls reasoning depth. Structured Output controls output shape — forcing JSON so downstream code can parse the result reliably every time.",
+            },
+            {
+                "id": "prompt_uc3",
+                "capability": "Structured Output",
+                "tier": 3,
+                "tier_label": "UC",
+                "icon": "✍️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Groq", "llama-3.1-8b-instant", "JSON Schema", "Streamlit"],
+                "description": (
+                    "Force the model to return valid JSON matching an exact schema every time. "
+                    "Compare freeform prose vs structured JSON on the same extraction task — "
+                    "and see which one your downstream code can actually use."
+                ),
+                "what": "Extracted information as freeform text vs structured JSON. Defined a schema, forced JSON output, parsed it with json.loads(). Learned schema design best practices.",
+                "why_next": "Structured output controls one response's shape. Prompt Chaining controls the pipeline — breaking complex tasks into sequential steps for higher overall quality.",
+            },
+            {
+                "id": "prompt_uc4",
+                "capability": "Prompt Chaining",
+                "tier": 4,
+                "tier_label": "UC",
+                "icon": "✍️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Groq", "llama-3.1-8b-instant", "Streamlit"],
+                "description": (
+                    "Decompose complex tasks into a three-step chain: Outline → Draft → Refine. "
+                    "Each step is focused and feeds the next. "
+                    "Compare the chain output against a single monolithic prompt on the same task."
+                ),
+                "what": "Ran Outline → Draft → Refine as separate focused prompts. Compared the chain output against a single prompt. Observed quality gains and measured latency/token overhead.",
+                "why_next": "This completes the Prompt Engineering arc: examples (UC1) → reasoning (UC2) → output shape (UC3) → pipeline (UC4). Together these four techniques cover production prompt engineering.",
+            },
+        ],
+    },
+
+    {
         "id": "media_projects",
         "name": "Media Intelligence",
         "short_name": "Media Projects",

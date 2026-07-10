@@ -1,0 +1,27 @@
+Job Title: Senior Machine Learning Engineer
+Company: DataFlow AI
+Location: Remote (US/EU)
+
+About the Role:
+We are looking for a Senior ML Engineer to join our growing AI platform team. You will design, build, and maintain production ML systems that serve millions of users daily.
+
+Responsibilities:
+- Design and implement scalable ML pipelines from experimentation to production
+- Collaborate with data scientists to productionise models
+- Build and maintain feature engineering infrastructure
+- Monitor model performance and implement retraining strategies
+- Mentor junior engineers and contribute to technical roadmap
+
+Requirements:
+- 5+ years of ML engineering experience
+- Strong Python skills (PyTorch, scikit-learn, MLflow)
+- Experience with cloud ML platforms (AWS SageMaker, GCP Vertex, or Azure ML)
+- Familiarity with LLMs and prompt engineering
+- Experience with distributed training and serving (Ray, Kubernetes)
+
+Nice to Have:
+- Experience with vector databases (Pinecone, Weaviate, Chroma)
+- Prior work on RAG systems or LLM applications
+- Contributions to open-source ML projects
+
+Salary: $180,000 – $240,000 + equity
