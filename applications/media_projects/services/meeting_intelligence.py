@@ -13,7 +13,6 @@ import os
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
-from groq import Groq
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_groq import ChatGroq
 
@@ -75,6 +74,7 @@ _MIME_MAP = {
 
 def transcribe_audio(audio_bytes: bytes, filename: str, config: MeetingConfig) -> TranscriptResult:
     """Transcribe audio using Groq Whisper."""
+    from groq import Groq
     ext = os.path.splitext(filename)[-1].lower()
     mime = _MIME_MAP.get(ext, "audio/mpeg")
 
