@@ -511,6 +511,99 @@ PROJECTS = [
         ],
     },
 
+
+    {
+        "id": "media_projects",
+        "name": "Media Intelligence",
+        "short_name": "Media Projects",
+        "section": "Media Projects",
+        "icon": "🎬",
+        "category": "Multimodal AI · Audio · Vision · Groq",
+        "description": (
+            "Four multimodal AI use cases — audio, video, image, and document — "
+            "all powered by Groq free-tier APIs. "
+            "From speech-to-text meeting reports to OCR-free document digitisation, "
+            "each use case adds one new media modality."
+        ),
+        "apps": [
+            {
+                "id": "media_uc1",
+                "capability": "Meeting Intelligence",
+                "tier": 1,
+                "tier_label": "UC",
+                "icon": "🎙️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Groq Whisper", "Groq LLM", "Streamlit"],
+                "description": (
+                    "Upload any audio recording (.mp3/.wav/.m4a). "
+                    "Groq Whisper transcribes it, then an LLM extracts a structured report: "
+                    "summary, decisions, action items, sentiment, and key topics."
+                ),
+                "what": "Uploaded a meeting audio file. Groq Whisper produced the transcript. An LLM extracted a structured JSON report with summary, decisions, action items, and sentiment.",
+                "why_next": "Meeting Intelligence handles audio. Video Intelligence extends the same pipeline to video files by adding an ffmpeg audio-extraction step first.",
+            },
+            {
+                "id": "media_uc2",
+                "capability": "Video Intelligence",
+                "tier": 2,
+                "tier_label": "UC",
+                "icon": "🎬",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["ffmpeg", "Groq Whisper", "Groq LLM", "Streamlit"],
+                "description": (
+                    "Upload a video file (.mp4/.mov). "
+                    "ffmpeg extracts the audio track (16 kHz mono). "
+                    "Groq Whisper transcribes it. "
+                    "The same LLM extraction pipeline as UC1 produces the report."
+                ),
+                "what": "Uploaded a video file. ffmpeg stripped the audio track (16 kHz mono MP3). Groq Whisper transcribed it. The same UC1 LLM pipeline produced a structured meeting report.",
+                "why_next": "Audio and video use speech-to-text. Image Intelligence shifts modality entirely — a vision LLM processes raw pixels with no audio or OCR pipeline.",
+            },
+            {
+                "id": "media_uc3",
+                "capability": "Image Intelligence",
+                "tier": 3,
+                "tier_label": "UC",
+                "icon": "🖼️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Groq Vision", "llama-4-scout-17b", "LangChain", "Streamlit"],
+                "description": (
+                    "Upload any image (.jpg/.png). "
+                    "Groq Vision describes the scene, extracts all embedded text, "
+                    "identifies objects and dominant colours, "
+                    "then answers follow-up questions interactively."
+                ),
+                "what": "Uploaded an image. Groq Vision (llama-4-scout-17b) returned a structured JSON: scene description, extracted text, objects, colours. Then answered interactive follow-up questions.",
+                "why_next": "Image Intelligence handles general photos. Document Scanner specialises on structured document digitisation — extracting title, sections, and metadata from document photos.",
+            },
+            {
+                "id": "media_uc4",
+                "capability": "Document Scanner",
+                "tier": 4,
+                "tier_label": "UC",
+                "icon": "📄",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Groq Vision", "llama-4-scout-17b", "LangChain", "Streamlit"],
+                "description": (
+                    "Upload a photo of any document, whiteboard, or slide. "
+                    "Groq Vision extracts structured content: document type, title, "
+                    "sections with headings, all verbatim text, and metadata. "
+                    "Export as JSON or plain text."
+                ),
+                "what": "Uploaded a document photo. Groq Vision returned structured JSON: document type, title, sections with headings, all verbatim text, and metadata (language, tables, diagrams).",
+                "why_next": "This is the final tier of Media Projects: audio → video → image → structured document. Together they cover the four primary media modalities in enterprise AI workflows.",
+            },
+        ],
+    },
+
 ]
 
 

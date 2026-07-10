@@ -11,7 +11,7 @@ from applications.hr_dl.services.data_loader import (
 from applications.shared.api_reference import render_api_reference
 
 PREVIEW_ROWS = 10
-_SAMPLE_PATH = Path(__file__).resolve().parents[3] / "data" / "hr_attrition_sample.csv"
+_SAMPLE_PATH = Path(__file__).resolve().parents[3] / "data" / "hr_docs" / "hr_attrition_sample.csv"
 
 
 def render():

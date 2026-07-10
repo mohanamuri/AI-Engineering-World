@@ -102,7 +102,7 @@ def load_default_policy() -> LoadResult:
     """
     from pathlib import Path
 
-    policy_path = Path(__file__).resolve().parents[4] / "data" / "loan_policy.pdf"
+    policy_path = Path(__file__).resolve().parents[4] / "data" / "loan_docs" / "loan_policy.pdf"
     if not policy_path.exists():
         raise FileNotFoundError(
             f"Default policy PDF not found at {policy_path}. "

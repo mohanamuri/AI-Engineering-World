@@ -33,6 +33,11 @@ from applications.mas_projects.uc2.app import run as mas_uc2
 from applications.mas_projects.uc3.app import run as mas_uc3
 from applications.mas_projects.uc4.app import run as mas_uc4
 
+from applications.media_projects.uc1.app import run as media_uc1
+from applications.media_projects.uc2.app import run as media_uc2
+from applications.media_projects.uc3.app import run as media_uc3
+from applications.media_projects.uc4.app import run as media_uc4
+
 APPLICATION_RUNNERS = {
     "loan_ml": loan_ml,
     "loan_dl": loan_dl,
@@ -58,4 +63,8 @@ APPLICATION_RUNNERS = {
     "mas_uc2": mas_uc2,
     "mas_uc3": mas_uc3,
     "mas_uc4": mas_uc4,
+    "media_uc1": media_uc1,
+    "media_uc2": media_uc2,
+    "media_uc3": media_uc3,
+    "media_uc4": media_uc4,
 }

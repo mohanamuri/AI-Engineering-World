@@ -1,0 +1,86 @@
+HR RETENTION & ATTRITION POLICY
+Version 3.1 | Effective Date: January 2025
+
+=============================================================
+1. RETENTION BONUSES
+=============================================================
+Employees with 3 or more years of continuous tenure are eligible for annual retention bonuses of 10–20% of base salary, determined by performance rating and department budget.
+
+High-risk employees identified by the HR attrition system may receive an accelerated retention bonus within 30 days of risk assessment, subject to manager and HR Director approval.
+
+Employees in critical roles (as designated by the department head) may receive a retention agreement locking in employment for 12–24 months in exchange for an upfront bonus payment.
+
+=============================================================
+2. OVERTIME POLICY
+=============================================================
+Overtime is capped at 15 hours per week per employee. Employees consistently working beyond this threshold must be reviewed by their line manager within 2 weeks.
+
+Compensation for all overtime hours is 1.5x the standard hourly rate. Overtime must be pre-approved by the line manager and logged in the HR system within 48 hours.
+
+Persistent overtime (more than 3 consecutive weeks) without a workload review is a reportable HR event. The HR Business Partner must be notified and a workload assessment completed within 10 working days.
+
+=============================================================
+3. PROMOTION POLICY
+=============================================================
+Employees are eligible for promotion review after a minimum of 2 years in their current role. A performance rating of 3 or above (on a 4-point scale) in the most recent review cycle is required.
+
+Employees who have not received a promotion in 5 or more years are automatically flagged for a mandatory career development conversation with HR.
+
+Promotion decisions must be documented and communicated to the employee within 30 days of the review cycle close date.
+
+=============================================================
+4. FLEXIBLE WORKING
+=============================================================
+Employees may request flexible or remote working arrangements after completing 1 year of service. Requests must be submitted in writing to HR and are acknowledged within 5 working days.
+
+Approval or denial is communicated within 14 calendar days of submission. Denial requires a written justification from the line manager and HR sign-off.
+
+Employees whose flexible working requests are denied twice in 12 months may escalate to the HR Director for review.
+
+=============================================================
+5. PERFORMANCE REVIEWS
+=============================================================
+Performance reviews are conducted bi-annually (June and December). Ratings are on a 4-point scale: 1 (Below Expectations), 2 (Meets Some Expectations), 3 (Meets Expectations), 4 (Exceeds Expectations).
+
+Ratings of 1 or 2 trigger a Performance Improvement Plan (PIP) lasting 90 days, with bi-weekly check-ins with the line manager and HR Business Partner.
+
+Two consecutive below-average reviews (rating of 1 or 2) may result in role restructuring, reassignment, or, in the most severe cases, termination of employment following due process.
+
+=============================================================
+6. GRIEVANCE POLICY
+=============================================================
+Any employee may raise a formal grievance with HR within 30 days of the incident or event giving rise to the complaint. Grievances are submitted via the HR portal or in writing to the HR Business Partner.
+
+All grievances are investigated within 15 working days. The employee is notified of the outcome in writing.
+
+Retaliation against any employee who raises a grievance in good faith is a disciplinary offence and may result in dismissal.
+
+=============================================================
+7. COMPENSATION REVIEW
+=============================================================
+Salary benchmarking against external market data is conducted annually in Q4. Employees paid below the 25th market percentile for their role and level are prioritised for salary adjustment in the following financial year.
+
+Salary increases are effective from the first day of the new financial year. Employees on active PIPs are not eligible for merit increases during the PIP period.
+
+Compensation adjustments for equity, market alignment, or retention purposes are approved by the HR Director and CFO and are separate from the annual merit review cycle.
+
+=============================================================
+8. EXIT INTERVIEWS
+=============================================================
+All voluntary leavers are offered an exit interview with HR. Participation is voluntary but strongly encouraged. Findings are aggregated quarterly and reported to senior leadership to identify systemic attrition drivers.
+
+Employees who resign with less than 2 weeks notice forfeit any outstanding retention bonus payments.
+
+=============================================================
+9. HIGH-RISK EMPLOYEE INTERVENTIONS
+=============================================================
+Employees flagged as HIGH attrition risk by the HR analytics system are subject to a mandatory manager check-in within 5 working days of the flag being raised.
+
+Recommended interventions based on risk factors include:
+- Low job satisfaction: role enrichment, lateral move, or project assignment
+- Low work-life balance: overtime review, flexible working offer
+- Long time since last promotion: expedited promotion review
+- High number of companies worked: targeted retention agreement
+- Low environment satisfaction: team or location transfer review
+
+All interventions must be documented in the HR system and reviewed at the next bi-annual performance cycle.
