@@ -93,16 +93,15 @@ def render() -> None:
     with st.expander("How does the agent loop work?", expanded=False):
         st.markdown(
             """
-            **Agentic RAG** replaces the fixed single-step retrieval pipeline with a loop:
+            The **LangGraph agent** follows this loop for every question:
 
-            1. **Classify** — LLM decides: does this question even need document retrieval?
-            2. **Retrieve** — fetch `top_k` chunks from ChromaDB using the current query.
-            3. **Evaluate** — LLM rates context quality 0–10. ≥ threshold → proceed to generate.
-            4. **Reformulate** — if quality is low and iterations remain, LLM rewrites the query
-               to be more specific and keyword-rich, then loops back to Retrieve.
-            5. **Generate** — produce the final answer from the best context found.
+            1. **Classify** — Should I even search the documents? (Some questions don't need it.)
+            2. **Retrieve** — Search ChromaDB and fetch the top matching passages.
+            3. **Evaluate** — Are these results good enough to answer the question? (Scored 0–10.)
+            4. **Reformulate** — If the score is too low and tries remain, rewrite the question
+               to be more specific, then go back to Retrieve.
+            5. **Generate** — Write the final answer using the best passages found.
 
-            The full reasoning trace (every decision, every query tried, every score) is
-            shown in the Chat page so you can see exactly what the agent did.
+            The full trace — every decision, every query tried, every score — is shown in Chat.
             """
         )

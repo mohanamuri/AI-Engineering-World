@@ -91,16 +91,17 @@ def render() -> None:
     with st.expander("How does RRF fusion work?", expanded=False):
         st.markdown(
             """
-            **Reciprocal Rank Fusion (RRF)** merges two ranked lists without requiring scores
-            to be on the same scale.
+            **Reciprocal Rank Fusion (RRF)** is a simple way to combine two ranked lists
+            without needing their scores to be on the same scale.
 
-            For each chunk the formula adds a contribution from each retriever it appeared in:
+            Each passage gets a contribution from every ranked list it appears in:
 
-            > **score(d) = Σ 1 / (rank_i(d) + k)**
+            > **score = Σ 1 / (rank + k)**
 
-            - A chunk ranked #1 by dense and #3 by BM25 scores higher than one only in one list.
-            - The damping constant **k** (default 60) prevents a single #1 rank from dominating
-              and flattens the score distribution, balancing both retrievers' contributions.
-            - After fusion, the top-k highest-scoring chunks are passed to the LLM.
+            - A passage ranked #1 by ChromaDB and #3 by BM25 scores higher than one that
+              only appears in one list.
+            - The constant **k** (default 60) smooths out the scores so that being ranked
+              #1 in one list doesn't completely dominate the result.
+            - After combining, the top-k highest-scoring passages are sent to the LLM.
             """
         )

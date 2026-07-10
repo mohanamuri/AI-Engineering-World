@@ -56,23 +56,22 @@ def run() -> None:
         with col1:
             st.markdown("#### What this use case does")
             st.write(
-                "In UC1 and UC2 the RAG pipeline is **passive** — it always retrieves exactly once, "
-                "returns the top-k chunks, and hands everything to the LLM regardless of whether "
-                "the context is actually sufficient to answer the question."
+                "UC1 and UC2 always search ChromaDB exactly once per question — no matter "
+                "whether the results are good or bad, the LLM generates an answer from whatever was found."
             )
             st.write(
-                "Agentic RAG replaces the fixed pipeline with a **LangGraph agent loop**: "
-                "the agent first decides if retrieval is even needed. If it retrieves but the "
-                "context is weak, it reformulates the query and retrieves again. "
-                "It only generates a final answer when confident the context is sufficient — "
-                "or after a maximum number of iterations."
+                "UC3 adds a **LangGraph agent** that thinks before and after searching. "
+                "It first checks: does this question even need a document search? "
+                "If yes, it searches, then asks itself: are these results good enough? "
+                "If not, it rephrases the question and searches again — up to a set number of tries. "
+                "You can see every decision it made, directly in the chat."
             )
             st.markdown("#### New capability over UC2")
             st.info(
-                "**UC2** always retrieves once with a fixed query.\n\n"
-                "**UC3** retrieves adaptively — zero times (if the LLM already knows), "
-                "once (if context is sufficient), or multiple times with reformulated queries "
-                "(if the first retrieval was weak). The agent's reasoning trace is shown in the UI."
+                "**UC2** always searches ChromaDB once with the exact question asked.\n\n"
+                "**UC3** uses LangGraph to decide *whether* to search, and if the results are weak, "
+                "it rephrases and tries again. Ask it a general knowledge question like "
+                "'What is 2+2?' — it will skip the ChromaDB search entirely."
             )
         with col2:
             st.markdown("#### Tech stack")

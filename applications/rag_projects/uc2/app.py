@@ -56,23 +56,23 @@ def run() -> None:
         with col1:
             st.markdown("#### What this use case does")
             st.write(
-                "UC1 (Multi-Document RAG) retrieves chunks using only dense vector similarity — "
-                "it finds chunks that are *semantically similar* to the query. "
-                "This works well for conceptual questions but struggles with exact terms: "
-                "product codes, names, acronyms, or technical jargon that embeddings compress poorly."
+                "UC1 searches documents by *meaning* using ChromaDB — it finds passages that "
+                "say the same thing as your question, even in different words. "
+                "That works great for broad questions, but it can miss very specific things: "
+                "a name, a number, an exact code, or a technical term."
             )
             st.write(
-                "Hybrid Search RAG runs **two retrievers in parallel** on every query: "
-                "a dense retriever (ChromaDB vector search) and a sparse retriever (BM25 keyword matching). "
-                "Results are merged using **Reciprocal Rank Fusion (RRF)** — a rank-based algorithm that "
-                "rewards chunks appearing in both result sets without needing scores on the same scale."
+                "UC2 runs **two searches at the same time**: the same meaning-based ChromaDB search "
+                "plus a BM25 keyword search (like Ctrl+F in a document). "
+                "Both results are combined using **RRF (Reciprocal Rank Fusion)** — passages that "
+                "appear in *both* searches get ranked higher, since they match both meaning and exact words."
             )
             st.markdown("#### New capability over UC1")
             st.info(
-                "**UC1** retrieves by meaning only.\n\n"
-                "**UC2** retrieves by meaning AND exact keywords, then fuses both rankings. "
-                "A chunk about '401(k) contribution limits' containing the exact string '23,000' "
-                "will rank highly in BM25 even if its embedding is generic — something pure vector search would miss."
+                "**UC1** searches by meaning only (ChromaDB).\n\n"
+                "**UC2** adds BM25 keyword search and merges both results with RRF. "
+                "A policy clause containing an exact figure like '23,000' or a specific term "
+                "like '401(k)' will now surface reliably — even if the meaning-based search missed it."
             )
         with col2:
             st.markdown("#### Tech stack")
