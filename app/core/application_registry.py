@@ -38,6 +38,11 @@ from applications.media_projects.uc2.app import run as media_uc2
 from applications.media_projects.uc3.app import run as media_uc3
 from applications.media_projects.uc4.app import run as media_uc4
 
+from applications.prompt_projects.uc1.app import run as prompt_uc1
+from applications.prompt_projects.uc2.app import run as prompt_uc2
+from applications.prompt_projects.uc3.app import run as prompt_uc3
+from applications.prompt_projects.uc4.app import run as prompt_uc4
+
 APPLICATION_RUNNERS = {
     "loan_ml": loan_ml,
     "loan_dl": loan_dl,
@@ -67,4 +72,8 @@ APPLICATION_RUNNERS = {
     "media_uc2": media_uc2,
     "media_uc3": media_uc3,
     "media_uc4": media_uc4,
+    "prompt_uc1": prompt_uc1,
+    "prompt_uc2": prompt_uc2,
+    "prompt_uc3": prompt_uc3,
+    "prompt_uc4": prompt_uc4,
 }
