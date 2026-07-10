@@ -19,6 +19,9 @@ from applications.hr_agent.app import run_app as hr_agent
 from applications.hr_multi_agent.app import run as hr_multi_agent
 
 from applications.rag_projects.uc1.app import run as rag_uc1
+from applications.rag_projects.uc2.app import run as rag_uc2
+from applications.rag_projects.uc3.app import run as rag_uc3
+from applications.rag_projects.uc4.app import run as rag_uc4
 
 APPLICATION_RUNNERS = {
     "loan_ml": loan_ml,
@@ -34,4 +37,7 @@ APPLICATION_RUNNERS = {
     "hr_agent": hr_agent,
     "hr_multi_agent": hr_multi_agent,
     "rag_uc1": rag_uc1,
+    "rag_uc2": rag_uc2,
+    "rag_uc3": rag_uc3,
+    "rag_uc4": rag_uc4,
 }
