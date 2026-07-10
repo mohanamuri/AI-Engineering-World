@@ -6,9 +6,11 @@ from core.launcher import go_home
 from app.components.step_nav import render_page_nav, render_stepper
 from applications.aiopt_projects.uc3.constants import NAVIGATION_SESSION_KEY
 from applications.aiopt_projects.uc3.pages import compare, concept, insights, playground
+from applications.aiopt_projects.services.tier_guide import render as tier_guide
 
 
 PAGES = {
+    "📋 Tier Guide":  tier_guide,
     "📖 Concept":    concept.render,
     "🧪 Playground": playground.render,
     "⚖️ Compare":    compare.render,
