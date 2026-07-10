@@ -52,7 +52,8 @@ def render_sidebar() -> None:
                 for app in project["apps"]:
                     is_live = app["status"] == "live"
                     tier_icon = _TIER_ICONS[app["status"]]
-                    label = f"{tier_icon} T{app['tier']} · {app['capability']}"
+                    tier_prefix = app.get("tier_label", "T")
+                    label = f"{tier_icon} {tier_prefix}{app['tier']} · {app['capability']}"
 
                     _nav_button(
                         label=label,

@@ -163,7 +163,7 @@ def _render_capability_ladder(project: dict) -> None:
                             min-height:9rem;display:flex;flex-direction:column;justify-content:center;">
                     <div style="font-size:.62rem;font-weight:700;color:{badge_color};
                                 letter-spacing:.06em;text-transform:uppercase;margin-bottom:.25rem;">
-                        T{app['tier']}
+                        {app.get("tier_label", "T")}{app['tier']}
                     </div>
                     <div style="font-size:.78rem;font-weight:700;color:{text_color};
                                 line-height:1.3;margin-bottom:.35rem;">
@@ -215,13 +215,14 @@ def _render_project_progression(project: dict) -> None:
                         border:1px solid {'#c7d2fe' if is_live else '#e2e8f0'};
                         display:flex;align-items:center;justify-content:center;
                         font-size:.62rem;font-weight:800;
-                        color:{'#4f46e5' if is_live else '#94a3b8'};">T{app['tier']}</div>""",
+                        color:{'#4f46e5' if is_live else '#94a3b8'};">{app.get("tier_label", "T")}{app['tier']}</div>""",
                     unsafe_allow_html=True,
                 )
 
             with col_content:
+                tl = app.get("tier_label", "T")
                 st.markdown(
-                    f"**T{app['tier']} · {app['capability']}** "
+                    f"**{tl}{app['tier']} · {app['capability']}** "
                     f"<span style='font-size:.65rem;font-weight:700;color:{badge_color};'>{badge}</span>",
                     unsafe_allow_html=True,
                 )
@@ -230,7 +231,7 @@ def _render_project_progression(project: dict) -> None:
                     st.caption("WHAT HAPPENED")
                     st.markdown(f"<span style='font-size:.82rem;color:#475569;'>{escape(what)}</span>", unsafe_allow_html=True)
                 with c2:
-                    label = f"WHY MOVE TO T{app['tier'] + 1}" if not is_last else "WHY THIS IS THE FINAL TIER"
+                    label = f"WHY MOVE TO {tl}{app['tier'] + 1}" if not is_last else "WHY THIS IS THE FINAL TIER"
                     st.caption(label)
                     st.markdown(f"<span style='font-size:.82rem;color:#475569;'>{escape(why_next)}</span>", unsafe_allow_html=True)
 
