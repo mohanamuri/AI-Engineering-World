@@ -311,23 +311,23 @@ def apply_theme() -> None:
         .aiew-hero-author {
             display: flex;
             align-items: center;
-            gap: .75rem;
-            padding: .75rem 1rem;
+            gap: .9rem;
+            padding: 1rem 1.25rem;
             background: rgba(255,255,255,.06);
             border: 1px solid rgba(255,255,255,.1);
             border-radius: .85rem;
-            min-width: 240px;
-            max-width: 320px;
+            min-width: 270px;
+            max-width: 360px;
         }
 
         .aiew-hero-avatar {
             flex: 0 0 auto;
-            width: 2.6rem;
-            height: 2.6rem;
+            width: 3.2rem;
+            height: 3.2rem;
             border-radius: 50%;
             background: linear-gradient(135deg, #818cf8, #22d3ee);
             color: white;
-            font-size: .62rem;
+            font-size: .72rem;
             font-weight: 800;
             letter-spacing: .02em;
             display: flex;
@@ -337,14 +337,14 @@ def apply_theme() -> None:
 
         .aiew-hero-author-name {
             color: #f1f5f9;
-            font-size: .85rem;
+            font-size: .95rem;
             font-weight: 700;
             line-height: 1.2;
         }
 
         .aiew-hero-author-title {
             color: #94a3b8;
-            font-size: .72rem;
+            font-size: .78rem;
             margin-top: .1rem;
         }
 
@@ -353,14 +353,14 @@ def apply_theme() -> None:
         }
 
         .aiew-byline-link {
-            color: #ffffff;
+            color: #4ade80;
             text-decoration: none;
             font-weight: 700;
-            font-size: .72rem;
+            font-size: .78rem;
         }
 
         .aiew-byline-link:hover {
-            color: #e2e8f0;
+            color: #86efac;
             text-decoration: underline;
         }
 
