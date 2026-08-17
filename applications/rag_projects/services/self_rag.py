@@ -63,7 +63,7 @@ class CritiqueRecord:
 @dataclass
 class SelfRAGConfig:
     """Tunable parameters for Self-RAG."""
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     top_k: int = 4
     temperature: float = 0.0
     max_attempts: int = 3

@@ -55,7 +55,7 @@ class AgentRunResult:
 
 @dataclass
 class AgentConfig:
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     temperature: float = 0.0
 
 

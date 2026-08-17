@@ -39,7 +39,7 @@ class ParallelTrace:
 
 @dataclass
 class ParallelAgentsConfig:
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     temperature: float = 0.2
     system_prompt: str = (
         "You are an expert synthesiser combining multiple independent expert "

@@ -16,7 +16,7 @@ from datetime import datetime
 
 from groq import Groq
 
-_DEFAULT_MODEL = "compound-beta-mini"
+_DEFAULT_MODEL = "openai/gpt-oss-20b"
 
 
 @dataclass

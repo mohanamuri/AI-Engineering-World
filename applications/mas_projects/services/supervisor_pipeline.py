@@ -41,7 +41,7 @@ class PipelineTrace:
 
 @dataclass
 class SupervisorPipelineConfig:
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     temperature: float = 0.0
     system_prompt: str = (
         "You are a senior analyst coordinating a research pipeline. "

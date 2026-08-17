@@ -14,8 +14,8 @@ from typing import Generator
 
 from groq import Groq
 
-PRIMARY_MODEL  = "compound-beta-mini"
-FALLBACK_MODEL = "compound-beta-mini"
+PRIMARY_MODEL  = "openai/gpt-oss-20b"
+FALLBACK_MODEL = "openai/gpt-oss-20b"
 MAX_RETRIES    = 2
 
 

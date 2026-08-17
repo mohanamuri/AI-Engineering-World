@@ -75,7 +75,7 @@ def run() -> None:
             st.table({
                 "Component": ["Vision model", "Output", "Export formats"],
                 "Technology": [
-                    "compound-beta-mini",
+                    "openai/gpt-oss-20b",
                     "Structured JSON (type, title, sections, metadata)",
                     "JSON + plain text download",
                 ],

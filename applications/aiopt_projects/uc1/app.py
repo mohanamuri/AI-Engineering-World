@@ -44,7 +44,7 @@ def run() -> None:
                         <span class="aiew-tech-pill">sentence-transformers</span>
                         <span class="aiew-tech-pill">Cosine Similarity</span>
                         <span class="aiew-tech-pill">Vector Cache</span>
-                        <span class="aiew-tech-pill">compound-beta-mini</span>
+                        <span class="aiew-tech-pill">openai/gpt-oss-20b</span>
                     </div>
                 </div>
             </div>

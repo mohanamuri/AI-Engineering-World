@@ -88,7 +88,7 @@ def run() -> None:
                     "Groundedness · Relevance · Completeness",
                     "Rewrite query + re-retrieve + regenerate on low scores",
                     "all-MiniLM-L6-v2 (local, free)",
-                    "Groq compound-beta-mini",
+                    "Groq openai/gpt-oss-20b",
                 ],
             })
 

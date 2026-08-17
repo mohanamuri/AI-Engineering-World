@@ -58,7 +58,7 @@ class ChunkGrade:
 @dataclass
 class CRAGConfig:
     """Tunable parameters for CRAG."""
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     top_k: int = 4
     temperature: float = 0.0
     # Fraction of CORRECT chunks needed to stay local-only (0.0-1.0)

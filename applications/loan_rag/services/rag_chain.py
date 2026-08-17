@@ -58,7 +58,7 @@ def _get_groq_api_key() -> str:
 @dataclass
 class RAGConfig:
     """Tunable parameters for the RAG pipeline."""
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     embedding_model: str = "all-MiniLM-L6-v2"
     chunk_size: int = 512
     chunk_overlap: int = 64

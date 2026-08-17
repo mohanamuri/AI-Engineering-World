@@ -39,8 +39,8 @@ def run() -> None:
                     <div class="aiew-tb-flow">📖 Concept → 🧪 Playground → ⚖️ Compare → 💡 Insights</div>
                     <div>
                         <span class="aiew-tech-pill">Groq</span>
-                        <span class="aiew-tech-pill">compound-beta-mini</span>
-                        <span class="aiew-tech-pill">compound-beta-mini</span>
+                        <span class="aiew-tech-pill">openai/gpt-oss-20b</span>
+                        <span class="aiew-tech-pill">openai/gpt-oss-20b</span>
                         <span class="aiew-tech-pill">Complexity Classifier</span>
                         <span class="aiew-tech-pill">Cost Optimisation</span>
                     </div>

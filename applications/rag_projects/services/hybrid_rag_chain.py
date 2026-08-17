@@ -34,7 +34,7 @@ from applications.rag_projects.services.hybrid_retriever import (
 @dataclass
 class HybridRAGConfig:
     """Tunable parameters for Hybrid Search RAG."""
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     top_k: int = 4            # number of final fused chunks to pass to LLM
     rrf_k: int = 60           # RRF damping constant (paper default)
     temperature: float = 0.0

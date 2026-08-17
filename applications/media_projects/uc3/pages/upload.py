@@ -15,7 +15,7 @@ from applications.media_projects.uc3.constants import (
 _SAMPLE_PATH = Path(__file__).resolve().parents[4] / "data" / "media_docs" / "sample_image.png"
 
 _VISION_MODELS = [
-    "compound-beta-mini",
+    "openai/gpt-oss-20b",
     "llama-3.2-11b-vision-preview",
 ]
 

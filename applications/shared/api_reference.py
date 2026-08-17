@@ -273,7 +273,7 @@ def _configure(p: str, ex: dict) -> dict:
         "request": (
             '{\n  "chunk_size": 512,\n  "top_k": 4,\n'
             '  "temperature": 0.0,\n'
-            '  "llm_model": "compound-beta-mini"  // Groq model\n}'
+            '  "llm_model": "openai/gpt-oss-20b"  // Groq model\n}'
         ),
         "response": (
             '{\n  "chunks_indexed": 48,\n  "embedding_model": "all-MiniLM-L6-v2",\n'

@@ -69,7 +69,7 @@ def render() -> None:
     st.code(
         """# Streaming with Groq
 stream = client.chat.completions.create(
-    model="compound-beta-mini",
+    model="openai/gpt-oss-20b",
     stream=True,  # ← enable streaming
     messages=[...],
 )

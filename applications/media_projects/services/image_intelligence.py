@@ -3,7 +3,7 @@ Image Intelligence — Media UC3.
 
 Pipeline:
   Upload image (.jpg/.png)
-  → Groq Vision (compound-beta-mini)
+  → Groq Vision (openai/gpt-oss-20b)
   → Describe scene, extract embedded text, detect objects
   → Interactive Q&A about the image
 """
@@ -59,7 +59,7 @@ def _build_image_message(prompt: str, image_bytes: bytes, filename: str) -> Huma
 
 @dataclass
 class ImageConfig:
-    vision_model: str = "compound-beta-mini"
+    vision_model: str = "openai/gpt-oss-20b"
     temperature: float = 0.2
 
 

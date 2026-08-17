@@ -3,7 +3,7 @@ Document Scanner — Media UC4.
 
 Pipeline:
   Upload photo of document / whiteboard / slide (.jpg/.png)
-  → Groq Vision (compound-beta-mini)
+  → Groq Vision (openai/gpt-oss-20b)
   → Structured extraction: title, sections, content blocks, metadata
   → Export as JSON or plain text
 """
@@ -50,7 +50,7 @@ def _encode_image(image_bytes: bytes) -> str:
 
 @dataclass
 class ScannerConfig:
-    vision_model: str = "compound-beta-mini"
+    vision_model: str = "openai/gpt-oss-20b"
     temperature: float = 0.0
     document_type: str = "auto"  # auto | meeting_notes | whiteboard | slide | form | report
 

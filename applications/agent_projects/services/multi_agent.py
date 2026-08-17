@@ -47,7 +47,7 @@ class AgentTrace:
 @dataclass
 class MultiAgentConfig:
     """Tunable parameters for the Multi-Agent Supervisor."""
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     temperature: float = 0.0
     max_rounds: int = 6   # max supervisor → specialist → supervisor cycles
     system_prompt: str = (

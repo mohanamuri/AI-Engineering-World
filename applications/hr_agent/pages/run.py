@@ -77,7 +77,7 @@ def _render_result(result: AgentRunResult) -> None:
         st.markdown(result.final_answer)
 
     with tab_steps:
-        st.caption(f"3 tools executed · {len(result.steps)} steps · Model: compound-beta-mini")
+        st.caption(f"3 tools executed · {len(result.steps)} steps · Model: openai/gpt-oss-20b")
         for i, step in enumerate(result.steps, 1):
             with st.expander(f"Step {i} — `{step.tool_name}`"):
                 st.markdown("**Input:**")

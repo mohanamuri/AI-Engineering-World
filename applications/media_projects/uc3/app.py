@@ -73,7 +73,7 @@ def run() -> None:
             st.table({
                 "Component": ["Vision model", "Framework", "Output"],
                 "Technology": [
-                    "compound-beta-mini",
+                    "openai/gpt-oss-20b",
                     "LangChain + Groq",
                     "Structured JSON + interactive Q&A",
                 ],

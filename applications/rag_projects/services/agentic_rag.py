@@ -44,7 +44,7 @@ class TraceStep:
 @dataclass
 class AgentRAGConfig:
     """Tunable parameters for Agentic RAG."""
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     top_k: int = 4
     temperature: float = 0.0
     max_iterations: int = 3

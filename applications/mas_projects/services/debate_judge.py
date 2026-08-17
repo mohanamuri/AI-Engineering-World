@@ -34,7 +34,7 @@ class DebateRound:
 
 @dataclass
 class DebateConfig:
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     temperature: float = 0.3
     num_rounds: int = 2
     proponent_persona: str = "You are arguing strongly in FAVOUR of the proposition."

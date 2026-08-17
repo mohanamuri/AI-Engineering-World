@@ -47,7 +47,7 @@ class TraceStep:
 @dataclass
 class ReactConfig:
     """Tunable parameters for the ReAct agent."""
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     temperature: float = 0.0
     max_iterations: int = 6
     enabled_tools: list[str] = field(default_factory=lambda: ["calculator", "wikipedia"])

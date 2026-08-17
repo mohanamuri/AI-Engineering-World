@@ -8,7 +8,7 @@ lists going stale when Groq decommissions models.
 Usage:
     from applications.shared.groq_models import get_available_chat_models, DEFAULT_MODEL
 
-    models = get_available_chat_models()   # ["compound-beta-mini", "compound-beta-mini", ...]
+    models = get_available_chat_models()   # ["openai/gpt-oss-20b", "openai/gpt-oss-20b", ...]
 """
 
 from __future__ import annotations
@@ -19,11 +19,10 @@ import os
 # Known fallback list (in priority order) — used if API call fails
 # ---------------------------------------------------------------------------
 _FALLBACK_MODELS = [
-    "compound-beta-mini",
-    "compound-beta",
-    "moonshotai/kimi-k2-instruct",
     "openai/gpt-oss-20b",
     "openai/gpt-oss-120b",
+    "compound-beta",
+    "moonshotai/kimi-k2-instruct",
 ]
 
 # Models to exclude from the dropdown (audio, guard, embeddings, etc.)

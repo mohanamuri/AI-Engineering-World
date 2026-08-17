@@ -28,7 +28,7 @@ from langchain_groq import ChatGroq
 @dataclass
 class RAGConfig:
     """Tunable RAG parameters."""
-    llm_model: str = "compound-beta-mini"
+    llm_model: str = "openai/gpt-oss-20b"
     top_k: int = 4
     temperature: float = 0.0
 

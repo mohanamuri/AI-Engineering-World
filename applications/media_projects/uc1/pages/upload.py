@@ -15,9 +15,9 @@ from applications.media_projects.uc1.constants import (
 _SAMPLE_PATH = Path(__file__).resolve().parents[4] / "data" / "media_docs" / "sample_meeting.wav"
 
 _LLM_MODELS = [
-    "compound-beta-mini",
-    "compound-beta-mini",
-    "compound-beta-mini",
+    "openai/gpt-oss-20b",
+    "openai/gpt-oss-20b",
+    "openai/gpt-oss-20b",
 ]
 
 

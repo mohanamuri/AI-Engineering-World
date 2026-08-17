@@ -16,7 +16,7 @@ from groq import Groq
 from sentence_transformers import SentenceTransformer
 
 _EMBED_MODEL: SentenceTransformer | None = None
-_DEFAULT_LLM = "compound-beta-mini"
+_DEFAULT_LLM = "openai/gpt-oss-20b"
 DEFAULT_THRESHOLD = 0.85
 
 
