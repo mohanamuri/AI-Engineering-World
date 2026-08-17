@@ -406,7 +406,7 @@ def _tier_guide() -> None:
             "- **Problem:** A 70B model is 5–10× more expensive than an 8B model. Most queries don't need it.\n"
             "- **Solution:** A lightweight classifier (one 8B call, max 5 tokens) labels each query SIMPLE or COMPLEX. Simple → 8B; Complex → 70B.\n"
             "- **Shows:** Routing decision trace, latency difference per model, estimated cost difference.\n"
-            "- **Stack:** Groq llama-3.1-8b-instant (classifier + simple model) · llama-3.3-70b-versatile (complex model)",
+            "- **Stack:** Groq llama-3.1-8b-instant (classifier + simple model) · llama-3.1-70b-versatile (complex model)",
         ),
         (
             "UC3 — Memory Patterns",
@@ -421,7 +421,7 @@ def _tier_guide() -> None:
             "- **Streaming:** Tokens appear as they are generated → perceived latency drops 70–90 %. Total time is the same; the user just sees output immediately.\n"
             "- **Fallback:** Primary model fails or rate-limits → retry with exponential backoff → automatically switch to backup model.\n"
             "- **Shows:** Streaming vs blocking side-by-side, fallback trigger demo with force-fail flag.\n"
-            "- **Stack:** Groq `stream=True` · `st.write_stream()` · retry backoff · llama-3.3-70b-versatile as fallback",
+            "- **Stack:** Groq `stream=True` · `st.write_stream()` · retry backoff · llama-3.1-70b-versatile as fallback",
         ),
     ]
 

@@ -28,7 +28,7 @@ def render() -> None:
 
     with st.expander("⚙️ Model settings", expanded=False):
         col1, col2 = st.columns(2)
-        model = col1.selectbox("Model", ["llama-3.1-8b-instant", "llama-3.3-70b-versatile"], index=0, key="uc2_model")
+        model = col1.selectbox("Model", ["llama-3.1-8b-instant", "llama-3.1-70b-versatile"], index=0, key="uc2_model")
         temperature = col2.slider("Temperature", 0.0, 1.0, 0.3, 0.1, key="uc2_temp",
                                    help="Lower temperature = more deterministic reasoning")
         config = PromptConfig(model=model, temperature=temperature)

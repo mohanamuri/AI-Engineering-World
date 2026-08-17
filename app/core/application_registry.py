@@ -22,6 +22,9 @@ from applications.rag_projects.uc1.app import run as rag_uc1
 from applications.rag_projects.uc2.app import run as rag_uc2
 from applications.rag_projects.uc3.app import run as rag_uc3
 from applications.rag_projects.uc4.app import run as rag_uc4
+from applications.rag_projects.uc5.app import run as rag_uc5
+from applications.rag_projects.uc6.app import run as rag_uc6
+from applications.rag_projects.uc7.app import run as rag_uc7
 
 from applications.agent_projects.uc1.app import run as agent_uc1
 from applications.agent_projects.uc2.app import run as agent_uc2
@@ -65,6 +68,9 @@ APPLICATION_RUNNERS = {
     "rag_uc2": rag_uc2,
     "rag_uc3": rag_uc3,
     "rag_uc4": rag_uc4,
+    "rag_uc5": rag_uc5,
+    "rag_uc6": rag_uc6,
+    "rag_uc7": rag_uc7,
     "agent_uc1": agent_uc1,
     "agent_uc2": agent_uc2,
     "agent_uc3": agent_uc3,

@@ -71,7 +71,7 @@ def render() -> None:
          "Ask for ONE word: `SIMPLE` or `COMPLEX`. This costs ~50 tokens and ~50 ms."),
         ("2️⃣ Route decision",
          "- `SIMPLE` → `llama-3.1-8b-instant` (fast, cheap)\n"
-         "- `COMPLEX` → `llama-3.3-70b-versatile` (slower, high quality)"),
+         "- `COMPLEX` → `llama-3.1-70b-versatile` (slower, high quality)"),
         ("3️⃣ Run the selected model",
          "Send the original query to the chosen model. User gets the answer; "
          "metadata (complexity, model chosen, latencies) is logged for monitoring."),

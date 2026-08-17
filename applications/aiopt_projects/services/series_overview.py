@@ -69,7 +69,7 @@ def render_series_overview(current_uc: int) -> None:
         st.markdown(
             "- A lightweight classifier (one 8B call, max 5 tokens) reads the query and scores its complexity\n"
             "- Simple query → `llama-3.1-8b-instant` (fast, cheap)\n"
-            "- Complex query → `llama-3.3-70b-versatile` (slower, higher quality)\n"
+            "- Complex query → `llama-3.1-70b-versatile` (slower, higher quality)\n"
             "- Demonstrates: routing decision trace, latency difference, estimated cost difference"
         )
 

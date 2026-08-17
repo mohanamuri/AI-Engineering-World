@@ -40,7 +40,7 @@ def run() -> None:
                     <div>
                         <span class="aiew-tech-pill">Groq</span>
                         <span class="aiew-tech-pill">llama-3.1-8b-instant</span>
-                        <span class="aiew-tech-pill">llama-3.3-70b-versatile</span>
+                        <span class="aiew-tech-pill">llama-3.1-70b-versatile</span>
                         <span class="aiew-tech-pill">Complexity Classifier</span>
                         <span class="aiew-tech-pill">Cost Optimisation</span>
                     </div>

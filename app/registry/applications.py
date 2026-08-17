@@ -253,9 +253,9 @@ PROJECTS = [
         "icon": "📚",
         "category": "Retrieval · LLM · Vector Search",
         "description": (
-            "Retrieval-Augmented Generation — four progressively advanced use cases. "
-            "From querying multiple documents simultaneously to self-evaluating answers, "
-            "each use case adds one new RAG capability."
+            "Retrieval-Augmented Generation — seven progressively advanced use cases. "
+            "From querying multiple documents to knowledge graphs, corrective retrieval, "
+            "and modular pipelines — each use case adds one new RAG capability."
         ),
         "apps": [
             {
@@ -328,7 +328,61 @@ PROJECTS = [
                     "Low scores trigger a rewrite loop."
                 ),
                 "what": "After generating each answer the model scored it on groundedness, relevance, and completeness. Scores below threshold triggered a query reformulation and re-retrieval cycle.",
-                "why_next": "Self-RAG is the culmination of the RAG progression: richer corpus (multi-doc) → smarter retrieval (hybrid) → autonomous retrieval (agentic) → self-evaluated generation.",
+                "why_next": "Self-RAG evaluates generation quality but retrieval is still similarity-based. GraphRAG changes the retrieval method entirely — using a knowledge graph to follow entity relationships.",
+            },
+            {
+                "id": "rag_uc5",
+                "capability": "GraphRAG",
+                "tier": 5,
+                "tier_label": "UC",
+                "icon": "RAG",
+                "status": "live",
+                "difficulty": "Expert",
+                "version": "1.0.0",
+                "stack": ["LangChain", "ChromaDB", "Groq", "Knowledge Graph", "BFS"],
+                "description": (
+                    "LLM extracts entities and relationships from your documents to build "
+                    "a Knowledge Graph. Answers are found by traversing the graph — "
+                    "discovering connected information that simple similarity search misses."
+                ),
+                "what": "LLM extracted entity-relation triples from each chunk to build a knowledge graph. Queries were resolved by matching entities then expanding via BFS traversal — finding indirectly related chunks.",
+                "why_next": "GraphRAG changes how retrieval works. Corrective RAG (CRAG) adds a different innovation — validating whether retrieved chunks are actually relevant before generating, with external fallback.",
+            },
+            {
+                "id": "rag_uc6",
+                "capability": "Corrective RAG (CRAG)",
+                "tier": 6,
+                "tier_label": "UC",
+                "icon": "RAG",
+                "status": "live",
+                "difficulty": "Expert",
+                "version": "1.0.0",
+                "stack": ["LangChain", "ChromaDB", "Groq", "Wikipedia API", "Relevance Grading"],
+                "description": (
+                    "Every retrieved chunk is graded CORRECT, AMBIGUOUS, or INCORRECT. "
+                    "If local documents are insufficient, CRAG automatically fetches "
+                    "supplementary information from Wikipedia — no API key required."
+                ),
+                "what": "LLM graded each retrieved chunk as CORRECT/AMBIGUOUS/INCORRECT. Based on grades, the system decided to use local docs only, Wikipedia only, or both — making RAG reliable even when docs don't cover the question.",
+                "why_next": "CRAG adds correction to retrieval. Modular RAG goes further — making the entire pipeline configurable so you can combine Dense, Sparse, and Reranker modules in any combination.",
+            },
+            {
+                "id": "rag_uc7",
+                "capability": "Modular RAG",
+                "tier": 7,
+                "tier_label": "UC",
+                "icon": "RAG",
+                "status": "live",
+                "difficulty": "Expert",
+                "version": "1.0.0",
+                "stack": ["LangChain", "ChromaDB", "BM25", "Groq Reranker", "RRF Fusion"],
+                "description": (
+                    "Three independent retrieval modules — Dense (ChromaDB), Sparse (BM25), "
+                    "and Reranker (LLM) — that you can toggle on/off. Results are fused "
+                    "with Reciprocal Rank Fusion. See exactly what each module contributes."
+                ),
+                "what": "Toggled Dense, Sparse (BM25), and LLM Reranker modules independently. RRF fusion merged their ranked lists. Each chunk in the answer shows which modules contributed to its ranking.",
+                "why_next": "This is the final tier. Modular RAG completes the progression: retrieval (UC1) → hybrid (UC2) → agentic (UC3) → self-evaluated (UC4) → graph-based (UC5) → corrective (UC6) → fully modular (UC7).",
             },
         ],
     },
@@ -641,7 +695,7 @@ PROJECTS = [
                 "status": "live",
                 "difficulty": "Intermediate",
                 "version": "1.0.0",
-                "stack": ["Groq", "llama-3.1-8b-instant", "llama-3.3-70b-versatile", "Streamlit"],
+                "stack": ["Groq", "llama-3.1-8b-instant", "llama-3.1-70b-versatile", "Streamlit"],
                 "description": (
                     "A lightweight classifier reads each query and decides whether to use "
                     "the fast 8B model or the powerful 70B model. "
