@@ -88,7 +88,7 @@ def run() -> None:
                     "Groundedness · Relevance · Completeness",
                     "Rewrite query + re-retrieve + regenerate on low scores",
                     "all-MiniLM-L6-v2 (local, free)",
-                    "Groq mixtral-8x7b-32768",
+                    "Groq llama-3.3-70b-versatile",
                 ],
             })
 

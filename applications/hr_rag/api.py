@@ -33,7 +33,7 @@ class ConfigureRequest(BaseModel):
     chunk_overlap: int = 64
     top_k: int = 4
     temperature: float = 0.0
-    llm_model: str = "mixtral-8x7b-32768"
+    llm_model: str = "llama-3.3-70b-versatile"
 
 class ConfigureResponse(BaseModel):
     chunks_indexed: int

@@ -34,7 +34,7 @@ from applications.rag_projects.services.hybrid_retriever import (
 @dataclass
 class HybridRAGConfig:
     """Tunable parameters for Hybrid Search RAG."""
-    llm_model: str = "mixtral-8x7b-32768"
+    llm_model: str = "llama-3.3-70b-versatile"
     top_k: int = 4            # number of final fused chunks to pass to LLM
     rrf_k: int = 60           # RRF damping constant (paper default)
     temperature: float = 0.0

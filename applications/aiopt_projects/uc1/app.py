@@ -44,7 +44,7 @@ def run() -> None:
                         <span class="aiew-tech-pill">sentence-transformers</span>
                         <span class="aiew-tech-pill">Cosine Similarity</span>
                         <span class="aiew-tech-pill">Vector Cache</span>
-                        <span class="aiew-tech-pill">mixtral-8x7b-32768</span>
+                        <span class="aiew-tech-pill">llama-3.3-70b-versatile</span>
                     </div>
                 </div>
             </div>

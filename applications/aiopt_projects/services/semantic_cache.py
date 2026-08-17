@@ -16,7 +16,7 @@ from groq import Groq
 from sentence_transformers import SentenceTransformer
 
 _EMBED_MODEL: SentenceTransformer | None = None
-_DEFAULT_LLM = "mixtral-8x7b-32768"
+_DEFAULT_LLM = "llama-3.3-70b-versatile"
 DEFAULT_THRESHOLD = 0.85
 
 

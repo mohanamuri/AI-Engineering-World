@@ -91,7 +91,7 @@ def run() -> None:
                     "Loop over plan steps; auto-picks tool per step",
                     "Groq LLM — combines step results",
                     "Calculator (ast-safe) · Wikipedia REST API",
-                    "Groq mixtral-8x7b-32768",
+                    "Groq llama-3.3-70b-versatile",
                 ],
             })
 

@@ -39,7 +39,7 @@ from langchain_groq import ChatGroq
 @dataclass
 class GraphRAGConfig:
     """Tunable parameters for GraphRAG."""
-    llm_model: str = "mixtral-8x7b-32768"
+    llm_model: str = "llama-3.3-70b-versatile"
     top_k: int = 5
     temperature: float = 0.0
     max_hops: int = 2

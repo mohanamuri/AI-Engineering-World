@@ -68,8 +68,8 @@ def render_series_overview(current_uc: int) -> None:
     with st.expander("UC2 — Model Routing"):
         st.markdown(
             "- A lightweight classifier (one 8B call, max 5 tokens) reads the query and scores its complexity\n"
-            "- Simple query → `mixtral-8x7b-32768` (fast, cheap)\n"
-            "- Complex query → `mixtral-8x7b-32768` (slower, higher quality)\n"
+            "- Simple query → `llama-3.3-70b-versatile` (fast, cheap)\n"
+            "- Complex query → `llama-3.3-70b-versatile` (slower, higher quality)\n"
             "- Demonstrates: routing decision trace, latency difference, estimated cost difference"
         )
 

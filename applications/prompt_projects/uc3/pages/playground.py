@@ -32,7 +32,7 @@ def render() -> None:
 
     with st.expander("⚙️ Model settings", expanded=False):
         col1, col2 = st.columns(2)
-        model = col1.selectbox("Model", ["mixtral-8x7b-32768", "mixtral-8x7b-32768"], index=0, key="uc3_model")
+        model = col1.selectbox("Model", ["llama-3.3-70b-versatile", "gemma2-9b-it", "qwen/qwen3-32b"], index=0, key="uc3_model")
         temperature = col2.slider("Temperature", 0.0, 1.0, 0.1, 0.1, key="uc3_temp",
                                    help="Low temperature = more consistent JSON output")
         config = PromptConfig(model=model, temperature=temperature)

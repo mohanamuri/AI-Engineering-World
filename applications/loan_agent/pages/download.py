@@ -95,7 +95,7 @@ def validate_application(application_json: str) -> str:
     ...  # see agent_tools.py
 
 # 2. Build the agent
-llm = ChatGroq(model="mixtral-8x7b-32768", temperature=0.0)
+llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.0)
 agent = create_react_agent(llm, [validate_application, ...], prompt=SYSTEM_PROMPT)
 
 # 3. Run

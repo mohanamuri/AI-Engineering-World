@@ -51,7 +51,7 @@ def render() -> None:
             min_value=0.0, max_value=1.0, value=existing.temperature, step=0.05,
         )
         st.markdown("#### Model")
-        _models = ["mixtral-8x7b-32768", "mixtral-8x7b-32768", "mixtral-8x7b-32768"]
+        _models = ["llama-3.3-70b-versatile", "gemma2-9b-it", "qwen/qwen3-32b"]
         model = st.selectbox(
             "Groq LLM",
             _models,

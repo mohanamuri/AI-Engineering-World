@@ -86,7 +86,7 @@ def run() -> None:
                     "Groq LLM extracts (entity, relation, entity) triples",
                     "BFS up to max_hops",
                     "Entity → chunk index mapping",
-                    "Groq mixtral-8x7b-32768",
+                    "Groq llama-3.3-70b-versatile",
                 ],
             })
 

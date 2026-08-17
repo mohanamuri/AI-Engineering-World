@@ -16,7 +16,7 @@ from datetime import datetime
 
 from groq import Groq
 
-_DEFAULT_MODEL = "mixtral-8x7b-32768"
+_DEFAULT_MODEL = "llama-3.3-70b-versatile"
 
 
 @dataclass

@@ -75,7 +75,7 @@ def run() -> None:
             st.table({
                 "Component": ["Vision model", "Output", "Export formats"],
                 "Technology": [
-                    "mixtral-8x7b-32768",
+                    "llama-3.3-70b-versatile",
                     "Structured JSON (type, title, sections, metadata)",
                     "JSON + plain text download",
                 ],

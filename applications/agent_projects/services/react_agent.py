@@ -47,7 +47,7 @@ class TraceStep:
 @dataclass
 class ReactConfig:
     """Tunable parameters for the ReAct agent."""
-    llm_model: str = "mixtral-8x7b-32768"
+    llm_model: str = "llama-3.3-70b-versatile"
     temperature: float = 0.0
     max_iterations: int = 6
     enabled_tools: list[str] = field(default_factory=lambda: ["calculator", "wikipedia"])

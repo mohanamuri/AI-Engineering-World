@@ -56,7 +56,7 @@ class DraftRecord:
 @dataclass
 class ReflectionConfig:
     """Tunable parameters for the Reflection agent."""
-    llm_model: str = "mixtral-8x7b-32768"
+    llm_model: str = "llama-3.3-70b-versatile"
     temperature: float = 0.3
     max_revisions: int = 3
     quality_threshold: int = 4    # 1–5; all dimensions must reach this to pass

@@ -39,7 +39,7 @@ class ParallelTrace:
 
 @dataclass
 class ParallelAgentsConfig:
-    llm_model: str = "mixtral-8x7b-32768"
+    llm_model: str = "llama-3.3-70b-versatile"
     temperature: float = 0.2
     system_prompt: str = (
         "You are an expert synthesiser combining multiple independent expert "

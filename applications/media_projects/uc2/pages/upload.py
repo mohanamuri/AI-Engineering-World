@@ -15,8 +15,8 @@ from applications.media_projects.uc2.constants import (
 _SAMPLE_PATH = Path(__file__).resolve().parents[4] / "data" / "media_docs" / "sample_meeting.mp4"
 
 _LLM_MODELS = [
-    "mixtral-8x7b-32768",
-    "mixtral-8x7b-32768",
+    "llama-3.3-70b-versatile",
+    "llama-3.3-70b-versatile",
     "gemma2-9b-it",
 ]
 
