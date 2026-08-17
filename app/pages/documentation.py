@@ -234,7 +234,7 @@ def _tier_guide() -> None:
 
     st.divider()
     st.subheader("RAG Patterns — Coverage Map")
-    st.write("The RAG Projects section covers four progressively advanced retrieval patterns. Three additional patterns are identified for future use cases.")
+    st.write("The RAG Projects section covers seven progressively advanced retrieval patterns.")
     st.table({
         "Type": [
             "Multi-Document RAG",
@@ -259,9 +259,9 @@ def _tier_guide() -> None:
             "✅ UC2 — live",
             "✅ UC3 — live",
             "✅ UC4 — live",
-            "❌ Not built — planned UC5 (NetworkX-based, no paid API)",
-            "❌ Not built — planned UC6 (DuckDuckGo fallback)",
-            "❌ Not built — planned UC7",
+            "✅ UC5 — live",
+            "✅ UC6 — live",
+            "✅ UC7 — live",
         ],
     })
 
