@@ -44,7 +44,7 @@ class TraceStep:
 @dataclass
 class AgentRAGConfig:
     """Tunable parameters for Agentic RAG."""
-    llm_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
+    llm_model: str = "mixtral-8x7b-32768"
     top_k: int = 4
     temperature: float = 0.0
     max_iterations: int = 3

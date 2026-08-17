@@ -47,7 +47,7 @@ class AgentTrace:
 @dataclass
 class MultiAgentConfig:
     """Tunable parameters for the Multi-Agent Supervisor."""
-    llm_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
+    llm_model: str = "mixtral-8x7b-32768"
     temperature: float = 0.0
     max_rounds: int = 6   # max supervisor → specialist → supervisor cycles
     system_prompt: str = (

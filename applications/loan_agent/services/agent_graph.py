@@ -81,7 +81,7 @@ class AgentRunResult:
 @dataclass
 class AgentConfig:
     """Tunable agent parameters."""
-    llm_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
+    llm_model: str = "mixtral-8x7b-32768"
     temperature: float = 0.0
 
 

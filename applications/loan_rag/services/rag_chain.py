@@ -58,7 +58,7 @@ def _get_groq_api_key() -> str:
 @dataclass
 class RAGConfig:
     """Tunable parameters for the RAG pipeline."""
-    llm_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
+    llm_model: str = "mixtral-8x7b-32768"
     embedding_model: str = "all-MiniLM-L6-v2"
     chunk_size: int = 512
     chunk_overlap: int = 64

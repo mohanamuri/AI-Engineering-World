@@ -85,7 +85,7 @@ def run() -> None:
                     "BM25 (rank-bm25 library)",
                     "Reciprocal Rank Fusion (RRF, k=60)",
                     "all-MiniLM-L6-v2 (local, free)",
-                    "Groq meta-llama/llama-4-scout-17b-16e-instruct",
+                    "Groq mixtral-8x7b-32768",
                     "ChromaDB EphemeralClient (in-memory)",
                 ],
             })

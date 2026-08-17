@@ -41,7 +41,7 @@ class PipelineTrace:
 
 @dataclass
 class SupervisorPipelineConfig:
-    llm_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
+    llm_model: str = "mixtral-8x7b-32768"
     temperature: float = 0.0
     system_prompt: str = (
         "You are a senior analyst coordinating a research pipeline. "

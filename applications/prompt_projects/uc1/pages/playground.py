@@ -34,7 +34,7 @@ def render() -> None:
     # ── Config ────────────────────────────────────────────────────────────────
     with st.expander("⚙️ Model settings", expanded=False):
         col1, col2 = st.columns(2)
-        model = col1.selectbox("Model", ["meta-llama/llama-4-scout-17b-16e-instruct", "meta-llama/llama-4-maverick-17b-128e-instruct"], index=0)
+        model = col1.selectbox("Model", ["mixtral-8x7b-32768", "mixtral-8x7b-32768"], index=0)
         temperature = col2.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
         config = PromptConfig(model=model, temperature=temperature)
         st.session_state[CONFIG_SESSION_KEY] = config

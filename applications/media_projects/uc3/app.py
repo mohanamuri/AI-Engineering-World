@@ -73,7 +73,7 @@ def run() -> None:
             st.table({
                 "Component": ["Vision model", "Framework", "Output"],
                 "Technology": [
-                    "meta-llama/llama-4-scout-17b-16e-instruct",
+                    "mixtral-8x7b-32768",
                     "LangChain + Groq",
                     "Structured JSON + interactive Q&A",
                 ],

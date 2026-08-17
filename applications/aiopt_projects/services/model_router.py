@@ -2,8 +2,8 @@
 Model Routing Service
 
 A lightweight classifier reads the query and decides which model to use:
-  - Simple queries  → meta-llama/llama-4-scout-17b-16e-instruct  (fast, low cost)
-  - Complex queries → meta-llama/llama-4-maverick-17b-128e-instruct (slower, higher quality)
+  - Simple queries  → mixtral-8x7b-32768  (fast, low cost)
+  - Complex queries → mixtral-8x7b-32768 (slower, higher quality)
 
 Pattern used in production to control cost without sacrificing quality.
 """
@@ -14,8 +14,8 @@ from datetime import datetime
 
 from groq import Groq
 
-SMALL_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
-LARGE_MODEL = "meta-llama/llama-4-maverick-17b-128e-instruct"
+SMALL_MODEL = "mixtral-8x7b-32768"
+LARGE_MODEL = "mixtral-8x7b-32768"
 
 _ROUTER_PROMPT = """You are a query complexity classifier.
 

@@ -70,8 +70,8 @@ def render() -> None:
          "Send the query to the small model with a complexity-classification prompt. "
          "Ask for ONE word: `SIMPLE` or `COMPLEX`. This costs ~50 tokens and ~50 ms."),
         ("2️⃣ Route decision",
-         "- `SIMPLE` → `meta-llama/llama-4-scout-17b-16e-instruct` (fast, cheap)\n"
-         "- `COMPLEX` → `meta-llama/llama-4-maverick-17b-128e-instruct` (slower, high quality)"),
+         "- `SIMPLE` → `mixtral-8x7b-32768` (fast, cheap)\n"
+         "- `COMPLEX` → `mixtral-8x7b-32768` (slower, high quality)"),
         ("3️⃣ Run the selected model",
          "Send the original query to the chosen model. User gets the answer; "
          "metadata (complexity, model chosen, latencies) is logged for monitoring."),

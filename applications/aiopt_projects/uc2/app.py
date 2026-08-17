@@ -39,8 +39,8 @@ def run() -> None:
                     <div class="aiew-tb-flow">📖 Concept → 🧪 Playground → ⚖️ Compare → 💡 Insights</div>
                     <div>
                         <span class="aiew-tech-pill">Groq</span>
-                        <span class="aiew-tech-pill">meta-llama/llama-4-scout-17b-16e-instruct</span>
-                        <span class="aiew-tech-pill">meta-llama/llama-4-maverick-17b-128e-instruct</span>
+                        <span class="aiew-tech-pill">mixtral-8x7b-32768</span>
+                        <span class="aiew-tech-pill">mixtral-8x7b-32768</span>
                         <span class="aiew-tech-pill">Complexity Classifier</span>
                         <span class="aiew-tech-pill">Cost Optimisation</span>
                     </div>

@@ -3,7 +3,7 @@ Image Intelligence — Media UC3.
 
 Pipeline:
   Upload image (.jpg/.png)
-  → Groq Vision (meta-llama/llama-4-scout-17b-16e-instruct)
+  → Groq Vision (mixtral-8x7b-32768)
   → Describe scene, extract embedded text, detect objects
   → Interactive Q&A about the image
 """
@@ -59,7 +59,7 @@ def _build_image_message(prompt: str, image_bytes: bytes, filename: str) -> Huma
 
 @dataclass
 class ImageConfig:
-    vision_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
+    vision_model: str = "mixtral-8x7b-32768"
     temperature: float = 0.2
 
 

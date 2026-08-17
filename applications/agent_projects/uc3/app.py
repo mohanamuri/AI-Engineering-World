@@ -93,7 +93,7 @@ def run() -> None:
                     "Groq LLM — scores 3 dimensions 1–5",
                     "All scores ≥ threshold OR max revisions reached",
                     "Clarity · Accuracy · Completeness",
-                    "Groq meta-llama/llama-4-scout-17b-16e-instruct",
+                    "Groq mixtral-8x7b-32768",
                 ],
             })
 
