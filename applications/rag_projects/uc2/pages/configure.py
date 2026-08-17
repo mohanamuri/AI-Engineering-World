@@ -65,8 +65,8 @@ def render() -> None:
 
     st.markdown("#### Model")
     if "_groq_models_cache" not in st.session_state:
-            st.session_state["_groq_models_cache"] = get_available_chat_models()
-        _models = st.session_state["_groq_models_cache"]
+        st.session_state["_groq_models_cache"] = get_available_chat_models()
+    _models = st.session_state["_groq_models_cache"]
     model = st.selectbox(
         "Groq LLM",
         _models,
