@@ -13,8 +13,8 @@ from applications.agent_projects.uc1.constants import (
 )
 
 _MODELS = [
-    "gemma2-9b-it",
     "qwen/qwen3-32b",
+    "openai/gpt-oss-20b",
     "qwen/qwen3-32b",
 ]
 

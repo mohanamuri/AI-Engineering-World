@@ -28,7 +28,7 @@ def render() -> None:
 
     with st.expander("⚙️ Model settings", expanded=False):
         col1, col2 = st.columns(2)
-        model = col1.selectbox("Model", ["gemma2-9b-it", "qwen/qwen3-32b", "moonshotai/kimi-k2-instruct"], index=0, key="uc4_model")
+        model = col1.selectbox("Model", ["qwen/qwen3-32b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct"], index=0, key="uc4_model")
         temperature = col2.slider("Temperature", 0.0, 1.0, 0.7, 0.1, key="uc4_temp")
         config = PromptConfig(model=model, temperature=temperature)
         st.session_state[CONFIG_SESSION_KEY] = config

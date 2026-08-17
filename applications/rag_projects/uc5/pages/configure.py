@@ -52,7 +52,7 @@ def render() -> None:
             help="0 = deterministic. Higher = more varied responses.",
         )
         st.markdown("#### Model")
-        _models = ["gemma2-9b-it", "qwen/qwen3-32b", "moonshotai/kimi-k2-instruct"]
+        _models = ["qwen/qwen3-32b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct"]
         model = st.selectbox(
             "Groq LLM",
             _models,

@@ -30,7 +30,7 @@ class SpecialistReportOut(BaseModel):
 
 class PanelRequest(BaseModel):
     employee: dict[str, Any]
-    llm_model: str = "gemma2-9b-it"
+    llm_model: str = "qwen/qwen3-32b"
     temperature: float = 0.0
 
 class PanelResponse(BaseModel):

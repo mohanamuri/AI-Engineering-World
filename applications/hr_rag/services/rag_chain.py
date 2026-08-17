@@ -3,7 +3,7 @@
 The pipeline:
   1. Retrieve top-k relevant chunks from ChromaDB.
   2. Build context block.
-  3. Send prompt to Groq LLM (gemma2-9b-it).
+  3. Send prompt to Groq LLM (qwen/qwen3-32b).
   4. Return answer + source chunks.
 """
 
@@ -29,7 +29,7 @@ def _get_groq_api_key() -> str:
 
 @dataclass
 class RAGConfig:
-    llm_model: str = "gemma2-9b-it"
+    llm_model: str = "qwen/qwen3-32b"
     embedding_model: str = "all-MiniLM-L6-v2"
     chunk_size: int = 512
     chunk_overlap: int = 64

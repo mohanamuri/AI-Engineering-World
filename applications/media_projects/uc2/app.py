@@ -74,7 +74,7 @@ def run() -> None:
                 "Technology": [
                     "ffmpeg (system, 16 kHz mono)",
                     "Groq Whisper (whisper-large-v3)",
-                    "Groq LLaMA (gemma2-9b-it)",
+                    "Groq LLaMA (qwen/qwen3-32b)",
                 ],
             })
 

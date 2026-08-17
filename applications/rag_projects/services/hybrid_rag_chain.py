@@ -34,7 +34,7 @@ from applications.rag_projects.services.hybrid_retriever import (
 @dataclass
 class HybridRAGConfig:
     """Tunable parameters for Hybrid Search RAG."""
-    llm_model: str = "gemma2-9b-it"
+    llm_model: str = "qwen/qwen3-32b"
     top_k: int = 4            # number of final fused chunks to pass to LLM
     rrf_k: int = 60           # RRF damping constant (paper default)
     temperature: float = 0.0

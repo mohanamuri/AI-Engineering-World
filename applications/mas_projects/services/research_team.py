@@ -40,7 +40,7 @@ class ResearchTrace:
 
 @dataclass
 class ResearchTeamConfig:
-    llm_model: str = "gemma2-9b-it"
+    llm_model: str = "qwen/qwen3-32b"
     temperature: float = 0.0
     max_questions: int = 3
     system_prompt: str = (

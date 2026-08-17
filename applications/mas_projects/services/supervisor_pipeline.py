@@ -41,7 +41,7 @@ class PipelineTrace:
 
 @dataclass
 class SupervisorPipelineConfig:
-    llm_model: str = "gemma2-9b-it"
+    llm_model: str = "qwen/qwen3-32b"
     temperature: float = 0.0
     system_prompt: str = (
         "You are a senior analyst coordinating a research pipeline. "

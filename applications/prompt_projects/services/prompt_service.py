@@ -16,7 +16,7 @@ from datetime import datetime
 
 from groq import Groq
 
-_DEFAULT_MODEL = "gemma2-9b-it"
+_DEFAULT_MODEL = "qwen/qwen3-32b"
 
 
 @dataclass

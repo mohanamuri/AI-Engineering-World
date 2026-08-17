@@ -70,8 +70,8 @@ def render() -> None:
          "Send the query to the small model with a complexity-classification prompt. "
          "Ask for ONE word: `SIMPLE` or `COMPLEX`. This costs ~50 tokens and ~50 ms."),
         ("2️⃣ Route decision",
-         "- `SIMPLE` → `gemma2-9b-it` (fast, cheap)\n"
-         "- `COMPLEX` → `gemma2-9b-it` (slower, high quality)"),
+         "- `SIMPLE` → `qwen/qwen3-32b` (fast, cheap)\n"
+         "- `COMPLEX` → `qwen/qwen3-32b` (slower, high quality)"),
         ("3️⃣ Run the selected model",
          "Send the original query to the chosen model. User gets the answer; "
          "metadata (complexity, model chosen, latencies) is logged for monitoring."),

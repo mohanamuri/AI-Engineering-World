@@ -16,7 +16,7 @@ from groq import Groq
 from sentence_transformers import SentenceTransformer
 
 _EMBED_MODEL: SentenceTransformer | None = None
-_DEFAULT_LLM = "gemma2-9b-it"
+_DEFAULT_LLM = "qwen/qwen3-32b"
 DEFAULT_THRESHOLD = 0.85
 
 

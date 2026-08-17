@@ -63,7 +63,7 @@ class CritiqueRecord:
 @dataclass
 class SelfRAGConfig:
     """Tunable parameters for Self-RAG."""
-    llm_model: str = "gemma2-9b-it"
+    llm_model: str = "qwen/qwen3-32b"
     top_k: int = 4
     temperature: float = 0.0
     max_attempts: int = 3

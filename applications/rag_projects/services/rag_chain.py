@@ -28,7 +28,7 @@ from langchain_groq import ChatGroq
 @dataclass
 class RAGConfig:
     """Tunable RAG parameters."""
-    llm_model: str = "gemma2-9b-it"
+    llm_model: str = "qwen/qwen3-32b"
     top_k: int = 4
     temperature: float = 0.0
 

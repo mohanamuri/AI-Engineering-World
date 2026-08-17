@@ -14,8 +14,8 @@ from typing import Generator
 
 from groq import Groq
 
-PRIMARY_MODEL  = "gemma2-9b-it"
-FALLBACK_MODEL = "gemma2-9b-it"
+PRIMARY_MODEL  = "qwen/qwen3-32b"
+FALLBACK_MODEL = "qwen/qwen3-32b"
 MAX_RETRIES    = 2
 
 

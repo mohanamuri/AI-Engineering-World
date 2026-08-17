@@ -15,9 +15,9 @@ from applications.media_projects.uc2.constants import (
 _SAMPLE_PATH = Path(__file__).resolve().parents[4] / "data" / "media_docs" / "sample_meeting.mp4"
 
 _LLM_MODELS = [
-    "gemma2-9b-it",
-    "gemma2-9b-it",
-    "gemma2-9b-it",
+    "qwen/qwen3-32b",
+    "qwen/qwen3-32b",
+    "qwen/qwen3-32b",
 ]
 
 

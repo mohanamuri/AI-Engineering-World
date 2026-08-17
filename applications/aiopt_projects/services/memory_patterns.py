@@ -16,7 +16,7 @@ from datetime import datetime
 
 from groq import Groq
 
-_MODEL = "gemma2-9b-it"
+_MODEL = "qwen/qwen3-32b"
 BUFFER_WINDOW = 6        # last N messages to keep in buffer memory
 SUMMARY_TRIGGER = 6      # summarise when history exceeds this many messages
 
