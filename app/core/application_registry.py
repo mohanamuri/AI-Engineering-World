@@ -51,6 +51,21 @@ from applications.aiopt_projects.uc2.app import run as aiopt_uc2
 from applications.aiopt_projects.uc3.app import run as aiopt_uc3
 from applications.aiopt_projects.uc4.app import run as aiopt_uc4
 
+from applications.llm_evaluation.uc1.app import run as llmeval_uc1
+from applications.llm_evaluation.uc2.app import run as llmeval_uc2
+from applications.llm_evaluation.uc3.app import run as llmeval_uc3
+from applications.llm_evaluation.uc4.app import run as llmeval_uc4
+
+from applications.finetune_projects.uc1.app import run as finetune_uc1
+from applications.finetune_projects.uc2.app import run as finetune_uc2
+from applications.finetune_projects.uc3.app import run as finetune_uc3
+from applications.finetune_projects.uc4.app import run as finetune_uc4
+
+from applications.sysdesign_projects.uc1.app import run as sysdesign_uc1
+from applications.sysdesign_projects.uc2.app import run as sysdesign_uc2
+from applications.sysdesign_projects.uc3.app import run as sysdesign_uc3
+from applications.sysdesign_projects.uc4.app import run as sysdesign_uc4
+
 APPLICATION_RUNNERS = {
     "loan_ml": loan_ml,
     "loan_dl": loan_dl,
@@ -91,4 +106,16 @@ APPLICATION_RUNNERS = {
     "aiopt_uc2": aiopt_uc2,
     "aiopt_uc3": aiopt_uc3,
     "aiopt_uc4": aiopt_uc4,
+    "llmeval_uc1": llmeval_uc1,
+    "llmeval_uc2": llmeval_uc2,
+    "llmeval_uc3": llmeval_uc3,
+    "llmeval_uc4": llmeval_uc4,
+    "finetune_uc1": finetune_uc1,
+    "finetune_uc2": finetune_uc2,
+    "finetune_uc3": finetune_uc3,
+    "finetune_uc4": finetune_uc4,
+    "sysdesign_uc1": sysdesign_uc1,
+    "sysdesign_uc2": sysdesign_uc2,
+    "sysdesign_uc3": sysdesign_uc3,
+    "sysdesign_uc4": sysdesign_uc4,
 }

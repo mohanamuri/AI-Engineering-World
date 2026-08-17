@@ -837,6 +837,275 @@ PROJECTS = [
         ],
     },
 
+    {
+        "id": "llm_evaluation",
+        "name": "LLM Evaluation",
+        "short_name": "LLM Evaluation",
+        "section": "AI EVALUATION",
+        "icon": "🔬",
+        "category": "Evaluation · RAGAS · LLM-as-Judge · Hallucination Detection",
+        "description": (
+            "Four systematic techniques for measuring LLM and RAG quality — "
+            "from RAGAS faithfulness metrics to LLM-as-Judge pairwise scoring, "
+            "hallucination detection, and a full eval pipeline dashboard. "
+            "Each use case teaches one evaluation method with concept, playground, compare, and insights."
+        ),
+        "apps": [
+            {
+                "id": "llmeval_uc1",
+                "capability": "RAGAS Evaluation",
+                "tier": 1,
+                "tier_label": "UC",
+                "icon": "🔬",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Groq", "LLM-as-Evaluator", "RAGAS Metrics", "Faithfulness"],
+                "description": (
+                    "Measure RAG quality with four RAGAS-inspired metrics: Faithfulness, "
+                    "Answer Relevance, Context Recall, and Context Precision — "
+                    "all implemented via LLM prompts with no paid RAGAS library required."
+                ),
+                "what": "Scored a RAG response on Faithfulness (is it grounded?), Answer Relevance (does it answer?), Context Recall (right docs retrieved?), and Context Precision (no noise?).",
+                "why_next": "RAGAS measures quality on fixed criteria. LLM-as-Judge is more flexible — use a second LLM to score responses on any custom criteria you define.",
+            },
+            {
+                "id": "llmeval_uc2",
+                "capability": "LLM-as-Judge",
+                "tier": 2,
+                "tier_label": "UC",
+                "icon": "🔬",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Groq", "LLM Judge", "Criteria Scoring", "Pairwise Comparison"],
+                "description": (
+                    "Use a second LLM to score AI responses 1–10 on custom criteria: "
+                    "Accuracy, Relevance, Clarity, Completeness, and Conciseness. "
+                    "Compare two responses side-by-side to pick the winner automatically."
+                ),
+                "what": "Prompted a judge LLM to score two responses on 5 weighted criteria. Got per-criterion scores with reasoning and a weighted average to declare a winner.",
+                "why_next": "LLM-as-Judge scores outputs holistically. Hallucination Detection goes deeper — verifying individual factual claims against a source document.",
+            },
+            {
+                "id": "llmeval_uc3",
+                "capability": "Hallucination Detection",
+                "tier": 3,
+                "tier_label": "UC",
+                "icon": "🔬",
+                "status": "live",
+                "difficulty": "Advanced",
+                "version": "1.0.0",
+                "stack": ["Groq", "Claim Extraction", "NLI", "Hallucination Rate"],
+                "description": (
+                    "Detect factual hallucinations by extracting individual claims from an LLM response "
+                    "and verifying each claim against the source context. "
+                    "Each claim is labelled SUPPORTED, CONTRADICTED, or UNVERIFIABLE."
+                ),
+                "what": "Extracted 3–8 claims from an LLM response. Verified each claim against the source context. Got a hallucination rate and per-claim SUPPORTED/CONTRADICTED/UNVERIFIABLE verdicts.",
+                "why_next": "Individual evals are essential but slow. An Eval Pipeline runs a full test dataset through all metrics automatically — revealing systemic quality issues.",
+            },
+            {
+                "id": "llmeval_uc4",
+                "capability": "Eval Pipeline",
+                "tier": 4,
+                "tier_label": "UC",
+                "icon": "🔬",
+                "status": "live",
+                "difficulty": "Advanced",
+                "version": "1.0.0",
+                "stack": ["Groq", "Batch Evaluation", "Dashboard", "All Metrics"],
+                "description": (
+                    "Run a full test dataset through RAGAS metrics and hallucination detection in one pipeline. "
+                    "Results appear as an interactive dashboard showing averages, per-case scores, "
+                    "and pass/fail indicators for CI/CD integration."
+                ),
+                "what": "Defined a test dataset of Q&A pairs. The pipeline ran RAGAS + hallucination detection on all cases. A dashboard showed metric averages and flagged failing cases.",
+                "why_next": "This completes the Evaluation arc: metric design (UC1) → flexible scoring (UC2) → claim verification (UC3) → full pipeline dashboard (UC4). Together these cover production LLM quality assurance.",
+            },
+        ],
+    },
+
+    {
+        "id": "finetune_projects",
+        "name": "Fine-tuning",
+        "short_name": "Fine-tuning",
+        "section": "FINE-TUNING",
+        "icon": "🎛️",
+        "category": "Fine-tuning · LoRA · PEFT · Instruction Tuning",
+        "description": (
+            "Four fine-tuning concepts from decision framework to production deployment — "
+            "all without a GPU. "
+            "Interactive decision tools, LoRA math visualizations, PEFT code walkthroughs, "
+            "and instruction dataset format comparisons. No actual training required."
+        ),
+        "apps": [
+            {
+                "id": "finetune_uc1",
+                "capability": "Fine-tune vs RAG",
+                "tier": 1,
+                "tier_label": "UC",
+                "icon": "🎛️",
+                "status": "live",
+                "difficulty": "Beginner",
+                "version": "1.0.0",
+                "stack": ["Decision Framework", "Rule Tree", "Pure Python"],
+                "description": (
+                    "A rule-based decision engine answers the most-asked fine-tuning question: "
+                    "should I fine-tune or use RAG? "
+                    "Input your scenario — data size, task type, latency needs — and get a "
+                    "structured recommendation with pros, cons, and when to reconsider."
+                ),
+                "what": "Input scenario parameters (examples, task type, latency budget). A rule tree produced Fine-tune / RAG / Both recommendation with primary reason, pros, cons, and when to reconsider.",
+                "why_next": "The decision is made — now see how fine-tuning actually works. LoRA Architecture explains the math behind parameter-efficient training.",
+            },
+            {
+                "id": "finetune_uc2",
+                "capability": "LoRA Architecture",
+                "tier": 2,
+                "tier_label": "UC",
+                "icon": "🎛️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["LoRA", "Low-Rank", "NumPy", "Parameter Math", "Plotly"],
+                "description": (
+                    "Visualise LoRA's parameter reduction: d×d → d×r + r×d. "
+                    "Sliders for d, r, and alpha show live stats: original params, LoRA params, "
+                    "reduction factor, trainable %, and a bar chart comparing the two."
+                ),
+                "what": "Set d=768, r=8 → original 590K params → LoRA 12K params → 48× reduction. Saw the A (Gaussian init) and B (zero init) matrices and the ΔW = (α/r)×BA formula.",
+                "why_next": "LoRA is the theory. PEFT with HuggingFace is the implementation — LoraConfig, get_peft_model(), and a full training loop in runnable code.",
+            },
+            {
+                "id": "finetune_uc3",
+                "capability": "PEFT with HuggingFace",
+                "tier": 3,
+                "tier_label": "UC",
+                "icon": "🎛️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["PEFT", "HuggingFace", "LoraConfig", "Training Loop", "QLoRA"],
+                "description": (
+                    "A full LoRA fine-tuning code walkthrough — install → LoraConfig → "
+                    "get_peft_model → training loop → inference — all as formatted, "
+                    "copy-ready code blocks. Configure hyperparameters to generate customised code."
+                ),
+                "what": "Configured LoraConfig (r, alpha, target_modules). Generated a complete 5-step code pipeline: install → wrap model → training loop → save → merge_and_unload(). Saw memory estimates per config.",
+                "why_next": "PEFT handles training. Instruction Tuning focuses on data — the dataset format determines whether fine-tuning succeeds. Alpaca, ChatML, and ShareGPT formats compared.",
+            },
+            {
+                "id": "finetune_uc4",
+                "capability": "Instruction Tuning",
+                "tier": 4,
+                "tier_label": "UC",
+                "icon": "🎛️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Instruction Tuning", "Alpaca", "ChatML", "ShareGPT", "Dataset Formats"],
+                "description": (
+                    "Compare the three dominant instruction dataset formats — Alpaca, ChatML, ShareGPT — "
+                    "on the same example. See exactly how each wraps instructions, inputs, and outputs. "
+                    "Includes a dataset quality checklist and format selection guide."
+                ),
+                "what": "Formatted the same example in Alpaca (### Instruction), ChatML (<|im_start|>), and ShareGPT (human/gpt). Previewed the exact token template for each. Checked against quality criteria.",
+                "why_next": "This completes the Fine-tuning arc: decision (UC1) → math (UC2) → code (UC3) → data (UC4). Together these cover everything needed to plan and execute a fine-tuning project.",
+            },
+        ],
+    },
+
+    {
+        "id": "sysdesign_projects",
+        "name": "System Design at Scale",
+        "short_name": "System Design",
+        "section": "SYSTEM DESIGN",
+        "icon": "🏗️",
+        "category": "System Design · Latency · Throughput · Architecture · Cost",
+        "description": (
+            "Four interactive calculators for LLM system design interviews — "
+            "latency waterfall, throughput simulator, architecture pattern selector, "
+            "and cost estimator. All pure Python, no API calls, fully interactive. "
+            "Build intuition for the numbers behind production AI systems."
+        ),
+        "apps": [
+            {
+                "id": "sysdesign_uc1",
+                "capability": "Latency Budget",
+                "tier": 1,
+                "tier_label": "UC",
+                "icon": "🏗️",
+                "status": "live",
+                "difficulty": "Beginner",
+                "version": "1.0.0",
+                "stack": ["Latency", "Waterfall", "TTFT", "Streaming", "Plotly"],
+                "description": (
+                    "Break down a RAG request into 9 stages and see where the time really goes. "
+                    "LLM generation alone is 75 % of total latency. "
+                    "Streaming changes perceived latency from 1600 ms to 300 ms without changing throughput."
+                ),
+                "what": "Set latencies for all 9 stages (network, embedding, vector search, LLM TTFT, generation...). Saw a plotly waterfall chart. Identified the bottleneck. Compared with vs without streaming.",
+                "why_next": "Latency is per-request. Throughput & Scaling shows what happens when many requests arrive simultaneously — and how caching and batching multiply capacity.",
+            },
+            {
+                "id": "sysdesign_uc2",
+                "capability": "Throughput & Scaling",
+                "tier": 2,
+                "tier_label": "UC",
+                "icon": "🏗️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Throughput", "RPS", "Caching", "Batching", "Replicas", "Plotly"],
+                "description": (
+                    "Simulate RPS capacity under different scaling strategies: add replicas, "
+                    "enable semantic caching, enable request batching, or all three. "
+                    "A scaling curve chart shows how RPS grows with replica count under each strategy."
+                ),
+                "what": "Set replicas=3, cache_hit_rate=0.3, batch_size=4. Saw RPS jump from 1.9 (baseline) to 8.5 (all optimisations). Plotted the scaling curve for all 4 strategies.",
+                "why_next": "You can scale capacity — but first you need the right architecture. Architecture Patterns maps your requirements to the right infrastructure tier.",
+            },
+            {
+                "id": "sysdesign_uc3",
+                "capability": "Architecture Patterns",
+                "tier": 3,
+                "tier_label": "UC",
+                "icon": "🏗️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Architecture", "Load Balancer", "Async Queue", "CDN", "Pattern Selector"],
+                "description": (
+                    "Enter your requirements (RPS, latency budget, global users, compliance) and get "
+                    "an architecture pattern recommendation: Single Server, Load-Balanced, "
+                    "Async Queue, or Global CDN — with components, pros, cons, and cost estimate."
+                ),
+                "what": "Input RPS=50, latency=500ms, no global, no compliance → Load-Balanced pattern recommended. Saw components (nginx, 3× API replicas, Pinecone, Redis), pros/cons, and $200-800/month estimate.",
+                "why_next": "Architecture shapes the system. Cost Estimation quantifies what it actually costs — token costs, embedding, caching ROI, and total monthly projection.",
+            },
+            {
+                "id": "sysdesign_uc4",
+                "capability": "Cost Estimation",
+                "tier": 4,
+                "tier_label": "UC",
+                "icon": "🏗️",
+                "status": "live",
+                "difficulty": "Intermediate",
+                "version": "1.0.0",
+                "stack": ["Cost", "Tokens", "ROI", "Caching", "Monthly Projection", "Plotly"],
+                "description": (
+                    "Estimate monthly LLM infrastructure costs: token costs per model, "
+                    "embedding costs, vector DB, caching, hosting. "
+                    "See a pie chart breakdown and calculate caching ROI — "
+                    "how much you save by spending on a cache."
+                ),
+                "what": "Set 10K requests/month, 1K input + 500 output tokens, 30% cache. Selected GPT-4o mini ($0.15/$0.60 per 1M). Got $18/month total, $0.18/request, cache saves $5.40/month.",
+                "why_next": "This completes the System Design arc: latency (UC1) → throughput (UC2) → architecture (UC3) → cost (UC4). Together these answer every system design interview question for AI systems.",
+            },
+        ],
+    },
+
 ]
 
 
