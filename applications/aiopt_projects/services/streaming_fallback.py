@@ -14,8 +14,8 @@ from typing import Generator
 
 from groq import Groq
 
-PRIMARY_MODEL  = "qwen/qwen3-32b"
-FALLBACK_MODEL = "qwen/qwen3-32b"
+PRIMARY_MODEL  = "compound-beta-mini"
+FALLBACK_MODEL = "compound-beta-mini"
 MAX_RETRIES    = 2
 
 

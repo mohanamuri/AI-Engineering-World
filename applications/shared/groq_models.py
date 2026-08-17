@@ -8,7 +8,7 @@ lists going stale when Groq decommissions models.
 Usage:
     from applications.shared.groq_models import get_available_chat_models, DEFAULT_MODEL
 
-    models = get_available_chat_models()   # ["compound-beta-mini", "qwen/qwen3-32b", ...]
+    models = get_available_chat_models()   # ["compound-beta-mini", "compound-beta-mini", ...]
 """
 
 from __future__ import annotations
@@ -24,7 +24,6 @@ _FALLBACK_MODELS = [
     "moonshotai/kimi-k2-instruct",
     "openai/gpt-oss-20b",
     "openai/gpt-oss-120b",
-    "qwen/qwen3-32b",
 ]
 
 # Models to exclude from the dropdown (audio, guard, embeddings, etc.)

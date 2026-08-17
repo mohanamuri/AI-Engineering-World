@@ -86,7 +86,7 @@ def run() -> None:
                     "Groq LLM extracts (entity, relation, entity) triples",
                     "BFS up to max_hops",
                     "Entity → chunk index mapping",
-                    "Groq qwen/qwen3-32b",
+                    "Groq compound-beta-mini",
                 ],
             })
 

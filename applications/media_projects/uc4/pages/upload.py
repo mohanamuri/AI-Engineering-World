@@ -14,7 +14,7 @@ from applications.media_projects.uc4.constants import (
 _SAMPLE_PATH = Path(__file__).resolve().parents[4] / "data" / "media_docs" / "sample_document.png"
 
 _VISION_MODELS = [
-    "qwen/qwen3-32b",
+    "compound-beta-mini",
     "llama-3.2-11b-vision-preview",
 ]
 

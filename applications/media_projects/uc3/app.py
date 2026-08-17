@@ -73,7 +73,7 @@ def run() -> None:
             st.table({
                 "Component": ["Vision model", "Framework", "Output"],
                 "Technology": [
-                    "qwen/qwen3-32b",
+                    "compound-beta-mini",
                     "LangChain + Groq",
                     "Structured JSON + interactive Q&A",
                 ],

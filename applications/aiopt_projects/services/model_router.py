@@ -2,8 +2,8 @@
 Model Routing Service
 
 A lightweight classifier reads the query and decides which model to use:
-  - Simple queries  → qwen/qwen3-32b  (fast, low cost)
-  - Complex queries → qwen/qwen3-32b (slower, higher quality)
+  - Simple queries  → compound-beta-mini  (fast, low cost)
+  - Complex queries → compound-beta-mini (slower, higher quality)
 
 Pattern used in production to control cost without sacrificing quality.
 """
@@ -14,8 +14,8 @@ from datetime import datetime
 
 from groq import Groq
 
-SMALL_MODEL = "qwen/qwen3-32b"
-LARGE_MODEL = "qwen/qwen3-32b"
+SMALL_MODEL = "compound-beta-mini"
+LARGE_MODEL = "compound-beta-mini"
 
 _ROUTER_PROMPT = """You are a query complexity classifier.
 

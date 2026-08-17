@@ -40,7 +40,7 @@ class ResearchTrace:
 
 @dataclass
 class ResearchTeamConfig:
-    llm_model: str = "qwen/qwen3-32b"
+    llm_model: str = "compound-beta-mini"
     temperature: float = 0.0
     max_questions: int = 3
     system_prompt: str = (

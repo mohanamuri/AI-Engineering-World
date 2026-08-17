@@ -44,7 +44,7 @@ class TraceStep:
 @dataclass
 class AgentRAGConfig:
     """Tunable parameters for Agentic RAG."""
-    llm_model: str = "qwen/qwen3-32b"
+    llm_model: str = "compound-beta-mini"
     top_k: int = 4
     temperature: float = 0.0
     max_iterations: int = 3

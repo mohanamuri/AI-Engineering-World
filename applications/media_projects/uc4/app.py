@@ -75,7 +75,7 @@ def run() -> None:
             st.table({
                 "Component": ["Vision model", "Output", "Export formats"],
                 "Technology": [
-                    "qwen/qwen3-32b",
+                    "compound-beta-mini",
                     "Structured JSON (type, title, sections, metadata)",
                     "JSON + plain text download",
                 ],

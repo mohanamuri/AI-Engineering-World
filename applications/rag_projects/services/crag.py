@@ -58,7 +58,7 @@ class ChunkGrade:
 @dataclass
 class CRAGConfig:
     """Tunable parameters for CRAG."""
-    llm_model: str = "qwen/qwen3-32b"
+    llm_model: str = "compound-beta-mini"
     top_k: int = 4
     temperature: float = 0.0
     # Fraction of CORRECT chunks needed to stay local-only (0.0-1.0)

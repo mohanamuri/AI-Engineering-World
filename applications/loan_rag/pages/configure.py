@@ -62,7 +62,7 @@ def render() -> None:
             llm_model = st.text_input(
                 "LLM model (Groq)",
                 value=current_config.llm_model,
-                help="Groq-hosted model used to generate answers. E.g. qwen/qwen3-32b.",
+                help="Groq-hosted model used to generate answers. E.g. compound-beta-mini.",
             )
             top_k = st.slider(
                 "Top-k retrieval",

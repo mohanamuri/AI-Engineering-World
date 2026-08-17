@@ -39,7 +39,7 @@ class ParallelTrace:
 
 @dataclass
 class ParallelAgentsConfig:
-    llm_model: str = "qwen/qwen3-32b"
+    llm_model: str = "compound-beta-mini"
     temperature: float = 0.2
     system_prompt: str = (
         "You are an expert synthesiser combining multiple independent expert "

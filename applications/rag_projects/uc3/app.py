@@ -86,7 +86,7 @@ def run() -> None:
                     "ChromaDB similarity search",
                     "Groq LLM rewrites query on low-confidence retrieval",
                     "all-MiniLM-L6-v2 (local, free)",
-                    "Groq qwen/qwen3-32b",
+                    "Groq compound-beta-mini",
                 ],
             })
 

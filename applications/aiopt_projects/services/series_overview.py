@@ -68,8 +68,8 @@ def render_series_overview(current_uc: int) -> None:
     with st.expander("UC2 — Model Routing"):
         st.markdown(
             "- A lightweight classifier (one 8B call, max 5 tokens) reads the query and scores its complexity\n"
-            "- Simple query → `qwen/qwen3-32b` (fast, cheap)\n"
-            "- Complex query → `qwen/qwen3-32b` (slower, higher quality)\n"
+            "- Simple query → `compound-beta-mini` (fast, cheap)\n"
+            "- Complex query → `compound-beta-mini` (slower, higher quality)\n"
             "- Demonstrates: routing decision trace, latency difference, estimated cost difference"
         )
 

@@ -81,7 +81,7 @@ class AgentRunResult:
 @dataclass
 class AgentConfig:
     """Tunable agent parameters."""
-    llm_model: str = "qwen/qwen3-32b"
+    llm_model: str = "compound-beta-mini"
     temperature: float = 0.0
 
 

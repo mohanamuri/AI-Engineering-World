@@ -88,7 +88,7 @@ def run() -> None:
                     "agent_node ↔ tools_node cycle",
                     "Groq native tool-calling API",
                     "Calculator (ast-safe) · Wikipedia REST API",
-                    "Groq qwen/qwen3-32b",
+                    "Groq compound-beta-mini",
                 ],
             })
 

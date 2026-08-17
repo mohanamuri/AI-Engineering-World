@@ -39,7 +39,7 @@ def run() -> None:
                     <div class="aiew-tb-flow">📖 Concept → 🧪 Playground → ⚖️ Compare → 💡 Insights</div>
                     <div>
                         <span class="aiew-tech-pill">Groq</span>
-                        <span class="aiew-tech-pill">qwen/qwen3-32b</span>
+                        <span class="aiew-tech-pill">compound-beta-mini</span>
                         <span class="aiew-tech-pill">Chain-of-Thought</span>
                         <span class="aiew-tech-pill">Reasoning</span>
                         <span class="aiew-tech-pill">Step-by-step</span>

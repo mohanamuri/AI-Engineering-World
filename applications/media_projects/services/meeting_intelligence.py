@@ -36,7 +36,7 @@ def _get_groq_api_key() -> str:
 @dataclass
 class MeetingConfig:
     whisper_model: str = "whisper-large-v3"
-    llm_model: str = "qwen/qwen3-32b"
+    llm_model: str = "compound-beta-mini"
     temperature: float = 0.0
 
 

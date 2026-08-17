@@ -34,7 +34,7 @@ class DebateRound:
 
 @dataclass
 class DebateConfig:
-    llm_model: str = "qwen/qwen3-32b"
+    llm_model: str = "compound-beta-mini"
     temperature: float = 0.3
     num_rounds: int = 2
     proponent_persona: str = "You are arguing strongly in FAVOUR of the proposition."

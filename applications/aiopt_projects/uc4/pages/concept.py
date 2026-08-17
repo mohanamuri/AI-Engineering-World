@@ -69,7 +69,7 @@ def render() -> None:
     st.code(
         """# Streaming with Groq
 stream = client.chat.completions.create(
-    model="qwen/qwen3-32b",
+    model="compound-beta-mini",
     stream=True,  # ← enable streaming
     messages=[...],
 )

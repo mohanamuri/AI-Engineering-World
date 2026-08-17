@@ -39,7 +39,7 @@ from langchain_groq import ChatGroq
 @dataclass
 class GraphRAGConfig:
     """Tunable parameters for GraphRAG."""
-    llm_model: str = "qwen/qwen3-32b"
+    llm_model: str = "compound-beta-mini"
     top_k: int = 5
     temperature: float = 0.0
     max_hops: int = 2

@@ -15,9 +15,9 @@ from applications.media_projects.uc2.constants import (
 _SAMPLE_PATH = Path(__file__).resolve().parents[4] / "data" / "media_docs" / "sample_meeting.mp4"
 
 _LLM_MODELS = [
-    "qwen/qwen3-32b",
-    "qwen/qwen3-32b",
-    "qwen/qwen3-32b",
+    "compound-beta-mini",
+    "compound-beta-mini",
+    "compound-beta-mini",
 ]
 
 

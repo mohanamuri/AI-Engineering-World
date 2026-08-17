@@ -9,6 +9,7 @@ from applications.rag_projects.services.document_loader import (
 )
 from applications.rag_projects.services.graph_rag import GraphRAGConfig, build_knowledge_graph
 from applications.rag_projects.services.vector_store import build_vector_store
+from applications.shared.groq_models import get_available_chat_models
 from applications.rag_projects.uc5.constants import (
     CHAT_HISTORY_SESSION_KEY, CHUNKS_SESSION_KEY, DOCS_SESSION_KEY,
     KNOWLEDGE_GRAPH_SESSION_KEY, RAG_CONFIG_SESSION_KEY, VECTOR_STORE_SESSION_KEY,
@@ -88,6 +89,26 @@ def render() -> None:
 
         config: GraphRAGConfig = st.session_state.get(RAG_CONFIG_SESSION_KEY, GraphRAGConfig())
         chunks = st.session_state.get(CHUNKS_SESSION_KEY, [])
+
+        # Let user pick the model right here — fetches available models from Groq
+        if "_groq_models_cache" not in st.session_state:
+            st.session_state["_groq_models_cache"] = get_available_chat_models()
+        available = st.session_state["_groq_models_cache"]
+        current_model = config.llm_model if config.llm_model in available else available[0]
+        selected_model = st.selectbox(
+            "LLM model for entity extraction",
+            available,
+            index=available.index(current_model),
+            help="This model reads each chunk and extracts entity–relation triples.",
+            key="uc5_upload_model",
+        )
+        config = GraphRAGConfig(
+            llm_model=selected_model,
+            top_k=config.top_k,
+            temperature=config.temperature,
+            max_hops=config.max_hops,
+            max_chunks_for_graph=config.max_chunks_for_graph,
+        )
 
         if st.button("Build Knowledge Graph", type="primary", use_container_width=True):
             _build_graph(chunks, config)

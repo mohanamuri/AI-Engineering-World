@@ -33,7 +33,7 @@ class ConfigureRequest(BaseModel):
     chunk_overlap: int = 64
     top_k: int = 4
     temperature: float = 0.0
-    llm_model: str = "qwen/qwen3-32b"
+    llm_model: str = "compound-beta-mini"
 
 class ConfigureResponse(BaseModel):
     chunks_indexed: int
