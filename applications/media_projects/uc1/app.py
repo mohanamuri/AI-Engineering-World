@@ -74,7 +74,7 @@ def run() -> None:
                 "Component": ["Transcription", "LLM", "Output format"],
                 "Technology": [
                     "Groq Whisper (whisper-large-v3)",
-                    "Groq LLaMA (llama-3.3-70b-versatile)",
+                    "Groq LLaMA (gemma2-9b-it)",
                     "JSON report + plain text",
                 ],
             })

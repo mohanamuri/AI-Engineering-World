@@ -93,7 +93,7 @@ def run() -> None:
                     "Groq LLM — scores 3 dimensions 1–5",
                     "All scores ≥ threshold OR max revisions reached",
                     "Clarity · Accuracy · Completeness",
-                    "Groq llama-3.3-70b-versatile",
+                    "Groq gemma2-9b-it",
                 ],
             })
 

@@ -58,7 +58,7 @@ class ChunkGrade:
 @dataclass
 class CRAGConfig:
     """Tunable parameters for CRAG."""
-    llm_model: str = "llama-3.3-70b-versatile"
+    llm_model: str = "gemma2-9b-it"
     top_k: int = 4
     temperature: float = 0.0
     # Fraction of CORRECT chunks needed to stay local-only (0.0-1.0)

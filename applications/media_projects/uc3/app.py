@@ -73,7 +73,7 @@ def run() -> None:
             st.table({
                 "Component": ["Vision model", "Framework", "Output"],
                 "Technology": [
-                    "llama-3.3-70b-versatile",
+                    "gemma2-9b-it",
                     "LangChain + Groq",
                     "Structured JSON + interactive Q&A",
                 ],

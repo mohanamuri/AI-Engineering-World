@@ -14,8 +14,8 @@ from typing import Generator
 
 from groq import Groq
 
-PRIMARY_MODEL  = "llama-3.3-70b-versatile"
-FALLBACK_MODEL = "llama-3.3-70b-versatile"
+PRIMARY_MODEL  = "gemma2-9b-it"
+FALLBACK_MODEL = "gemma2-9b-it"
 MAX_RETRIES    = 2
 
 

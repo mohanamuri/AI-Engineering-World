@@ -62,7 +62,7 @@ def render() -> None:
             help="0 = deterministic. Higher = more varied but less reliable.",
         )
         st.markdown("#### Model")
-        _models = ["llama-3.3-70b-versatile", "gemma2-9b-it", "qwen/qwen3-32b"]
+        _models = ["gemma2-9b-it", "qwen/qwen3-32b", "moonshotai/kimi-k2-instruct"]
         model = st.selectbox(
             "Groq LLM",
             _models,

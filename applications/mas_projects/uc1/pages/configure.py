@@ -9,8 +9,8 @@ from applications.mas_projects.uc1.constants import (
 )
 
 _MODELS = [
-    "llama-3.3-70b-versatile",
     "gemma2-9b-it",
+    "qwen/qwen3-32b",
     "qwen/qwen3-32b",
 ]
 

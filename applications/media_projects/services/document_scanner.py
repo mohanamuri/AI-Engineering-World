@@ -3,7 +3,7 @@ Document Scanner — Media UC4.
 
 Pipeline:
   Upload photo of document / whiteboard / slide (.jpg/.png)
-  → Groq Vision (llama-3.3-70b-versatile)
+  → Groq Vision (gemma2-9b-it)
   → Structured extraction: title, sections, content blocks, metadata
   → Export as JSON or plain text
 """
@@ -50,7 +50,7 @@ def _encode_image(image_bytes: bytes) -> str:
 
 @dataclass
 class ScannerConfig:
-    vision_model: str = "llama-3.3-70b-versatile"
+    vision_model: str = "gemma2-9b-it"
     temperature: float = 0.0
     document_type: str = "auto"  # auto | meeting_notes | whiteboard | slide | form | report
 

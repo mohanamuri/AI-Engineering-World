@@ -77,7 +77,7 @@ def _render_result(result: AgentRunResult) -> None:
         st.markdown(result.final_answer)
 
     with tab_steps:
-        st.caption(f"3 tools executed · {len(result.steps)} steps · Model: llama-3.3-70b-versatile")
+        st.caption(f"3 tools executed · {len(result.steps)} steps · Model: gemma2-9b-it")
         for i, step in enumerate(result.steps, 1):
             with st.expander(f"Step {i} — `{step.tool_name}`"):
                 st.markdown("**Input:**")

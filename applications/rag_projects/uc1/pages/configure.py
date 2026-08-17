@@ -47,10 +47,10 @@ def render() -> None:
     st.markdown("#### Model")
     model = st.selectbox(
         "Groq LLM",
-        ["llama-3.3-70b-versatile", "gemma2-9b-it", "qwen/qwen3-32b"],
-        index=["llama-3.3-70b-versatile", "gemma2-9b-it", "qwen/qwen3-32b"].index(
+        ["gemma2-9b-it", "qwen/qwen3-32b", "moonshotai/kimi-k2-instruct"],
+        index=["gemma2-9b-it", "qwen/qwen3-32b", "moonshotai/kimi-k2-instruct"].index(
             existing.llm_model
-        ) if existing.llm_model in ["llama-3.3-70b-versatile", "gemma2-9b-it", "qwen/qwen3-32b"] else 0,
+        ) if existing.llm_model in ["gemma2-9b-it", "qwen/qwen3-32b", "moonshotai/kimi-k2-instruct"] else 0,
         help="All models are free on Groq's API. Larger models are slower but more capable.",
     )
 
