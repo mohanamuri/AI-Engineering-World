@@ -84,7 +84,8 @@ def render() -> None:
         st.subheader("🕸️ Build Knowledge Graph")
         st.write(
             "Click below to extract entities and relationships from your documents. "
-            "This runs one LLM call per chunk — for 30 chunks it takes roughly 30–60 seconds."
+            "This runs one LLM call per chunk — for 30 chunks it takes roughly 75–90 seconds "
+            "(paced to stay within Groq's free-tier rate limit)."
         )
 
         config: GraphRAGConfig = st.session_state.get(RAG_CONFIG_SESSION_KEY, GraphRAGConfig())

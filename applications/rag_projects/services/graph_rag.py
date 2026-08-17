@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import os
 import re
+import time
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -154,6 +155,8 @@ def build_knowledge_graph(
             graph.entity_chunks[e2].add(idx)
         if progress_cb:
             progress_cb(idx + 1, total)
+        # Stay under Groq free-tier TPM limit (8000 tokens/min)
+        time.sleep(2.5)
 
     graph.all_entities = sorted(graph.entity_chunks.keys())
     graph.edge_count = sum(
