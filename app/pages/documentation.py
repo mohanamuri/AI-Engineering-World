@@ -136,19 +136,57 @@ def _tech_stack() -> None:
         ],
     })
 
-    st.markdown("#### LLM / RAG / Agent (Tiers 4–6)")
+    st.markdown("#### LLM / RAG / Agent (Domain Projects T4–T6 + RAG / Agent / MAS / Prompt / AI Opt projects)")
     st.table({
-        "Technology": ["LangChain", "LangGraph", "ChromaDB", "sentence-transformers", "Groq API", "pypdf"],
-        "Version": ["≥ 0.3", "≥ 0.2", "≥ 0.5", "≥ 3.0", "REST", "≥ 4.0"],
+        "Technology": ["LangChain", "LangGraph", "ChromaDB", "sentence-transformers", "Groq API", "langchain-groq", "pypdf", "rank-bm25", "networkx"],
+        "Version": ["≥ 0.3", "≥ 0.2", "≥ 0.5", "≥ 3.0", "REST", "≥ 0.1", "≥ 4.0", "≥ 0.2", "≥ 3.0"],
         "Purpose": [
-            "RAG pipeline, prompt templates, chat models",
-            "Agent graphs: ReAct (T5), StateGraph fan-out (T6)",
-            "In-memory vector store for document Q&A",
-            "all-MiniLM-L6-v2 local embeddings (Streamlit only)",
-            "LLM inference — meta-llama/llama-4-scout-17b-16e-instruct, free tier",
-            "PDF document parsing for RAG",
+            "RAG pipeline, prompt templates, chat history, chat models",
+            "Agent graphs: ReAct, Plan-and-Execute, Reflection, Supervisor, MAS",
+            "In-memory vector store — embeddings for RAG and semantic cache",
+            "all-MiniLM-L6-v2 local embeddings — RAG projects + semantic caching UC1",
+            "LLM inference — openai/gpt-oss-20b (default), free tier; dynamic model discovery via client.models.list()",
+            "LangChain-compatible Groq wrapper (ChatGroq) used by all LLM services",
+            "PDF document parsing for RAG upload",
+            "BM25 keyword retriever — Hybrid Search RAG (UC2)",
+            "Knowledge graph (entity nodes + relation edges) — GraphRAG (UC5)",
         ],
     })
+
+    st.markdown("#### LLM Evaluation (llm_evaluation project)")
+    st.table({
+        "Technology": ["langchain-groq", "langchain-core", "Groq API"],
+        "Version": ["≥ 0.1", "≥ 0.3", "REST"],
+        "Purpose": [
+            "ChatGroq wrapper used by all 4 evaluation services",
+            "SystemMessage / HumanMessage for evaluation prompts",
+            "LLM-as-evaluator for RAGAS metrics, judge scoring, and claim verification",
+        ],
+    })
+    st.info("**No paid evaluation library** — RAGAS metrics are implemented via direct LLM prompts. No `ragas` package required.")
+
+    st.markdown("#### Fine-tuning (finetune_projects — concept demos, no GPU)")
+    st.table({
+        "Technology": ["numpy", "plotly", "Pure Python"],
+        "Version": ["≥ 1.26", "≥ 5.0", "—"],
+        "Purpose": [
+            "LoRA matrix math — rank_decomposition_demo(), compute_delta_W() (UC2)",
+            "Parameter bar charts (UC2), RPS scaling curves (System Design UC2), cost pie charts (System Design UC4)",
+            "Rule tree decision engine (UC1), PEFT code generators (UC3), dataset formatters (UC4) — zero dependencies",
+        ],
+    })
+    st.info("**No GPU required** — fine-tuning UCs are code walkthroughs and math visualisations only. No `transformers`, `peft`, or `torch` installed.")
+
+    st.markdown("#### System Design at Scale (sysdesign_projects — pure Python calculators)")
+    st.table({
+        "Technology": ["plotly", "Pure Python dataclasses"],
+        "Version": ["≥ 5.0", "—"],
+        "Purpose": [
+            "Waterfall bar charts (UC1), RPS scaling curves (UC2), cost pie charts (UC4)",
+            "LatencyBudget, ThroughputConfig, ArchPattern, CostConfig — all pure math, zero API calls",
+        ],
+    })
+    st.info("**Zero API calls** — all System Design calculators run entirely in Python with no external services.")
 
     st.markdown("#### Infrastructure")
     st.table({
@@ -849,10 +887,11 @@ curl -X POST {_BASE}/api/hr-multi-agent/$SESSION/panel \\
 # ─── Tab 6 — Sample Data ──────────────────────────────────────────────────────
 
 def _sample_data() -> None:
-    st.subheader("Sample Data Files")
+    st.subheader("Sample Data & Demo Inputs")
     st.write(
-        "All sample files live in the `data/` directory of the repository. "
-        "Use them for demos, testing, and showcasing. Every app works out-of-the-box with its paired file."
+        "Reference for what to use in each project. "
+        "Domain Projects need CSV files; RAG needs documents; "
+        "Evaluation / Fine-tuning / System Design use built-in examples and form inputs — no file upload needed."
     )
 
     # ── Domain Projects ──────────────────────────────────────────────────────
@@ -905,9 +944,9 @@ def _sample_data() -> None:
         "Used by": [
             "Loan RAG (T4)",
             "HR RAG (T4)",
-            "RAG Projects UC1 (multi-doc demo)",
-            "RAG Projects UC1 (multi-doc demo)",
-            "RAG Projects UC1 (multi-doc demo)",
+            "RAG Projects UC1–UC7 (multi-doc demo)",
+            "RAG Projects UC1–UC7 (multi-doc demo)",
+            "RAG Projects UC1–UC7 (multi-doc demo)",
         ],
     })
 
@@ -998,14 +1037,77 @@ def _sample_data() -> None:
 }""", language="json")
         st.caption("Expected: HIGH RISK — low satisfaction, overtime, short tenure")
 
+    st.divider()
+
+    # ── LLM Evaluation ────────────────────────────────────────────────────────
+    st.markdown("#### LLM Evaluation — Built-in examples (no upload needed)")
+    st.info("All 4 LLM Evaluation UCs include sample data in the Playground — click **Load sample** to pre-fill the form.")
+    st.table({
+        "UC": ["UC1 RAGAS", "UC2 LLM-as-Judge", "UC3 Hallucination", "UC4 Eval Pipeline"],
+        "Sample input": [
+            "Q: What is remote work allowance? + context from sample docs + ground truth",
+            "Same question answered two different ways (verbose vs concise)",
+            "LLM response with 1 hallucinated claim against source context",
+            "3 pre-built test cases covering factual Q&A, hallucination, and retrieval failure",
+        ],
+        "What to look for": [
+            "Faithfulness drops if answer adds facts not in context",
+            "Judge assigns higher score to accurate, concise response",
+            "One claim shows CONTRADICTED with evidence from source",
+            "Overall scores + which test case fails and why",
+        ],
+    })
+
+    st.divider()
+
+    # ── Fine-tuning ───────────────────────────────────────────────────────────
+    st.markdown("#### Fine-tuning — No upload, no GPU needed")
+    st.info("All Fine-tuning UCs are interactive calculators and code demos. Use the pre-built scenarios and presets.")
+    st.table({
+        "UC": ["UC1 Decision Engine", "UC2 LoRA Architecture", "UC3 PEFT Code", "UC4 Instruction Tuning"],
+        "Built-in examples": [
+            "4 presets: Customer support chatbot · Legal classifier · Medical Q&A · Content style rewriter",
+            "5 model presets: BERT-base (d=768) · GPT-2 (d=768) · LLaMA-7B (d=4096) · LLaMA-13B · LLaMA-70B",
+            "Base model dropdown (LLaMA-2-7b default) · task type · r · alpha · target_modules sliders",
+            "4 sample examples: Summarise · Classify sentiment · Translate formal · Write Python function",
+        ],
+        "What to explore": [
+            "Change task_type to 'style' + labeled_examples=500 → see recommendation flip to Fine-tune",
+            "Try r=1 vs r=64 → see 3000× vs 0.4× reduction factor",
+            "Change r from 4→64 → watch generated code and memory estimate update live",
+            "Switch between Alpaca / ChatML / ShareGPT on the same example — spot the template differences",
+        ],
+    })
+
+    st.divider()
+
+    # ── System Design ─────────────────────────────────────────────────────────
+    st.markdown("#### System Design at Scale — All calculators, no upload needed")
+    st.info("All System Design UCs are pure Python calculators. Presets load realistic starting points.")
+    st.table({
+        "UC": ["UC1 Latency Budget", "UC2 Throughput", "UC3 Architecture", "UC4 Cost Estimation"],
+        "Presets / starting point": [
+            "4 presets: Simple chatbot · Basic RAG · Production RAG · Enterprise RAG",
+            "Default: 1 replica · 1600 ms latency · 0% cache · batch_size=1",
+            "Form: RPS · latency budget ms · global users checkbox · compliance checkbox · budget tier",
+            "Default: 10K requests/month · 1K input + 500 output tokens · Groq free tier",
+        ],
+        "Key number to observe": [
+            "LLM is ~94% of total. Streaming drops perceived latency from 1600 ms → 345 ms",
+            "3 replicas + 30% cache + batch=4 → 14× throughput gain over baseline",
+            "RPS < 5 → Single Server. RPS 10–100 → Load-Balanced. Burst → Async Queue",
+            "Groq free = $0/month. Switch to GPT-4o → same traffic costs $37/month",
+        ],
+    })
+
 
 # ─── Tab 7 — Glossary ────────────────────────────────────────────────────────
 
 def _glossary() -> None:
     st.subheader("📚 Glossary — Plain English Definitions")
     st.write(
-        "New to AI? These are the key terms you'll encounter across all apps on this platform. "
-        "No jargon — just simple explanations."
+        "Key terms across all 8 project tracks on this platform. "
+        "Each term includes its area tag so you know which project it appears in."
     )
 
     terms = [
