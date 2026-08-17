@@ -1,6 +1,7 @@
 """UC6 — Configure page. Tune CRAG parameters."""
 
 import streamlit as st
+from applications.shared.groq_models import get_available_chat_models
 
 from applications.rag_projects.services.crag import CRAGConfig
 from applications.rag_projects.uc6.constants import (
@@ -51,7 +52,9 @@ def render() -> None:
             min_value=0.0, max_value=1.0, value=existing.temperature, step=0.05,
         )
         st.markdown("#### Model")
-        _models = ["qwen/qwen3-32b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct"]
+        if "_groq_models_cache" not in st.session_state:
+            st.session_state["_groq_models_cache"] = get_available_chat_models()
+        _models = st.session_state["_groq_models_cache"]
         model = st.selectbox(
             "Groq LLM",
             _models,

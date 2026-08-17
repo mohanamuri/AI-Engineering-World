@@ -1,6 +1,7 @@
 """UC2 — Configure page."""
 
 import streamlit as st
+from applications.shared.groq_models import get_available_chat_models
 
 from applications.agent_projects.services.plan_execute_agent import PlanExecuteConfig
 from applications.agent_projects.uc2.constants import (
@@ -8,14 +9,13 @@ from applications.agent_projects.uc2.constants import (
     AGENT_SETUP_SESSION_KEY,
 )
 
-_MODELS = [
-    "qwen/qwen3-32b",
-    "openai/gpt-oss-20b",
-    "qwen/qwen3-32b",
-]
 
 
 def render() -> None:
+    if "_groq_models_cache" not in st.session_state:
+        st.session_state["_groq_models_cache"] = get_available_chat_models()
+    _MODELS = st.session_state["_groq_models_cache"]
+
     st.subheader("⚙️ Configure")
 
     setup = st.session_state.get(AGENT_SETUP_SESSION_KEY)

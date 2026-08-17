@@ -6,6 +6,7 @@ Settings are saved to session state and picked up by the Chat page.
 """
 
 import streamlit as st
+from applications.shared.groq_models import get_available_chat_models
 
 from applications.rag_projects.services.rag_chain import RAGConfig
 from applications.rag_projects.uc1.constants import (
@@ -45,12 +46,13 @@ def render() -> None:
         )
 
     st.markdown("#### Model")
+    if "_groq_models_cache" not in st.session_state:
+        st.session_state["_groq_models_cache"] = get_available_chat_models()
+    _models = st.session_state["_groq_models_cache"]
     model = st.selectbox(
         "Groq LLM",
-        ["qwen/qwen3-32b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct"],
-        index=["qwen/qwen3-32b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct"].index(
-            existing.llm_model
-        ) if existing.llm_model in ["qwen/qwen3-32b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct"] else 0,
+        _models,
+        index=_models.index(existing.llm_model) if existing.llm_model in _models else 0,
         help="All models are free on Groq's API. Larger models are slower but more capable.",
     )
 

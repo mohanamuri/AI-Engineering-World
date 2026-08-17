@@ -1,6 +1,7 @@
 """UC2 — Playground page: try direct vs CoT interactively."""
 
 import streamlit as st
+from applications.shared.groq_models import get_available_chat_models
 
 from applications.prompt_projects.services.prompt_service import (
     PromptConfig,
@@ -28,7 +29,9 @@ def render() -> None:
 
     with st.expander("⚙️ Model settings", expanded=False):
         col1, col2 = st.columns(2)
-        model = col1.selectbox("Model", ["qwen/qwen3-32b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct"], index=0, key="uc2_model")
+        if "_groq_models_cache" not in st.session_state:
+            st.session_state["_groq_models_cache"] = get_available_chat_models()
+        model = col1.selectbox("Model", st.session_state["_groq_models_cache"], index=0, key="uc2_model")
         temperature = col2.slider("Temperature", 0.0, 1.0, 0.3, 0.1, key="uc2_temp",
                                    help="Lower temperature = more deterministic reasoning")
         config = PromptConfig(model=model, temperature=temperature)

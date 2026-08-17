@@ -1,6 +1,7 @@
 """UC1 — Playground page: try zero-shot and few-shot interactively."""
 
 import streamlit as st
+from applications.shared.groq_models import get_available_chat_models
 
 from applications.prompt_projects.services.prompt_service import (
     PromptConfig,
@@ -34,7 +35,9 @@ def render() -> None:
     # ── Config ────────────────────────────────────────────────────────────────
     with st.expander("⚙️ Model settings", expanded=False):
         col1, col2 = st.columns(2)
-        model = col1.selectbox("Model", ["qwen/qwen3-32b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct"], index=0)
+        if "_groq_models_cache" not in st.session_state:
+            st.session_state["_groq_models_cache"] = get_available_chat_models()
+        model = col1.selectbox("Model", st.session_state["_groq_models_cache"], index=0)
         temperature = col2.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
         config = PromptConfig(model=model, temperature=temperature)
         st.session_state[CONFIG_SESSION_KEY] = config

@@ -5,6 +5,7 @@ Tune model parameters for the ReAct agent.
 """
 
 import streamlit as st
+from applications.shared.groq_models import get_available_chat_models
 
 from applications.agent_projects.services.react_agent import ReactConfig
 from applications.agent_projects.uc1.constants import (
@@ -12,14 +13,13 @@ from applications.agent_projects.uc1.constants import (
     AGENT_SETUP_SESSION_KEY,
 )
 
-_MODELS = [
-    "qwen/qwen3-32b",
-    "openai/gpt-oss-20b",
-    "qwen/qwen3-32b",
-]
 
 
 def render() -> None:
+    if "_groq_models_cache" not in st.session_state:
+        st.session_state["_groq_models_cache"] = get_available_chat_models()
+    _MODELS = st.session_state["_groq_models_cache"]
+
     st.subheader("⚙️ Configure")
 
     setup = st.session_state.get(AGENT_SETUP_SESSION_KEY)
