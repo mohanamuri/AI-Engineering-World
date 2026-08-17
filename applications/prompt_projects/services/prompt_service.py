@@ -16,7 +16,7 @@ from datetime import datetime
 
 from groq import Groq
 
-_DEFAULT_MODEL = "llama-3.1-8b-instant"
+_DEFAULT_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 
 
 @dataclass

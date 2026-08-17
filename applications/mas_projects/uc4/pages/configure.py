@@ -9,8 +9,8 @@ from applications.mas_projects.uc4.constants import (
 )
 
 _MODELS = [
-    "llama-3.1-70b-versatile",
-    "llama-3.1-8b-instant",
+    "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "meta-llama/llama-4-scout-17b-16e-instruct",
     "gemma2-9b-it",
 ]
 

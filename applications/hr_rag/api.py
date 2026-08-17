@@ -33,7 +33,7 @@ class ConfigureRequest(BaseModel):
     chunk_overlap: int = 64
     top_k: int = 4
     temperature: float = 0.0
-    llm_model: str = "llama-3.1-8b-instant"
+    llm_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
 
 class ConfigureResponse(BaseModel):
     chunks_indexed: int

@@ -15,8 +15,8 @@ from applications.media_projects.uc1.constants import (
 _SAMPLE_PATH = Path(__file__).resolve().parents[4] / "data" / "media_docs" / "sample_meeting.wav"
 
 _LLM_MODELS = [
-    "llama-3.1-8b-instant",
-    "llama-3.1-70b-versatile",
+    "meta-llama/llama-4-scout-17b-16e-instruct",
+    "meta-llama/llama-4-maverick-17b-128e-instruct",
     "gemma2-9b-it",
 ]
 

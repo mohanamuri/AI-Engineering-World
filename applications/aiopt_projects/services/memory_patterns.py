@@ -16,7 +16,7 @@ from datetime import datetime
 
 from groq import Groq
 
-_MODEL = "llama-3.1-8b-instant"
+_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 BUFFER_WINDOW = 6        # last N messages to keep in buffer memory
 SUMMARY_TRIGGER = 6      # summarise when history exceeds this many messages
 

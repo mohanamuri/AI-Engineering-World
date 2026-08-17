@@ -40,7 +40,7 @@ class ResearchTrace:
 
 @dataclass
 class ResearchTeamConfig:
-    llm_model: str = "llama-3.1-70b-versatile"
+    llm_model: str = "meta-llama/llama-4-maverick-17b-128e-instruct"
     temperature: float = 0.0
     max_questions: int = 3
     system_prompt: str = (

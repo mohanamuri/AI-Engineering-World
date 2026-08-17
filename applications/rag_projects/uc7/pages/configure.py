@@ -77,7 +77,7 @@ def render() -> None:
             ),
         )
         st.markdown("#### Model")
-        _models = ["llama-3.1-8b-instant", "llama-3.1-70b-versatile", "mixtral-8x7b-32768"]
+        _models = ["meta-llama/llama-4-scout-17b-16e-instruct", "meta-llama/llama-4-maverick-17b-128e-instruct", "mixtral-8x7b-32768"]
         model = st.selectbox(
             "Groq LLM",
             _models,

@@ -47,7 +47,7 @@ class TraceStep:
 @dataclass
 class ReactConfig:
     """Tunable parameters for the ReAct agent."""
-    llm_model: str = "llama-3.1-8b-instant"
+    llm_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
     temperature: float = 0.0
     max_iterations: int = 6
     enabled_tools: list[str] = field(default_factory=lambda: ["calculator", "wikipedia"])

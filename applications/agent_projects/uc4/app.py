@@ -96,7 +96,7 @@ def run() -> None:
                     "ast-safe Calculator",
                     "Groq LLM — synthesises final answer",
                     "Structured output: single-word decision per round",
-                    "Groq llama-3.1-8b-instant",
+                    "Groq meta-llama/llama-4-scout-17b-16e-instruct",
                 ],
             })
 

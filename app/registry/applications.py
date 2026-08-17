@@ -588,7 +588,7 @@ PROJECTS = [
                 "status": "live",
                 "difficulty": "Beginner",
                 "version": "1.0.0",
-                "stack": ["Groq", "llama-3.1-8b-instant", "Streamlit"],
+                "stack": ["Groq", "meta-llama/llama-4-scout-17b-16e-instruct", "Streamlit"],
                 "description": (
                     "Run the same task with zero examples vs 2–3 demonstrations. "
                     "See how few-shot examples anchor the model's output style and consistency, "
@@ -606,7 +606,7 @@ PROJECTS = [
                 "status": "live",
                 "difficulty": "Beginner",
                 "version": "1.0.0",
-                "stack": ["Groq", "llama-3.1-8b-instant", "Streamlit"],
+                "stack": ["Groq", "meta-llama/llama-4-scout-17b-16e-instruct", "Streamlit"],
                 "description": (
                     "Add 'Let's think step by step' to unlock the model's reasoning ability. "
                     "Compare direct answers vs step-by-step reasoning on math, logic, "
@@ -624,7 +624,7 @@ PROJECTS = [
                 "status": "live",
                 "difficulty": "Intermediate",
                 "version": "1.0.0",
-                "stack": ["Groq", "llama-3.1-8b-instant", "JSON Schema", "Streamlit"],
+                "stack": ["Groq", "meta-llama/llama-4-scout-17b-16e-instruct", "JSON Schema", "Streamlit"],
                 "description": (
                     "Force the model to return valid JSON matching an exact schema every time. "
                     "Compare freeform prose vs structured JSON on the same extraction task — "
@@ -642,7 +642,7 @@ PROJECTS = [
                 "status": "live",
                 "difficulty": "Intermediate",
                 "version": "1.0.0",
-                "stack": ["Groq", "llama-3.1-8b-instant", "Streamlit"],
+                "stack": ["Groq", "meta-llama/llama-4-scout-17b-16e-instruct", "Streamlit"],
                 "description": (
                     "Decompose complex tasks into a three-step chain: Outline → Draft → Refine. "
                     "Each step is focused and feeds the next. "
@@ -695,7 +695,7 @@ PROJECTS = [
                 "status": "live",
                 "difficulty": "Intermediate",
                 "version": "1.0.0",
-                "stack": ["Groq", "llama-3.1-8b-instant", "llama-3.1-70b-versatile", "Streamlit"],
+                "stack": ["Groq", "meta-llama/llama-4-scout-17b-16e-instruct", "meta-llama/llama-4-maverick-17b-128e-instruct", "Streamlit"],
                 "description": (
                     "A lightweight classifier reads each query and decides whether to use "
                     "the fast 8B model or the powerful 70B model. "
@@ -714,7 +714,7 @@ PROJECTS = [
                 "status": "live",
                 "difficulty": "Intermediate",
                 "version": "1.0.0",
-                "stack": ["Groq", "llama-3.1-8b-instant", "Buffer Memory", "Summary Memory", "Entity Memory"],
+                "stack": ["Groq", "meta-llama/llama-4-scout-17b-16e-instruct", "Buffer Memory", "Summary Memory", "Entity Memory"],
                 "description": (
                     "Three memory strategies for multi-turn LLM conversations: "
                     "Buffer (keep last N messages), Summary (compress old turns with LLM), "

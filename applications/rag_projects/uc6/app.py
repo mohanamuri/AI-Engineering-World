@@ -85,7 +85,7 @@ def run() -> None:
                     "Groq LLM grades each chunk CORRECT/AMBIGUOUS/INCORRECT",
                     "Wikipedia REST API (free, no key)",
                     "Local / Wikipedia / Combined based on grade fractions",
-                    "Groq llama-3.1-8b-instant",
+                    "Groq meta-llama/llama-4-scout-17b-16e-instruct",
                 ],
             })
 

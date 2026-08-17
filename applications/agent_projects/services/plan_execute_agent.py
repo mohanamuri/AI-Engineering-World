@@ -47,7 +47,7 @@ class StepResult:
 @dataclass
 class PlanExecuteConfig:
     """Tunable parameters for the Plan-and-Execute agent."""
-    llm_model: str = "llama-3.1-8b-instant"
+    llm_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
     temperature: float = 0.0
     max_plan_steps: int = 5
     enabled_tools: list[str] = field(default_factory=lambda: ["calculator", "wikipedia"])

@@ -57,7 +57,7 @@ class PanelState(TypedDict):
 
 @dataclass
 class AgentConfig:
-    llm_model: str = "llama-3.1-8b-instant"
+    llm_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
     temperature: float = 0.0
 
 

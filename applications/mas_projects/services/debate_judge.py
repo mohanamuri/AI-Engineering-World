@@ -34,7 +34,7 @@ class DebateRound:
 
 @dataclass
 class DebateConfig:
-    llm_model: str = "llama-3.1-8b-instant"
+    llm_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
     temperature: float = 0.3
     num_rounds: int = 2
     proponent_persona: str = "You are arguing strongly in FAVOUR of the proposition."

@@ -86,7 +86,7 @@ def run() -> None:
                     "BM25 keyword ranking (rank-bm25)",
                     "Groq LLM cross-encoder style scoring (1–10)",
                     "Reciprocal Rank Fusion (RRF, k=60)",
-                    "Groq llama-3.1-8b-instant",
+                    "Groq meta-llama/llama-4-scout-17b-16e-instruct",
                 ],
             })
 

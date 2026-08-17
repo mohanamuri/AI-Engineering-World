@@ -79,7 +79,7 @@ def _architecture() -> None:
         subgraph cluster_ext {
             label="External Services"
             style=filled fillcolor="#FFF0F0"
-            Groq [label="Groq API\\nllama-3.1-8b-instant" fillcolor="#FFC7CE"]
+            Groq [label="Groq API\\nmeta-llama/llama-4-scout-17b-16e-instruct" fillcolor="#FFC7CE"]
             GitHub [label="GitHub\\nSource of truth" fillcolor="#FFC7CE"]
         }
 
@@ -145,7 +145,7 @@ def _tech_stack() -> None:
             "Agent graphs: ReAct (T5), StateGraph fan-out (T6)",
             "In-memory vector store for document Q&A",
             "all-MiniLM-L6-v2 local embeddings (Streamlit only)",
-            "LLM inference — llama-3.1-8b-instant, free tier",
+            "LLM inference — meta-llama/llama-4-scout-17b-16e-instruct, free tier",
             "PDF document parsing for RAG",
         ],
     })
@@ -196,7 +196,7 @@ def _tier_guide() -> None:
             "tier": "T4 — RAG",
             "icon": "📚",
             "what": "Answer questions grounded in uploaded policy documents.",
-            "models": "all-MiniLM-L6-v2 embeddings + Groq llama-3.1-8b-instant",
+            "models": "all-MiniLM-L6-v2 embeddings + Groq meta-llama/llama-4-scout-17b-16e-instruct",
             "pipeline": "Upload PDF/TXT → Configure (chunk + embed → ChromaDB) → Chat → History",
             "key_concept": "Retrieval-Augmented Generation: retrieve top-k relevant chunks first, then generate answer from context only. Prevents hallucination.",
             "services": "document_loader, vector_store (ChromaDB EphemeralClient), rag_chain",
@@ -399,14 +399,14 @@ def _tier_guide() -> None:
             "- **Problem:** Every LLM call costs money. Users ask semantically identical questions in different words.\n"
             "- **Solution:** Embed each query into a vector. On cache hit (cosine similarity ≥ threshold), return the stored response instantly — no LLM call.\n"
             "- **Shows:** Latency comparison (cached ~5 ms vs uncached ~800 ms), cache hit rate, cost savings per query.\n"
-            "- **Stack:** `sentence-transformers` (all-MiniLM-L6-v2) · NumPy cosine similarity · Groq llama-3.1-8b-instant",
+            "- **Stack:** `sentence-transformers` (all-MiniLM-L6-v2) · NumPy cosine similarity · Groq meta-llama/llama-4-scout-17b-16e-instruct",
         ),
         (
             "UC2 — Model Routing",
             "- **Problem:** A 70B model is 5–10× more expensive than an 8B model. Most queries don't need it.\n"
             "- **Solution:** A lightweight classifier (one 8B call, max 5 tokens) labels each query SIMPLE or COMPLEX. Simple → 8B; Complex → 70B.\n"
             "- **Shows:** Routing decision trace, latency difference per model, estimated cost difference.\n"
-            "- **Stack:** Groq llama-3.1-8b-instant (classifier + simple model) · llama-3.1-70b-versatile (complex model)",
+            "- **Stack:** Groq meta-llama/llama-4-scout-17b-16e-instruct (classifier + simple model) · meta-llama/llama-4-maverick-17b-128e-instruct (complex model)",
         ),
         (
             "UC3 — Memory Patterns",
@@ -421,7 +421,7 @@ def _tier_guide() -> None:
             "- **Streaming:** Tokens appear as they are generated → perceived latency drops 70–90 %. Total time is the same; the user just sees output immediately.\n"
             "- **Fallback:** Primary model fails or rate-limits → retry with exponential backoff → automatically switch to backup model.\n"
             "- **Shows:** Streaming vs blocking side-by-side, fallback trigger demo with force-fail flag.\n"
-            "- **Stack:** Groq `stream=True` · `st.write_stream()` · retry backoff · llama-3.1-70b-versatile as fallback",
+            "- **Stack:** Groq `stream=True` · `st.write_stream()` · retry backoff · meta-llama/llama-4-maverick-17b-128e-instruct as fallback",
         ),
     ]
 
@@ -457,7 +457,7 @@ def _integrations() -> None:
         st.markdown("#### Groq API")
         st.write(
             "Used by T4 (RAG), T5 (Agent), T6 (Multi-Agent) for LLM inference. "
-            "Model: `llama-3.1-8b-instant` — fast, free tier."
+            "Model: `meta-llama/llama-4-scout-17b-16e-instruct` — fast, free tier."
         )
         st.markdown("""
 **Streamlit:** key from `st.secrets["GROQ_API_KEY"]` (set in Streamlit Cloud dashboard)
