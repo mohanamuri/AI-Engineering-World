@@ -445,6 +445,207 @@ def _tier_guide() -> None:
         language="text",
     )
 
+    st.divider()
+    st.subheader("LLM Evaluation — Coverage Map")
+    st.write(
+        "Four systematic techniques for measuring LLM and RAG output quality. "
+        "All metrics are implemented via LLM prompts — no paid evaluation library required."
+    )
+    st.table({
+        "UC": ["UC1", "UC2", "UC3", "UC4"],
+        "Technique": [
+            "RAGAS Evaluation",
+            "LLM-as-Judge",
+            "Hallucination Detection",
+            "Eval Pipeline",
+        ],
+        "What it measures": [
+            "Faithfulness · Answer Relevance · Context Recall · Context Precision",
+            "Accuracy · Relevance · Clarity · Completeness · Conciseness (1–10 each)",
+            "Individual claims → SUPPORTED / CONTRADICTED / UNVERIFIABLE",
+            "Full test dataset → all metrics → pass/fail dashboard",
+        ],
+        "LLM calls": [
+            "4 per evaluation (one per metric)",
+            "5 per response (one per criterion)",
+            "1 (claim extraction) + N (one per claim)",
+            "Batch of RAGAS + hallucination calls",
+        ],
+        "Status": [
+            "✅ UC1 — live",
+            "✅ UC2 — live",
+            "✅ UC3 — live",
+            "✅ UC4 — live",
+        ],
+    })
+
+    st.markdown("##### What each UC teaches")
+    llmeval_details = [
+        (
+            "UC1 — RAGAS Evaluation",
+            "- **Problem:** RAG systems have no automated quality measure — how do you know if your RAG app gives good answers?\n"
+            "- **Faithfulness (0–1):** Is every claim in the answer supported by the retrieved context? Low score = hallucination risk.\n"
+            "- **Answer Relevance (0–1):** Does the answer actually address the question asked?\n"
+            "- **Context Recall (0–1):** Did the retriever find the right documents? Low score = retrieval failure.\n"
+            "- **Context Precision (0–1):** Are retrieved docs all relevant, or is there noise? Low score = noisy retrieval.\n"
+            "- **Implementation:** Each metric is a separate LLM call with a scoring rubric. No paid RAGAS library needed.",
+        ),
+        (
+            "UC2 — LLM-as-Judge",
+            "- **Problem:** Human evaluation is too slow and expensive at scale.\n"
+            "- **Solution:** Use a second LLM to score responses on custom criteria. Works for any task — not just RAG.\n"
+            "- **Criteria:** Accuracy (weight 2×), Relevance (2×), Clarity (1×), Completeness (1.5×), Conciseness (1×).\n"
+            "- **Output:** Per-criterion scores (1–10), weighted average, winner A vs B, reasoning per criterion.\n"
+            "- **Bias risks:** Position bias (always judge both orderings), verbosity bias (long ≠ better), self-preference (don't use same model as judge).",
+        ),
+        (
+            "UC3 — Hallucination Detection",
+            "- **Problem:** LLMs fabricate facts that sound plausible. RAGAS faithfulness is coarse — claim-level detection is finer.\n"
+            "- **Step 1:** Extract 3–8 individual factual claims from the LLM response.\n"
+            "- **Step 2:** Verify each claim against the source context — SUPPORTED, CONTRADICTED, or UNVERIFIABLE.\n"
+            "- **Hallucination rate:** Fraction of claims not SUPPORTED. < 20 % = Low Risk, 20–50 % = Medium, > 50 % = High.\n"
+            "- **Use when:** You need claim-level attribution, audit trails, or compliance evidence.",
+        ),
+        (
+            "UC4 — Eval Pipeline",
+            "- **Problem:** Testing individual responses is not enough — you need systematic quality measurement at scale.\n"
+            "- **Solution:** Define a test dataset (question + expected answer + context). Run all metrics automatically.\n"
+            "- **Dashboard:** Average scores per metric, per-case table with pass/fail, worst-performing cases highlighted.\n"
+            "- **CI/CD integration:** Run the pipeline on every RAG config change to catch regressions before production.\n"
+            "- **Good eval dataset:** Diverse questions, mix of difficulty, labelled ground truth, no test contamination.",
+        ),
+    ]
+    for title, body in llmeval_details:
+        with st.expander(title, expanded=False):
+            st.markdown(body)
+
+    st.divider()
+    st.subheader("Fine-tuning — Coverage Map")
+    st.write(
+        "Four fine-tuning concepts from decision framework to production deployment — all without a GPU. "
+        "Interactive calculators, LoRA math visualisations, and copy-ready code walkthroughs."
+    )
+    st.table({
+        "UC": ["UC1", "UC2", "UC3", "UC4"],
+        "Topic": [
+            "Fine-tune vs RAG",
+            "LoRA Architecture",
+            "PEFT with HuggingFace",
+            "Instruction Tuning",
+        ],
+        "What it demonstrates": [
+            "Rule-based decision tree: when to fine-tune, when to use RAG, when to use both",
+            "d×d → d×r + r×d parameter reduction (NumPy math + Plotly bar chart)",
+            "LoraConfig → get_peft_model() → training loop → merge_and_unload() (copy-ready code)",
+            "Alpaca / ChatML / ShareGPT format live preview + dataset quality checklist",
+        ],
+        "GPU required": ["No", "No", "No", "No"],
+        "Status": [
+            "✅ UC1 — live",
+            "✅ UC2 — live",
+            "✅ UC3 — live",
+            "✅ UC4 — live",
+        ],
+    })
+
+    st.markdown("##### What each UC teaches")
+    finetune_details = [
+        (
+            "UC1 — Fine-tune vs RAG Decision Engine",
+            "- **The core question:** Given my use case, should I fine-tune a model or use RAG?\n"
+            "- **Fine-tune wins when:** Style transfer, classification, 500+ labeled examples, latency-critical (< 200 ms), knowledge is static.\n"
+            "- **RAG wins when:** Factual Q&A over documents, knowledge changes frequently, fewer than 100 labeled examples, need source citations.\n"
+            "- **Both wins when:** Need a specific brand voice (fine-tune) AND fresh knowledge (RAG) — e.g. customer support bots.\n"
+            "- **Implementation:** Pure Python rule tree — instant results, no LLM call, no GPU.",
+        ),
+        (
+            "UC2 — LoRA Architecture",
+            "- **Problem:** Fine-tuning all 7B parameters requires 80+ GB GPU — impossible for most teams.\n"
+            "- **Solution:** Only train two small matrices A (d×r, Gaussian init) and B (r×d, zero init) that approximate the weight update.\n"
+            "- **Math:** ΔW = (α/r) × BA  — weight update is low-rank. At start B=0 so ΔW=0 (no disruption to base model).\n"
+            "- **Parameter reduction:** For d=768, r=8 → original 590K → LoRA 12K → 48× fewer trainable params.\n"
+            "- **Playground:** Sliders for d, r, alpha → live reduction stats + A/B matrix preview + bar chart.",
+        ),
+        (
+            "UC3 — PEFT with HuggingFace",
+            "- **PEFT (Parameter-Efficient Fine-Tuning):** Umbrella term covering LoRA, Prefix Tuning, Adapters, IA³.\n"
+            "- **5-step pipeline:** `pip install peft` → `LoraConfig` → `get_peft_model()` → `TrainingArguments + Trainer` → `merge_and_unload()`.\n"
+            "- **Playground:** Set base model, task type, r, alpha, target_modules → generates complete runnable code for all 5 steps.\n"
+            "- **Memory estimate:** Shows GPU RAM required for different configs (8-bit quantisation + LoRA fits 7B in 8 GB GPU).\n"
+            "- **merge_and_unload():** Folds LoRA adapters into base weights at inference time — no extra latency.",
+        ),
+        (
+            "UC4 — Instruction Tuning",
+            "- **What is instruction tuning?** Teaching a pre-trained base model to follow instructions (not just complete text).\n"
+            "- **Alpaca format:** `### Instruction:` / `### Input:` / `### Response:` — simple, widely supported.\n"
+            "- **ChatML format:** `<|im_start|>system/user/assistant<|im_end|>` — used by most modern chat models.\n"
+            "- **ShareGPT format:** `{\"from\": \"human/gpt\", \"value\": ...}` — multi-turn conversation datasets.\n"
+            "- **Playground:** Enter instruction/input/output → see live formatted preview in all 3 formats + download as JSON.\n"
+            "- **Data quality rule:** 1,000 high-quality examples outperform 100,000 noisy ones.",
+        ),
+    ]
+    for title, body in finetune_details:
+        with st.expander(title, expanded=False):
+            st.markdown(body)
+
+    st.divider()
+    st.subheader("System Design at Scale — Coverage Map")
+    st.write(
+        "Four interactive calculators answering the most common LLM system design interview questions. "
+        "All pure Python — no API calls, fully interactive with live plotly charts."
+    )
+    st.table({
+        "UC": ["UC1", "UC2", "UC3", "UC4"],
+        "Calculator": [
+            "Latency Budget",
+            "Throughput & Scaling",
+            "Architecture Patterns",
+            "Cost Estimation",
+        ],
+        "What it computes": [
+            "9-stage request waterfall (ms per stage, bottleneck, streaming vs non-streaming)",
+            "RPS under 4 strategies: baseline, +cache, +batching, +both vs replica count",
+            "Architecture recommendation (Single / Load-Balanced / Async Queue / Global CDN) from requirements",
+            "Monthly cost (LLM tokens + embedding + infra) + cache ROI + cost-per-request",
+        ],
+        "Interview question it answers": [
+            '"Where does latency go in a RAG system? How does streaming help?"',
+            '"How do you scale from 5 RPS to 100 RPS?"',
+            '"Walk me through the architecture for a production RAG system."',
+            '"Estimate the monthly cost of serving 10K LLM requests/day."',
+        ],
+        "Status": [
+            "✅ UC1 — live",
+            "✅ UC2 — live",
+            "✅ UC3 — live",
+            "✅ UC4 — live",
+        ],
+    })
+
+    st.markdown("##### Key numbers every AI Architect should know")
+    st.code(
+        "Typical RAG request latency breakdown:\n"
+        "  Network (in)     ~20 ms\n"
+        "  Embedding         ~15 ms   (all-MiniLM-L6-v2 on CPU)\n"
+        "  Vector search     ~30 ms   (ChromaDB in-memory)\n"
+        "  LLM TTFT         ~300 ms   (Groq, ~1000 token prompt)\n"
+        "  LLM generation  ~1200 ms   (Groq, ~500 token response)\n"
+        "  Post-process      ~10 ms\n"
+        "  ─────────────────────────\n"
+        "  Total (blocking) ~1600 ms   LLM = 94 % of total\n"
+        "  Total (streaming)  ~345 ms  perceived (user sees first token)\n\n"
+        "Scaling levers (at 1 replica, 1600 ms latency, no optimisation = 0.6 RPS):\n"
+        "  +3 replicas                → 1.9 RPS  (3×)\n"
+        "  +30 % cache hit rate       → 2.2 RPS  (3.6×)\n"
+        "  +batch_size=4              → 2.4 RPS  (4×)\n"
+        "  3 replicas + cache + batch → 8.5 RPS  (14×)\n\n"
+        "Cost reference (10K requests/month, 1K input + 500 output tokens):\n"
+        "  Groq free tier (openai/gpt-oss-20b)  →  $0/month\n"
+        "  GPT-4o mini                          →  ~$2/month\n"
+        "  GPT-4o                               →  ~$37/month",
+        language="text",
+    )
+
 
 # ─── Tab 4 — Integrations ─────────────────────────────────────────────────────
 
@@ -882,6 +1083,46 @@ def _glossary() -> None:
          "An AI model that converts spoken audio into text (speech-to-text). "
          "It handles multiple languages, accents, and background noise. "
          "Created by OpenAI, used here via Groq's fast inference."),
+        ("RAGAS", "LLM Eval",
+         "A framework for evaluating RAG systems. Four metrics: Faithfulness (is the answer grounded?), "
+         "Answer Relevance (does it address the question?), Context Recall (right docs retrieved?), "
+         "Context Precision (no noisy docs?). Each metric scores 0–1."),
+        ("Faithfulness", "LLM Eval",
+         "An evaluation metric measuring whether every claim in an LLM response is supported by "
+         "the retrieved context. Score 1.0 = fully grounded, 0.0 = completely unsupported. "
+         "Low faithfulness = high hallucination risk."),
+        ("LLM-as-Judge", "LLM Eval",
+         "Using a second LLM to evaluate the output of a first LLM on custom criteria like accuracy, "
+         "clarity, and completeness. Scales human evaluation to millions of responses. "
+         "Key risk: the judge model can have biases (position, verbosity, self-preference)."),
+        ("Fine-tuning", "Fine-tuning",
+         "Continuing the training of a pre-trained LLM on a specific dataset to specialise it for "
+         "a particular task or domain. Cheaper than training from scratch. "
+         "Fine-tuning vs RAG: fine-tune for style/format tasks, RAG for knowledge tasks."),
+        ("LoRA", "Fine-tuning",
+         "Low-Rank Adaptation — a parameter-efficient fine-tuning method that adds two small matrices "
+         "A (d×r) and B (r×d) to each weight matrix instead of updating all parameters. "
+         "For a 7B model with rank r=8, only 0.06 % of parameters are trained."),
+        ("PEFT", "Fine-tuning",
+         "Parameter-Efficient Fine-Tuning — umbrella term for methods that fine-tune only a small "
+         "fraction of model parameters. LoRA is the most popular PEFT method. "
+         "HuggingFace's `peft` library provides a unified API for all PEFT methods."),
+        ("Instruction Tuning", "Fine-tuning",
+         "A type of fine-tuning that teaches a base language model to follow instructions. "
+         "Uses datasets formatted as (instruction, input, output) triples. "
+         "Common formats: Alpaca, ChatML, ShareGPT."),
+        ("Latency Budget", "System Design",
+         "The total time allocated for one request to be processed end-to-end. "
+         "Breaking it into stages (embedding, vector search, LLM TTFT, generation) shows "
+         "where to focus optimisation. In RAG systems, LLM generation is typically 75 % of the budget."),
+        ("TTFT", "System Design",
+         "Time To First Token — how long the user waits before seeing the first word of the LLM response. "
+         "With streaming enabled, perceived latency equals TTFT (~300 ms), not total generation time (~1600 ms). "
+         "The most important UX latency metric for LLM applications."),
+        ("Throughput", "System Design",
+         "The number of requests a system can handle per second (RPS). "
+         "Increased by adding replicas (horizontal scaling), semantic caching (reduce LLM calls), "
+         "or request batching (share one LLM call across multiple requests)."),
     ]
 
     # Group by area
