@@ -59,7 +59,7 @@ def _build_image_message(prompt: str, image_bytes: bytes, filename: str) -> Huma
 
 @dataclass
 class ImageConfig:
-    vision_model: str = "openai/gpt-oss-20b"
+    vision_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
     temperature: float = 0.2
 
 

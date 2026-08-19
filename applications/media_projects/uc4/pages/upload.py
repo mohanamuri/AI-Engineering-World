@@ -14,8 +14,8 @@ from applications.media_projects.uc4.constants import (
 _SAMPLE_PATH = Path(__file__).resolve().parents[4] / "data" / "media_docs" / "sample_document.png"
 
 _VISION_MODELS = [
-    "openai/gpt-oss-20b",
-    "llama-3.2-11b-vision-preview",
+    "meta-llama/llama-4-scout-17b-16e-instruct",
+    "meta-llama/llama-4-maverick-17b-128e-instruct",
 ]
 
 _DOC_TYPES = ["auto", "meeting_notes", "whiteboard", "slide", "form", "report"]
