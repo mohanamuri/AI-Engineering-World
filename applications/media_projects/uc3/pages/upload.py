@@ -15,8 +15,8 @@ from applications.media_projects.uc3.constants import (
 _SAMPLE_PATH = Path(__file__).resolve().parents[4] / "data" / "media_docs" / "sample_image.png"
 
 _VISION_MODELS = [
-    "meta-llama/llama-4-scout-17b-16e-instruct",
-    "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "llama-3.2-11b-vision-preview",
+    "llama-3.2-90b-vision-preview",
 ]
 
 

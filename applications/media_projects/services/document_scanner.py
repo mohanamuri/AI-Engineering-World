@@ -50,7 +50,7 @@ def _encode_image(image_bytes: bytes) -> str:
 
 @dataclass
 class ScannerConfig:
-    vision_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
+    vision_model: str = "llama-3.2-11b-vision-preview"
     temperature: float = 0.0
     document_type: str = "auto"  # auto | meeting_notes | whiteboard | slide | form | report
 
