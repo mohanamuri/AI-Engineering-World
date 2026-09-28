@@ -1,0 +1,12 @@
+[
+  {
+    "question": "What is a Retrieval-Augmented Generation system?",
+    "expected_answer": "A system that retrieves relevant documents and uses them as context for LLM generation",
+    "expected_source_ids": ["doc-001", "doc-002"]
+  },
+  {
+    "question": "How does multi-tenancy work in this RAG system?",
+    "expected_answer": "Each tenant's documents are isolated by tenant_id in metadata and filtered at retrieval time",
+    "expected_source_ids": ["doc-003"]
+  }
+]

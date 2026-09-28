@@ -1,0 +1,3 @@
+Vacation carry-over: employees may carry forward up to 5 unused vacation days
+into the next calendar year. Validate the current company handbook before using
+this sample policy in a real environment.

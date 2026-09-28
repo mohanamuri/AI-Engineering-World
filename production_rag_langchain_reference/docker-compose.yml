@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: rag_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
+  # Python RAG API
+  api:
+    build: .
+    container_name: rag_api
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - REDIS_URL=redis://redis:6379
+      - CHROMA_PERSISTENCE_PATH=/app/chroma_db
+      - DEV_AUTH_ENABLED=true
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./data:/app/data
+      - ./chroma_db:/app/chroma_db
+      - ./.env:/app/.env
+    depends_on:
+      - redis
+    command: |
+      sh -c "
+        pip install -e . &&
+        python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+      "
+
+  # Optional: Prometheus for metrics
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: rag_prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+
+volumes:
+  redis_data:
+
+networks:
+  default:
+    name: rag_network
